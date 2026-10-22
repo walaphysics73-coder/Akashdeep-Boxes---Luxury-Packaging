@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Akashdeep Boxes — Website Concepts</title>
+    <style>
+        /* ==========================================================
+       CSS RESET & CORE VARIABLES
+       ========================================================== */
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+         :root {
+            --burgundy: #722F37;
+            --burgundy-dark: #582128;
+            --burgundy-light: #8C3B45;
+            --cream: #F8F4E7;
+            --cream-card: #FFFFFF;
+            --dusty-pink: #D7A781;
+            --dusty-pink-subtle: #F3E5D8;
+            --text-main: #2A1D1F;
+            --text-muted: #6B5B5E;
+            --border-subtle: #E8DEC8;
+            --shadow-sm: 0 2px 6px rgba(114, 47, 55, 0.05);
+            --shadow-md: 0 8px 20px rgba(114, 47, 55, 0.08);
+            --shadow-hover: 0 14px 28px rgba(114, 47, 55, 0.14);
+            --radius: 14px;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        html {
+            background-color: var(--cream);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            max-width: 100%;
+            min-width: 0;
+        }
+        /* ==========================================================
+       CONTAINER & HEADER
+       ========================================================== */
+        
+        .container {
+            width: 100%;
+            max-width: 1160px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 16px;
+            min-width: 0;
+        }
+        
+        @media (min-width: 600px) {
+            .container {
+                padding: 0 24px;
+            }
+        }
+        
+        header {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            min-width: 0;
+        }
+        
+        .brand-logo-mark {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            background: var(--burgundy);
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .brand-text {
+            min-width: 0;
+        }
+        
+        .brand-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .badge-count {
+            display: inline-flex;
+            align-items: center;
+            background: var(--dusty-pink-subtle);
+            color: var(--burgundy-dark);
+            border: 1px solid var(--dusty-pink);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        /* ==========================================================
+       HERO INTRO SECTION
+       ========================================================== */
+        
+        .hero {
+            text-align: center;
+            padding: 32px 0 24px;
+        }
+        
+        @media (min-width: 768px) {
+            .hero {
+                padding: 48px 0 32px;
+            }
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--burgundy);
+            background: rgba(114, 47, 55, 0.08);
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            color: var(--burgundy);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            word-wrap: break-word;
+        }
+        
+        .hero p {
+            max-width: 580px;
+            margin: 0 auto;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            word-break: normal;
+        }
+        /* ==========================================================
+       RESPONSIVE GRID & CARDS
+       ========================================================== */
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding-bottom: 40px;
+        }
+        /* Tablets: 2 columns */
+        
+        @media (min-width: 620px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        /* Desktop: 3 columns */
+        
+        @media (min-width: 980px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+        
+        .design-card {
+            background-color: var(--cream-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            min-width: 0;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+        
+        .design-card:focus-visible {
+            outline: 2px solid var(--burgundy);
+            outline-offset: 3px;
+        }
+        
+        @media (hover: hover) {
+            .design-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-hover);
+                border-color: var(--dusty-pink);
+            }
+            .design-card:hover .btn-view {
+                background-color: var(--burgundy-light);
+                color: #FFFFFF;
+            }
+        }
+        
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+        
+        .card-num-pill {
+            font-size: 0.82rem;
+            font-weight: 700;
+            background: var(--dusty-pink-subtle);
+            color: var(--burgundy-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.02em;
+        }
+        
+        .card-mockup-graphic {
+            background: var(--cream);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 16px 12px;
+            text-align: center;
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .graphic-lines {
+            width: 50%;
+            height: 4px;
+            background: var(--dusty-pink);
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+        
+        .graphic-lines-short {
+            width: 30%;
+            height: 4px;
+            background: var(--dusty-pink);
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+        
+        .card-content {
+            flex-grow: 1;
+            margin-bottom: 16px;
+            min-width: 0;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* Big touch-friendly button inside card */
+        
+        .btn-view {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            min-height: 46px;
+            padding: 10px 16px;
+            background-color: var(--burgundy);
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.2s ease;
+            user-select: none;
+            margin-top: auto;
+        }
+        
+        .btn-view svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.2s ease;
+        }
+        
+        @media (hover: hover) {
+            .design-card:hover .btn-view svg {
+                transform: translateX(3px);
+            }
+        }
+        /* ==========================================================
+       BOTTOM CLIENT INSTRUCTIONS
+       ========================================================== */
+        
+        .selection-guide {
+            background: #FFFFFF;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin-bottom: 48px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .selection-guide h2 {
+            font-size: 1.15rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .selection-guide p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 16px;
+            line-height: 1.5;
+        }
+        
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .pill-item {
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--cream);
+            border: 1px solid var(--border-subtle);
+            color: var(--burgundy);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        /* ==========================================================
+       FOOTER
+       ========================================================== */
+        
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-subtle);
+            background-color: #FFFFFF;
+            padding: 16px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+    <header>
+        <div class="container header-content">
+            <div class="brand">
+                <div class="brand-logo-mark" aria-hidden="true">A</div>
+                <div class="brand-text">
+                    <div class="brand-name">Akashdeep Boxes</div>
+                    <div class="brand-subtitle">Website Concepts</div>
+                </div>
+            </div>
+            <div class="badge-count">7 Designs Ready</div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container">
+
+        <!-- HERO INTRO -->
+        <section class="hero">
+            <span class="hero-badge">Client Presentation</span>
+            <h1>Choose Your Favourite Design</h1>
+            <p>We have prepared 7 unique website design concepts for Akashdeep Boxes. Explore each design and tell us which one you like the most.</p>
+        </section>
+
+        <!-- 7 DESIGN CARDS GRID -->
+        <section class="grid-container" aria-label="Website Design Options">
+
+            <!-- Card 1 -->
+            <a href="1.html" class="design-card" aria-label="Open Design 1 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #1</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 1</h2>
+                    <p class="card-subtitle">Website Concept 1</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <a href="2.html" class="design-card" aria-label="Open Design 2 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #2</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 2</h2>
+                    <p class="card-subtitle">Website Concept 2</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+            <!-- Card 3 -->
+            <a href="3.html" class="design-card" aria-label="Open Design 3 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #3</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 3</h2>
+                    <p class="card-subtitle">Website Concept 3</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+            <!-- Card 4 -->
+            <a href="4.html" class="design-card" aria-label="Open Design 4 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #4</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 4</h2>
+                    <p class="card-subtitle">Website Concept 4</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+            <!-- Card 5 -->
+            <a href="5.html" class="design-card" aria-label="Open Design 5 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #5</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 5</h2>
+                    <p class="card-subtitle">Website Concept 5</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+            <!-- Card 6 -->
+            <a href="6.html" class="design-card" aria-label="Open Design 6 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #6</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 6</h2>
+                    <p class="card-subtitle">Website Concept 6</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+            <!-- Card 7 -->
+            <a href="7.html" class="design-card" aria-label="Open Design 7 concept">
+                <div class="card-top">
+                    <span class="card-num-pill">Concept #7</span>
+                </div>
+                <div class="card-mockup-graphic" aria-hidden="true">
+                    <div class="graphic-lines"></div>
+                    <div class="graphic-lines-short"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">Design 7</h2>
+                    <p class="card-subtitle">Website Concept 7</p>
+                </div>
+                <div class="btn-view">
+                    <span>View Design</span>
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+                </div>
+            </a>
+
+        </section>
+
+        <!-- CLIENT FEEDBACK HELPER -->
+        <section class="selection-guide">
+            <h2>Which design do you prefer?</h2>
+            <p>Open each concept above and note down your preferred design number. Simply let us know your choice to proceed with the final build.</p>
+            <ul class="pill-list" aria-label="Design options list">
+                <li class="pill-item">1</li>
+                <li class="pill-item">2</li>
+                <li class="pill-item">3</li>
+                <li class="pill-item">4</li>
+                <li class="pill-item">5</li>
+                <li class="pill-item">6</li>
+                <li class="pill-item">7</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            &copy; Akashdeep Boxes — Website Presentation
+        </div>
+    </footer>
+
+</body>
+
+</html>

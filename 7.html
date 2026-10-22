@@ -1,0 +1,1529 @@
+import React, { useState, useMemo, useEffect, useRef } from 'react'; import { Package, Box, Layers, Sparkles, Phone, MessageCircle, Search, Sliders, CheckCircle2, ChevronRight, ChevronLeft, X, ExternalLink, Upload, Info, ShieldCheck, Award, RefreshCw,
+Eye, SlidersHorizontal, Mail, MapPin, Clock, ArrowRight, Check, Menu } from 'lucide-react'; // ========================================== // 1. BRAND DESIGN CONSTANTS & SAMPLE DATA // ========================================== // Brand Palette: // Burgundy:
+#722F37 | Cream: #F8F4E7 | Dusty Pink: #D7A781 // High-contrast text: #28211D | Warm muted text: #6B5E55 const SAMPLE_WHATSAPP_PHONE = "919876543210"; // Placeholder: Replace with actual business WhatsApp number before launch const CATEGORIES = [ { id:
+'all', label: 'All Collections' }, { id: 'mithai', label: 'Mithai & Sweet Boxes' }, { id: 'wedding-cards', label: 'Wedding Invitation Suites' }, { id: 'wedding-boxes', label: 'Wedding Invitation Boxes' }, { id: 'cardboard-custom', label: 'Custom Printed
+Cardboard' }, { id: 'luxury-gift', label: 'Luxury Rigid Packaging' }, { id: 'retail-business', label: 'Retail & Business Cartons' }, ]; const PRODUCTS_DATA = [ { id: 'mb-01', categoryId: 'mithai', categoryName: 'Mithai & Sweet Boxes', name: 'Imperial
+Royal Mithai Box', subtitle: '16-Cavity Gold Stamped Rigid Box with Food-Grade Tray', dimensions: '24 x 24 x 6 cm', length: 24, width: 24, height: 6, material: '1200 GSM Kappa Board with 157 GSM Art Paper wrap', finish: 'Velvet Matte + Gold Foil Stamping
++ Raised Spot UV', insertTrays: 'Gold metallic PET food-grade divider inserts', minOrderQty: 250, unitPriceRange: '₹85 – ₹115', baseRateFactor: 0.048, leadTime: '8 - 10 working days', images: { front: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80',
+angle: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80', open: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80', detail: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80',
+}, description: 'Constructed from high-caliper recycled rigid board and wrapped with rich velvet-touch art paper. Engineered with separate butter-paper separator sheets and food-contact certified trays for traditional Indian sweets, baklava, and dry fruits.',
+features: ['100% Food contact certified inserts', 'Precision corner mitering for seamless edges', 'Scratch-resistant gold foil stamping'] }, { id: 'wb-02', categoryId: 'wedding-boxes', categoryName: 'Wedding Invitation Boxes', name: 'Maharani Heritage
+Wedding Box', subtitle: 'Book-Fold Rigid Box with Brass Clasp & Silk Brocade Inlay', dimensions: '28 x 20 x 7 cm', length: 28, width: 20, height: 7, material: 'MDF Core Board with Raw Silk Outer Fabric and Pearl card', finish: 'Embossed Gold Metallic
+Crest + Antique Brass Clasp', insertTrays: 'Dual compartments for card booklet and dry fruit jars', minOrderQty: 100, unitPriceRange: '₹220 – ₹310', baseRateFactor: 0.082, leadTime: '12 - 15 working days', images: { front: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=800&q=80',
+angle: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80', open: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80', detail: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',
+}, description: 'An architectural keepsake designed for luxury Indian nuptials. Features magnetic book-style lid closure, genuine antique electroplated metal clasps, and plush foam cradles for ceremonial dry fruits and personalized invite scrolls.', features:
+['Custom monogram hot-foil debossed', 'Satin pull ribbons with laser-engraved tags', 'Heavy structural rigidity for pan-India shipping'] }, { id: 'wc-03', categoryId: 'wedding-cards', categoryName: 'Wedding Invitation Suites', name: 'Royal Botanical Invitation
+Suite', subtitle: 'Triple-Layer Deckle Edge Card with Real Wax Seal & Envelope', dimensions: '22 x 16 x 2 cm', length: 22, width: 16, height: 2, material: '350 GSM Cotton Rag Paper + Translucent Vellum Wrap', finish: 'Burgundy Letterpress + Hand-Poured
+Metallic Wax Seal', insertTrays: 'Matching RSVP card and inserts pouch included', minOrderQty: 150, unitPriceRange: '₹65 – ₹95', baseRateFactor: 0.035, leadTime: '7 - 10 working days', images: { front: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80',
+angle: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80', open: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=800&q=80', detail: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80',
+}, description: 'Artisanal invitation stationery combining hand-torn deckled edges with deep letterpress typography. Enhanced with botanical botanical foliage motifs and metallic gold foil highlights.', features: ['Handcrafted eco-friendly cotton stock',
+'Customized wax seal with family initials', 'Complete coordinated inserts set'] }, { id: 'cb-04', categoryId: 'cardboard-custom', categoryName: 'Custom Printed Cardboard', name: 'Signature E-Commerce Kraft Mailer', subtitle: 'Reinforced 3-Ply Micro-Flute
+Corrugated Box with Dual-Print', dimensions: '30 x 22 x 10 cm', length: 30, width: 22, height: 10, material: 'Virgin Kraft E-Flute Corrugated Board (180/120/180 GSM)', finish: 'Water-based Eco Flexo Ink + Anti-rub Sealant', insertTrays: 'Self-locking
+tuck top with dust flaps', minOrderQty: 500, unitPriceRange: '₹28 – ₹45', baseRateFactor: 0.022, leadTime: '6 - 8 working days', images: { front: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80', angle: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80',
+open: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80', detail: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80', }, description: 'High-burst strength corrugated
+packaging engineered specifically for premium retail shipments. Features unboxing peel-and-seal strips, dual-side brand printing, and crush-resistant roll-end tuck-top structural geometry.', features: ['100% Recyclable biodegradable pulp', 'Interior and
+exterior full-color branding', 'Tested for 18kg crush resistance'] }, { id: 'lg-05', categoryId: 'luxury-gift', categoryName: 'Luxury Rigid Packaging', name: 'Elysian Magnetic Flap Gift Box', subtitle: 'Collapsible Rigid Gift Packaging with Concealed
+Magnets', dimensions: '26 x 18 x 9 cm', length: 26, width: 18, height: 9, material: '1400 GSM Greyboard with Soft-Touch Dusty Pink Specialty Wrap', finish: 'Rose Gold Metallic Foil Debossed + Matte Lamination', insertTrays: 'High-density EVA foam die-cut
+insert with velvet flocking', minOrderQty: 300, unitPriceRange: '₹110 – ₹160', baseRateFactor: 0.058, leadTime: '10 - 12 working days', images: { front: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80', angle:
+'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80', open: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80', detail: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=800&q=80',
+}, description: 'Designed for high-end corporate gifting, luxury fragrances, jewelry, and confectionery hampers. The dual hidden neodymium magnets create a satisfying, tactile snap on closure.', features: ['Neodymium magnetic snap closure', 'Precision
+EVA custom cut foam lining', 'Space-saving flat-folding variant option'] }, { id: 'rb-06', categoryId: 'retail-business', categoryName: 'Retail & Business Cartons', name: 'Artisan Countertop Retail Carton', subtitle: 'Tuck-End Folding Carton with Clear
+Cellulose Display Window', dimensions: '18 x 12 x 5 cm', length: 18, width: 12, height: 5, material: '380 GSM Solid Bleached Sulfate (SBS) Virgin Board', finish: 'High-Gloss Drip-off Coating with Thermal Metallic Stamping', insertTrays: 'Crash-lock auto-bottom
+base for rapid line packing', minOrderQty: 1000, unitPriceRange: '₹18 – ₹32', baseRateFactor: 0.016, leadTime: '5 - 7 working days', images: { front: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80', angle:
+'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80', open: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80', detail: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80',
+}, description: 'Cost-effective yet visually captivating folding cartons manufactured on automated high-speed die-cutters. Perfect for luxury cosmetics, boutique teas, organic confectionery, and lifestyle items.', features: ['Auto-lock bottom for instant
+assembly', 'Crystal-clear food-grade window film', 'Vibrant 6-color Heidelberg offset fidelity'] } ]; // Substrates available for custom studio const SUBSTRATES = [ { id: 'ivory', name: 'Premium Ivory Food Board (350 GSM)', priceMultiplier: 1.0, colorHex:
+'#FAF6ED' }, { id: 'kraft', name: 'Eco Kraft Fluted Cardboard (3-Ply)', priceMultiplier: 0.85, colorHex: '#C59E74' }, { id: 'rigid', name: 'Ultra-Dense Kappa Rigid Board (1200 GSM)', priceMultiplier: 1.85, colorHex: '#722F37' }, { id: 'pearl', name: 'Handmade
+Metallic Pearl Cardstock (400 GSM)', priceMultiplier: 1.45, colorHex: '#E8DED1' } ]; const PRINT_TYPES = [ { id: 'cmyk', name: 'Full CMYK Offset Printing', costPerBatch: 1200, unitExtra: 3 }, { id: 'gold-foil', name: 'Metallic Gold Foil Stamping', costPerBatch:
+2200, unitExtra: 7 }, { id: 'spot-uv', name: 'Raised Spot UV + Foil Deboss', costPerBatch: 3000, unitExtra: 10 }, { id: 'single', name: 'Single Color Minimalist Ink', costPerBatch: 600, unitExtra: 1.5 } ]; const FINISHES = [ { id: 'matte', name: 'Velvet
+Soft-Touch Matte Lamination', costFactor: 1.15 }, { id: 'gloss', name: 'Anti-Scratch High Gloss Glaze', costFactor: 1.08 }, { id: 'raw', name: 'Natural Uncoated Raw Texture', costFactor: 1.00 } ]; // ========================================== // 2. MAIN
+COMPONENT (App) // ========================================== export default function App() { // Navigation & UI State const [mobileMenuOpen, setMobileMenuOpen] = useState(false); const [selectedCategory, setSelectedCategory] = useState('all'); const
+[searchQuery, setSearchQuery] = useState(''); // Product Detail Modal const [activeModalProduct, setActiveModalProduct] = useState(null); const [activeAngleKey, setActiveAngleKey] = useState('front'); // Compare Drawer (up to 3 products) const [compareList,
+setCompareList] = useState([]); const [isCompareOpen, setIsCompareOpen] = useState(false); // Custom Studio Configurator State const [studioCategory, setStudioCategory] = useState('mithai'); const [boxLength, setBoxLength] = useState(24); const [boxWidth,
+setBoxWidth] = useState(20); const [boxHeight, setBoxHeight] = useState(8); const [quantity, setQuantity] = useState(500); const [selectedSubstrate, setSelectedSubstrate] = useState('rigid'); const [selectedPrint, setSelectedPrint] = useState('gold-foil');
+const [selectedFinish, setSelectedFinish] = useState('matte'); const [customLogoUrl, setCustomLogoUrl] = useState(null); const [logoFileName, setLogoFileName] = useState(''); const [logoUploadError, setLogoUploadError] = useState(''); // 3D Preview Visual
+Controls const [boxRotationY, setBoxRotationY] = useState(-25); const [boxTiltX, setBoxTiltX] = useState(20); const [isLidOpen, setIsLidOpen] = useState(false); // Contact / Sample Request State const [contactForm, setContactForm] = useState({ name: '',
+company: '', phone: '', email: '', requirements: '', sampleKitRequested: true }); const [contactFormSubmitted, setContactFormSubmitted] = useState(false); const [contactErrors, setContactErrors] = useState({}); // Escape Key to close modals useEffect(()
+=> { const handleKeyDown = (e) => { if (e.key === 'Escape') { setActiveModalProduct(null); setIsCompareOpen(false); setMobileMenuOpen(false); } }; window.addEventListener('keydown', handleKeyDown); return () => window.removeEventListener('keydown', handleKeyDown);
+}, []); // Filter products by category & live search const filteredProducts = useMemo(() => { return PRODUCTS_DATA.filter((item) => { const matchesCat = selectedCategory === 'all' || item.categoryId === selectedCategory; const q = searchQuery.toLowerCase().trim();
+const matchesQuery = !q || item.name.toLowerCase().includes(q) || item.subtitle.toLowerCase().includes(q) || item.material.toLowerCase().includes(q); return matchesCat && matchesQuery; }); }, [selectedCategory, searchQuery]); // Handle Comparison toggling
+const toggleCompare = (product) => { if (compareList.some(item => item.id === product.id)) { setCompareList(compareList.filter(item => item.id !== product.id)); } else { if (compareList.length >= 3) { alert("You can compare up to 3 products at a time.");
+return; } setCompareList([...compareList, product]); setIsCompareOpen(true); } }; // Pre-fill studio with product data const handleConfigureSimilar = (product) => { setActiveModalProduct(null); setStudioCategory(product.categoryId); setBoxLength(product.length);
+setBoxWidth(product.width); setBoxHeight(product.height); // Smooth scroll to studio const studioEl = document.getElementById('custom-studio'); if (studioEl) { studioEl.scrollIntoView({ behavior: 'smooth' }); } }; // Artwork / Logo Upload Handler with
+validation const handleLogoUpload = (e) => { setLogoUploadError(''); const file = e.target.files?.[0]; if (!file) return; // Validate file type const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml']; if (!validTypes.includes(file.type))
+{ setLogoUploadError('Please select a valid image file (PNG, JPG, or SVG).'); return; } // Validate size (max 5MB) if (file.size > 5 * 1024 * 1024) { setLogoUploadError('File exceeds 5MB size limit. Please upload a smaller file.'); return; } const reader
+= new FileReader(); reader.onload = (event) => { setCustomLogoUrl(event.target.result); setLogoFileName(file.name); }; reader.readAsDataURL(file); }; const clearLogo = () => { setCustomLogoUrl(null); setLogoFileName(''); setLogoUploadError(''); }; //
+========================================== // 3. TRANSPARENT PRICING & ESTIMATION ALGORITHM // ========================================== // Centralized mathematical estimation logic const estimationBreakdown = useMemo(() => { // 1. Box Surface Area estimation
+(2*(LW + LH + WH) in sq cm) const surfaceAreaCm2 = 2 * (boxLength * boxWidth + boxLength * boxHeight + boxWidth * boxHeight); // 2. Base Substrate cost const currentSubstrate = SUBSTRATES.find(s => s.id === selectedSubstrate) || SUBSTRATES[0]; const substrateBaseRate
+= 0.022 * currentSubstrate.priceMultiplier; // ₹ per sq cm const rawMaterialUnitCost = surfaceAreaCm2 * substrateBaseRate; // 3. Print Option batch and unit add-ons const currentPrint = PRINT_TYPES.find(p => p.id === selectedPrint) || PRINT_TYPES[0];
+const printUnitCost = (currentPrint.costPerBatch / Math.max(quantity, 1)) + currentPrint.unitExtra; // 4. Finish multiplier const currentFinish = FINISHES.find(f => f.id === selectedFinish) || FINISHES[0]; // 5. Raw Subtotal before volume discounting
+let unitSubtotal = (rawMaterialUnitCost + printUnitCost) * currentFinish.costFactor; // 6. Volume Discount Tier let discountPercent = 0; if (quantity >= 5000) discountPercent = 25; else if (quantity >= 2500) discountPercent = 20; else if (quantity >=
+1000) discountPercent = 14; else if (quantity >= 500) discountPercent = 8; else discountPercent = 0; const unitPriceFinal = unitSubtotal * (1 - discountPercent / 100); const totalEstimate = unitPriceFinal * quantity; return { surfaceAreaCm2: Math.round(surfaceAreaCm2),
+rawMaterialUnitCost: rawMaterialUnitCost.toFixed(2), printUnitCost: printUnitCost.toFixed(2), discountPercent, unitPrice: Math.round(unitPriceFinal), totalEstimate: Math.round(totalEstimate) }; }, [boxLength, boxWidth, boxHeight, quantity, selectedSubstrate,
+selectedPrint, selectedFinish]); // Construct URL-Encoded WhatsApp Message const generateWhatsAppUrl = () => { const substrateObj = SUBSTRATES.find(s => s.id === selectedSubstrate); const printObj = PRINT_TYPES.find(p => p.id === selectedPrint); const
+finishObj = FINISHES.find(f => f.id === selectedFinish); const message = `*Hello Akashdeep Boxes Team,*%0A%0A` + `I would like to request an official custom quotation based on my Custom Box Studio configuration:%0A%0A` + `• *Category:* ${studioCategory.toUpperCase()}%0A`
++ `• *Dimensions (L x W x H):* ${boxLength} x ${boxWidth} x ${boxHeight} cm%0A` + `• *Quantity:* ${quantity} units%0A` + `• *Substrate:* ${substrateObj ? substrateObj.name : selectedSubstrate}%0A` + `• *Print Technique:* ${printObj ? printObj.name : selectedPrint}%0A`
++ `• *Finishing:* ${finishObj ? finishObj.name : selectedFinish}%0A` + `• *Logo Artwork:* ${customLogoUrl ? `Included (${logoFileName})` : 'To be provided later'}%0A` + `• *Illustrative Unit Estimate:* ₹${estimationBreakdown.unitPrice} per box%0A` + `•
+*Estimated Batch Total:* ₹${estimationBreakdown.totalEstimate.toLocaleString('en-IN')}%0A%0A` + `*(Note: Price subject to technical proofing & official confirmation)*%0A%0A` + `Please provide sampling timelines, plate charges, and transport details. Thank
+you!`; return `https://wa.me/${SAMPLE_WHATSAPP_PHONE}?text=${message}`; }; // Contact Form Submission Handler const handleContactSubmit = (e) => { e.preventDefault(); const errors = {}; if (!contactForm.name.trim()) errors.name = 'Please provide your
+full name.'; if (!contactForm.phone.trim() || contactForm.phone.length
+< 9) errors.phone='Please enter a valid phone number.' ; if (!contactForm.email.trim() || !contactForm.email.includes( '@')) errors.email='Please enter a valid email address.' ; if (!contactForm.requirements.trim()) errors.requirements='Please specify your packaging requirements.'
+    ; if (Object.keys(errors).length> 0) { setContactErrors(errors); return; } setContactErrors({}); setContactFormSubmitted(true); }; // Get current substrate color for 3D box rendering const activeSubstrateColor = useMemo(() => { const sub = SUBSTRATES.find(s => s.id === selectedSubstrate);
+    return sub ? sub.colorHex : '#722F37'; }, [selectedSubstrate]); return (
+    <div className="min-h-screen bg-[#F8F4E7] text-[#28211D] font-sans antialiased selection:bg-[#722F37] selection:text-[#F8F4E7]">
+
+        {/* ========================================== HEADER & NAVIGATION BAR ========================================== */}
+        <header className="sticky top-0 z-40 bg-[#F8F4E7]/95 backdrop-blur-md border-b border-[#EADBCE] shadow-sm transition-all duration-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+                {/* Logo & Brand Identity */}
+                <a href="#" className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#722F37] rounded-lg p-1">
+                    <div className="w-11 h-11 rounded-xl bg-[#722F37] flex items-center justify-center text-[#F8F4E7] shadow-md group-hover:scale-105 transition-transform duration-200">
+                        <Box className="w-6 h-6 stroke-[1.8]" />
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#722F37] leading-none">
+                Akashdeep
+              </span>
+                        <span className="text-[10px] sm:text-xs tracking-widest uppercase font-semibold text-[#6B5E55] mt-1">
+                Luxury Boxes & Packaging
+              </span>
+                    </div>
+                </a>
+
+                {/* Desktop Navigation Links */}
+                <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#28211D]">
+                    <a href="#collections" className="hover:text-[#722F37] transition-colors py-2">Collections</a>
+                    <a href="#custom-studio" className="hover:text-[#722F37] transition-colors py-2 flex items-center gap-1.5">
+                        <span>Custom Studio</span>
+                        <span className="px-1.5 py-0.5 text-[10px] font-bold bg-[#D7A781]/40 text-[#722F37] rounded-full">Interactive</span>
+                    </a>
+                    <a href="#estimator" className="hover:text-[#722F37] transition-colors py-2">Quote Estimator</a>
+                    <a href="#how-it-works" className="hover:text-[#722F37] transition-colors py-2">How It Works</a>
+                    <a href="#about" className="hover:text-[#722F37] transition-colors py-2">Our Heritage</a>
+                    <a href="#contact" className="hover:text-[#722F37] transition-colors py-2">Contact</a>
+                </nav>
+
+                {/* Header Action Buttons */}
+                <div className="flex items-center gap-2 sm:gap-3">
+
+                    {/* Compare Drawer Trigger */}
+                    <button onClick={()=> setIsCompareOpen(true)}
+              className="relative p-2.5 rounded-xl border border-[#EADBCE] bg-white hover:bg-[#F8F4E7] text-[#28211D] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#722F37]"
+              title="Compare Selected Boxes"
+              aria-label="View product comparison"
+            >
+              <SlidersHorizontal className="w-5 h-5 text-[#722F37]" />
+              {compareList.length > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#722F37] text-[#F8F4E7] text-[11px] font-bold flex items-center justify-center animate-pulse">
+                  {compareList.length}
+                </span>
+              )}
+            </button> {/* Fast WhatsApp Connect */}
+                    <a href={`https://wa.me/${SAMPLE_WHATSAPP_PHONE}?text=${encodeURIComponent( 'Hello Akashdeep Boxes! I would like to inquire about bespoke luxury packaging solutions.')}`} target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 text-[#128C7E] hover:bg-[#25D366]/20 font-medium text-xs transition-colors">
+                        <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                        <span>WhatsApp</span>
+                    </a>
+
+                    {/* Primary Get Quote CTA */}
+                    <a href="#custom-studio" className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#722F37] text-[#F8F4E7] font-semibold text-xs sm:text-sm hover:bg-[#5C252C] shadow-sm hover:shadow-md transition-all duration-200">
+                        <span>Get a Quote</span>
+                        <ChevronRight className="w-4 h-4" />
+                    </a>
+
+                    {/* Mobile Hamburger Toggle */}
+                    <button onClick={()=> setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2.5 rounded-xl border border-[#EADBCE] bg-white text-[#28211D] focus:outline-none focus:ring-2 focus:ring-[#722F37]"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+                </div>
+            </div>
+
+            {/* Mobile Navigation Drawer */} {mobileMenuOpen && (
+            <div id="mobile-nav-menu" className="lg:hidden bg-[#F8F4E7] border-b border-[#EADBCE] px-4 pt-3 pb-6 space-y-3 animate-fadeIn">
+                <div className="flex flex-col space-y-1 font-medium text-[#28211D]">
+                    <a href="#collections" onClick={()=> setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg hover:bg-white transition-colors"
+              >
+                Collections Catalog
+              </a>
+                    <a href="#custom-studio" onClick={()=> setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg hover:bg-white transition-colors flex items-center justify-between"
+              >
+                <span>Interactive Custom Studio</span>
+                <span className="px-2 py-0.5 text-xs font-semibold bg-[#D7A781]/40 text-[#722F37] rounded-full">3D Preview</span>
+              </a>
+                    <a href="#estimator" onClick={()=> setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg hover:bg-white transition-colors"
+              >
+                Instant Quotation Estimator
+              </a>
+                    <a href="#how-it-works" onClick={()=> setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg hover:bg-white transition-colors"
+              >
+                How It Works (3 Steps)
+              </a>
+                    <a href="#about" onClick={()=> setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg hover:bg-white transition-colors"
+              >
+                Artisan Heritage
+              </a>
+                    <a href="#contact" onClick={()=> setMobileMenuOpen(false)}
+                className="px-3 py-2.5 rounded-lg hover:bg-white transition-colors"
+              >
+                Request Free Sample Kit
+              </a>
+                </div>
+
+                <div className="pt-2 border-t border-[#EADBCE] flex flex-col gap-2">
+                    <a href={`https://wa.me/${SAMPLE_WHATSAPP_PHONE}?text=${encodeURIComponent( 'Hello Akashdeep Boxes! I am interested in custom boxes.')}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-white font-medium text-sm shadow-sm">
+                        <MessageCircle className="w-5 h-5" />
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+            )}
+        </header>
+
+        {/* ========================================== HERO SECTION WITH 3D PRODUCT SHOWCASE ========================================== */}
+        <section className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden border-b border-[#EADBCE]">
+            {/* Soft background glow accents */}
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D7A781]/15 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+                    {/* Left Narrative Column */}
+                    <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#EADBCE] text-xs font-semibold text-[#722F37] shadow-xs">
+                            <Sparkles className="w-3.5 h-3.5 text-[#D7A781]" />
+                            <span>Specialists in Food-Grade Sweets & Couture Wedding Suites</span>
+                        </div>
+
+                        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#722F37] leading-[1.15]">
+                            Bespoke Packaging Crafted with Architectural Precision & Timeless Luxury.
+                        </h1>
+
+                        <p className="text-base sm:text-lg text-[#6B5E55] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Elevate your confectioneries, royal wedding invitations, and corporate gifts with rigid hand-finished presentation boxes, precision hot-foil debossing, and food-certified interior partitions.
+                        </p>
+
+                        {/* CTAs */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#custom-studio" className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#722F37] text-[#F8F4E7] font-semibold text-base hover:bg-[#5C252C] shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2">
+                                <Package className="w-5 h-5" />
+                                <span>Launch Custom Studio</span>
+                            </a>
+
+                            <a href="#collections" className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white border border-[#EADBCE] text-[#28211D] font-semibold text-base hover:bg-[#F8F4E7] transition-all duration-200 flex items-center justify-center gap-2">
+                                <span>Explore Collections</span>
+                                <ArrowRight className="w-4 h-4 text-[#722F37]" />
+                            </a>
+                        </div>
+
+                        {/* Trust Badges */}
+                        <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                            <div className="flex items-center gap-2.5 p-2 rounded-lg bg-white/70 border border-[#EADBCE]/80">
+                                <ShieldCheck className="w-5 h-5 text-[#722F37] shrink-0" />
+                                <span className="text-xs font-medium text-[#28211D]">Food-Safe Boards</span>
+                            </div>
+                            <div className="flex items-center gap-2.5 p-2 rounded-lg bg-white/70 border border-[#EADBCE]/80">
+                                <Award className="w-5 h-5 text-[#722F37] shrink-0" />
+                                <span className="text-xs font-medium text-[#28211D]">Artisan Mitering</span>
+                            </div>
+                            <div className="flex items-center gap-2.5 p-2 rounded-lg bg-white/70 border border-[#EADBCE]/80">
+                                <Sparkles className="w-5 h-5 text-[#722F37] shrink-0" />
+                                <span className="text-xs font-medium text-[#28211D]">Foil & Spot UV</span>
+                            </div>
+                            <div className="flex items-center gap-2.5 p-2 rounded-lg bg-white/70 border border-[#EADBCE]/80">
+                                <Clock className="w-5 h-5 text-[#722F37] shrink-0" />
+                                <span className="text-xs font-medium text-[#28211D]">Fast Prototyping</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* Right Interactive Showcase Hero Card */}
+                    <div className="lg:col-span-5 flex justify-center">
+                        <div className="w-full max-w-md bg-white rounded-3xl p-5 border border-[#EADBCE] shadow-xl relative overflow-hidden group">
+
+                            <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-[#F8F4E7] mb-4">
+                                <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=80" alt="Akashdeep Signature Handcrafted Mithai Box" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                /> {/* Visual Tag */}
+                                <div className="absolute top-3 left-3 bg-[#722F37] text-[#F8F4E7] text-[11px] font-semibold tracking-wide uppercase px-3 py-1 rounded-full shadow-sm">
+                                    Signature Handcrafted
+                                </div>
+
+                                <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs text-[#28211D] text-xs font-medium px-2.5 py-1 rounded-lg border border-[#EADBCE]">
+                                    Mithai & Confectionery
+                                </div>
+                            </div>
+
+                            <div className="space-y-3">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <h3 className="font-serif text-lg font-bold text-[#722F37]">Imperial 16-Cavity Sweet Box</h3>
+                                        <p className="text-xs text-[#6B5E55]">Velvet-touch rigid board with metallic gold foil</p>
+                                    </div>
+                                    <span className="text-xs font-bold text-[#722F37] bg-[#D7A781]/20 px-2.5 py-1 rounded-lg">
+                      MOQ: 250
+                    </span>
+                                </div>
+
+                                <div className="flex items-center gap-2 pt-2 border-t border-[#EADBCE]">
+                                    <button onClick={()=> {
+                        const product = PRODUCTS_DATA[0];
+                        setActiveModalProduct(product);
+                        setActiveAngleKey('open');
+                      }}
+                      className="flex-1 py-2 rounded-xl bg-[#F8F4E7] hover:bg-[#EADBCE] text-[#722F37] font-semibold text-xs transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <Eye className="w-4 h-4" />
+                      <span>Inspect Food Tray View</span>
+                    </button>
+
+                                    <button onClick={()=> handleConfigureSimilar(PRODUCTS_DATA[0])}
+                      className="px-3 py-2 rounded-xl bg-[#722F37] hover:bg-[#5C252C] text-white text-xs font-semibold transition-colors"
+                      title="Customize in 3D Studio"
+                    >
+                      Configure
+                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        {/* ========================================== COLLECTIONS & FILTERABLE PRODUCT CATALOG ========================================== */}
+        <section id="collections" className="py-16 lg:py-24 border-b border-[#EADBCE]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+                {/* Section Header */}
+                <div className="text-center max-w-2xl mx-auto space-y-3">
+                    <h2 className="text-xs font-bold tracking-widest uppercase text-[#722F37]">
+                        Engineered Packaging Suites
+                    </h2>
+                    <p className="font-serif text-3xl sm:text-4xl font-bold text-[#722F37]">
+                        Curated Production Varieties
+                    </p>
+                    <p className="text-sm sm:text-base text-[#6B5E55]">
+                        Explore our core packaging categories. Every piece is customizable by size, board GSM, partitions, and specialized embellishments.
+                    </p>
+                </div>
+
+                {/* Filter Bar: Category Tabs & Live Search */}
+                <div className="space-y-4">
+
+                    {/* Search Box */}
+                    <div className="max-w-md mx-auto relative">
+                        <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B5E55]" />
+                        <input type="text" placeholder="Search by box type, material, or application..." value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)} className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-[#EADBCE] bg-white
+                        text-sm focus:outline-none focus:ring-2 focus:ring-[#722F37] text-[#28211D] placeholder:text-[#6B5E55]/60 shadow-xs" /> {searchQuery && (
+                        <button onClick={()=> setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6B5E55] hover:text-[#28211D]"
+                >
+                  <X className="w-4 h-4" />
+                </button> )}
+                    </div>
+
+                    {/* Category Pills */}
+                    <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                        {CATEGORIES.map((cat) => (
+                        <button key={cat.id} onClick={()=> setSelectedCategory(cat.id)}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
+                    selectedCategory === cat.id
+                      ? 'bg-[#722F37] text-[#F8F4E7] shadow-sm'
+                      : 'bg-white border border-[#EADBCE] text-[#6B5E55] hover:text-[#28211D] hover:bg-[#F8F4E7]'
+                  }`}
+                >
+                  {cat.label}
+                </button> ))}
+                    </div>
+
+                </div>
+
+                {/* Products Grid */} {filteredProducts.length === 0 ? (
+                <div className="text-center py-16 bg-white rounded-2xl border border-[#EADBCE] max-w-lg mx-auto p-8 space-y-4">
+                    <Box className="w-12 h-12 text-[#D7A781] mx-auto" />
+                    <h3 className="font-serif text-lg font-bold text-[#722F37]">No Matching Products Found</h3>
+                    <p className="text-xs text-[#6B5E55]">
+                        Try adjusting your search keywords or select another collection filter.
+                    </p>
+                    <button onClick={()=> { setSelectedCategory('all'); setSearchQuery(''); }}
+                className="px-4 py-2 bg-[#722F37] text-white rounded-xl text-xs font-semibold"
+              >
+                Reset Filters
+              </button>
+                </div>
+                ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    {filteredProducts.map((product) => { const isCompared = compareList.some((item) => item.id === product.id); return (
+                    <div key={product.id} className="bg-white rounded-2xl border border-[#EADBCE] overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col group">
+                        {/* Image Area */}
+                        <div className="relative aspect-4/3 overflow-hidden bg-[#F8F4E7]">
+                            <img src={product.images.front} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" /> {/* Top Badges */}
+                            <div className="absolute top-3 left-3 bg-[#722F37] text-[#F8F4E7] text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md shadow-xs">
+                                {product.categoryName}
+                            </div>
+
+                            {/* Quick angle preview trigger */}
+                            <button onClick={()=> {
+                          setActiveModalProduct(product);
+                          setActiveAngleKey('front');
+                        }}
+                        className="absolute bottom-3 right-3 bg-white/95 text-[#722F37] px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm hover:bg-[#722F37] hover:text-white transition-colors flex items-center gap-1.5"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Inspect Angles</span>
+                      </button>
+                        </div>
+
+                        {/* Card Body */}
+                        <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                            <div className="space-y-2">
+                                <div className="flex items-start justify-between gap-2">
+                                    <h3 className="font-serif text-lg font-bold text-[#722F37] leading-snug">
+                                        {product.name}
+                                    </h3>
+                                </div>
+                                <p className="text-xs text-[#6B5E55] line-clamp-2">
+                                    {product.subtitle}
+                                </p>
+
+                                {/* Specs overview pills */}
+                                <div className="space-y-1.5 pt-2 text-xs">
+                                    <div className="flex items-center justify-between text-[#6B5E55] py-1 border-b border-[#F8F4E7]">
+                                        <span className="font-medium">Standard Dims:</span>
+                                        <span className="font-semibold text-[#28211D]">{product.dimensions}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-[#6B5E55] py-1 border-b border-[#F8F4E7]">
+                                        <span className="font-medium">Min Order Qty:</span>
+                                        <span className="font-semibold text-[#722F37]">{product.minOrderQty} units</span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-[#6B5E55] py-1">
+                                        <span className="font-medium">Indicative Range:</span>
+                                        <span className="font-semibold text-[#28211D]">{product.unitPriceRange}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="pt-2 flex items-center gap-2">
+                                {/* Compare Toggle */}
+                                <button onClick={()=> toggleCompare(product)}
+                          className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-colors flex items-center justify-center gap-1.5 ${
+                            isCompared
+                              ? 'bg-[#722F37] text-white border-[#722F37]'
+                              : 'bg-[#F8F4E7] text-[#28211D] border-[#EADBCE] hover:bg-[#EADBCE]'
+                          }`}
+                        >
+                          <SlidersHorizontal className="w-3.5 h-3.5" />
+                          <span>{isCompared ? 'Added to Compare' : 'Compare'}</span>
+                        </button> {/* Open Studio with this preset */}
+                                <button onClick={()=> handleConfigureSimilar(product)}
+                          className="px-4 py-2.5 rounded-xl bg-white border border-[#722F37] text-[#722F37] hover:bg-[#722F37] hover:text-[#F8F4E7] text-xs font-semibold transition-colors"
+                          title="Open in Custom Studio"
+                        >
+                          Customize
+                        </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    ); })}
+                </div>
+                )}
+
+            </div>
+        </section>
+
+        {/* ========================================== CUSTOM BOX STUDIO & 3D CONFIGURATOR ========================================== */}
+        <section id="custom-studio" className="py-16 lg:py-24 bg-white border-b border-[#EADBCE] scroll-mt-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+                {/* Header */}
+                <div className="text-center max-w-3xl mx-auto space-y-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F8F4E7] border border-[#EADBCE] text-xs font-bold text-[#722F37]">
+                        <Layers className="w-3.5 h-3.5 text-[#D7A781]" />
+                        <span>Interactive Dimension & Substrate Engine</span>
+                    </div>
+                    <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#722F37]">
+                        Custom Box Studio
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#6B5E55]">
+                        Configure length, width, height, substrates, foil embellishments, and upload your real brand logo to see a simulated 3D perspective box preview before manufacturing.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                    {/* Left 3D Perspective Visualizer Panel */}
+                    <div className="lg:col-span-6 bg-[#F8F4E7] rounded-3xl p-6 sm:p-8 border border-[#EADBCE] shadow-inner space-y-6 flex flex-col justify-between">
+
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <span className="text-xs font-bold tracking-wider uppercase text-[#722F37]">
+                    Live 3D Perspective Preview
+                  </span>
+                                <p className="text-[11px] text-[#6B5E55]">
+                                    Simulated box dimensions: {boxLength}L × {boxWidth}W × {boxHeight}H cm
+                                </p>
+                            </div>
+
+                            {/* Open / Close Lid Action */}
+                            <button onClick={()=> setIsLidOpen(!isLidOpen)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 ${
+                    isLidOpen 
+                      ? 'bg-[#722F37] text-white' 
+                      : 'bg-white text-[#722F37] border border-[#EADBCE]'
+                  }`}
+                >
+                  <Box className="w-3.5 h-3.5" />
+                  <span>{isLidOpen ? 'Close Lid' : 'Open Lid (Inspect Inside)'}</span>
+                </button>
+                        </div>
+
+                        {/* 3D Perspective CSS Box Container */}
+                        <div className="relative w-full h-72 sm:h-84 flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-[#F2ECE0] to-[#E5DDD0] border border-[#DCD3C5]">
+
+                            {/* 3D Stage */}
+                            <div className="relative transition-transform duration-300 ease-out flex items-center justify-center" style={{ perspective: '1200px', perspectiveOrigin: '50% 50%' }}>
+                                <div className="relative transition-all duration-500 ease-out" style={{ transformStyle: 'preserve-3d', transform: `rotateX(${boxTiltX}deg) rotateY(${boxRotationY}deg)`, width: `${Math.min(boxLength * 6.5, 240)}px`, height: `${Math.min(boxHeight * 8, 140)}px`,
+                                    }}>
+
+                                    {/* Front Face */}
+                                    <div className="absolute inset-0 rounded-sm border border-black/10 flex items-center justify-center shadow-lg transition-colors duration-300" style={{ backgroundColor: activeSubstrateColor, transform: `translateZ(${Math.min(boxWidth * 3.5, 120)}px)`,
+                                        color: selectedSubstrate==='rigid' ? '#F8F4E7' : '#28211D' }}>
+                                        <div className="text-[11px] font-semibold opacity-70 tracking-wider">
+                                            FRONT
+                                        </div>
+                                    </div>
+
+                                    {/* Back Face */}
+                                    <div className="absolute inset-0 rounded-sm border border-black/10 flex items-center justify-center transition-colors duration-300" style={{ backgroundColor: activeSubstrateColor, transform: `rotateY(180deg) translateZ(${Math.min(boxWidth * 3.5, 120)}px)`,
+                                        color: selectedSubstrate==='rigid' ? '#F8F4E7' : '#28211D' }} /> {/* Left Face */}
+                                    <div className="absolute top-0 bottom-0 rounded-sm border border-black/10 flex items-center justify-center transition-colors duration-300" style={{ width: `${Math.min(boxWidth * 7, 240)}px`, left: '50%', marginLeft: `-${Math.min(boxWidth * 3.5, 120)}px`,
+                                        backgroundColor: activeSubstrateColor, transform: `rotateY(-90deg) translateZ(${Math.min(boxLength * 3.25, 120)}px)`, filter: 'brightness(0.92)' }} /> {/* Right Face */}
+                                    <div className="absolute top-0 bottom-0 rounded-sm border border-black/10 flex items-center justify-center transition-colors duration-300" style={{ width: `${Math.min(boxWidth * 7, 240)}px`, left: '50%', marginLeft: `-${Math.min(boxWidth * 3.5, 120)}px`,
+                                        backgroundColor: activeSubstrateColor, transform: `rotateY(90deg) translateZ(${Math.min(boxLength * 3.25, 120)}px)`, filter: 'brightness(0.85)' }} /> {/* Bottom Base */}
+                                    <div className="absolute left-0 right-0 rounded-sm border border-black/15 transition-colors duration-300" style={{ height: `${Math.min(boxWidth * 7, 240)}px`, top: '50%', marginTop: `-${Math.min(boxWidth * 3.5, 120)}px`, backgroundColor: activeSubstrateColor,
+                                        transform: `rotateX(-90deg) translateZ(${Math.min(boxHeight * 4, 70)}px)`, filter: 'brightness(0.75)' }} /> {/* Top Lid Face with Logo Simulation & Open Angle */}
+                                    <div className="absolute left-0 right-0 rounded-sm border border-black/10 flex flex-col items-center justify-center p-2 text-center transition-all duration-500 ease-in-out shadow-sm overflow-hidden" style={{ height: `${Math.min(boxWidth * 7, 240)}px`,
+                                        top: '50%', marginTop: `-${Math.min(boxWidth * 3.5, 120)}px`, backgroundColor: activeSubstrateColor, transformOrigin: 'top center', transform: isLidOpen ? `rotateX(90deg) translateZ(${Math.min(boxHeight * 4, 70)}px)
+                                        rotateX(-105deg)` : `rotateX(90deg) translateZ(${Math.min(boxHeight * 4, 70)}px)`, filter: 'brightness(1.05)' }}>
+                                        {/* Substrate Sheen Texture */} {selectedPrint === 'gold-foil' && (
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-amber-400/20 via-yellow-200/30 to-amber-500/20 pointer-events-none" /> )} {/* Uploaded Real Logo on Top Lid */} {customLogoUrl ? (
+                                        <div className="z-10 max-w-[80%] max-h-[75%] p-1 bg-white/40 rounded backdrop-blur-xs flex items-center justify-center border border-white/50">
+                                            <img src={customLogoUrl} alt="Uploaded Custom Brand Logo" className="max-h-16 max-w-full object-contain filter drop-shadow-sm" />
+                                        </div>
+                                        ) : (
+                                        <div className="z-10 flex flex-col items-center justify-center text-[#722F37] opacity-90">
+                                            <Package className="w-7 h-7 mb-1 stroke-[1.5]" />
+                                            <span className="text-[10px] font-bold tracking-widest uppercase">
+                            AKASHDEEP
+                          </span>
+                                            <span className="text-[8px] opacity-75 font-serif italic">
+                            Gold Embossed Lid
+                          </span>
+                                        </div>
+                                        )} {/* Hot Foil Stamping Visual Accent */} {selectedPrint === 'gold-foil' && (
+                                        <div className="absolute bottom-2 text-[9px] font-mono text-amber-700 font-bold bg-amber-100/70 px-2 py-0.5 rounded">
+                                            ★ 24K Gold Foil Accent
+                                        </div>
+                                        )}
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {/* Substrate Badge Overlay */}
+                            <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-md text-[11px] font-medium text-[#28211D] border border-[#EADBCE]">
+                                Material: <strong className="text-[#722F37]">{SUBSTRATES.find(s => s.id === selectedSubstrate)?.name.split(' (')[0]}</strong>
+                            </div>
+
+                            {/* Angle hint */}
+                            <div className="absolute bottom-3 right-3 text-[10px] text-[#6B5E55] bg-white/80 px-2 py-0.5 rounded">
+                                Use sliders below to rotate 3D view
+                            </div>
+                        </div>
+
+                        {/* 3D Perspective Rotation Sliders */}
+                        <div className="grid grid-cols-2 gap-4 bg-white p-3.5 rounded-2xl border border-[#EADBCE]">
+                            <div>
+                                <div className="flex justify-between text-xs font-semibold text-[#6B5E55] mb-1">
+                                    <span>Rotate (Horizontal)</span>
+                                    <span className="text-[#722F37]">{boxRotationY}°</span>
+                                </div>
+                                <input type="range" min="-90" max="90" value={boxRotationY} onChange={(e)=> setBoxRotationY(parseInt(e.target.value))} className="w-full accent-[#722F37] cursor-pointer" />
+                            </div>
+
+                            <div>
+                                <div className="flex justify-between text-xs font-semibold text-[#6B5E55] mb-1">
+                                    <span>Tilt Angle (Pitch)</span>
+                                    <span className="text-[#722F37]">{boxTiltX}°</span>
+                                </div>
+                                <input type="range" min="-10" max="65" value={boxTiltX} onChange={(e)=> setBoxTiltX(parseInt(e.target.value))} className="w-full accent-[#722F37] cursor-pointer" />
+                            </div>
+                        </div>
+
+                        {/* Logo Upload Box */}
+                        <div className="bg-white p-4 rounded-2xl border border-[#EADBCE] space-y-2">
+                            <div className="flex items-center justify-between">
+                                <label className="text-xs font-bold text-[#28211D] flex items-center gap-1.5">
+                    <Upload className="w-3.5 h-3.5 text-[#722F37]" />
+                    <span>Upload Brand Logo / Crest (Optional)</span>
+                  </label> {customLogoUrl && (
+                                <button onClick={clearLogo} className="text-[11px] text-red-600 hover:underline font-medium">
+                      Remove Logo
+                    </button> )}
+                            </div>
+
+                            <p className="text-[11px] text-[#6B5E55]">
+                                Test your artwork on the 3D box lid (PNG, JPG, or SVG up to 5MB).
+                            </p>
+
+                            <div className="flex items-center gap-2">
+                                <input type="file" id="logo-file-input" accept="image/png, image/jpeg, image/svg+xml" onChange={handleLogoUpload} className="text-xs text-[#6B5E55] file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#722F37] file:text-white hover:file:bg-[#5C252C] cursor-pointer"
+                                />
+                            </div>
+
+                            {logoFileName && (
+                            <div className="text-[11px] text-[#28211D] font-medium bg-[#F8F4E7] p-1.5 rounded flex items-center gap-1.5">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-green-600 shrink-0" />
+                                <span className="truncate">Active Logo: {logoFileName}</span>
+                            </div>
+                            )} {logoUploadError && (
+                            <div className="text-[11px] text-red-600 font-medium">
+                                {logoUploadError}
+                            </div>
+                            )}
+                        </div>
+
+                    </div>
+
+                    {/* Right Configuration Form Column */}
+                    <div className="lg:col-span-6 space-y-6">
+
+                        {/* Box Application Category */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                  1. Select Packaging Purpose
+                </label>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                {[ { id: 'mithai', label: 'Mithai & Sweets' }, { id: 'wedding-boxes', label: 'Wedding Suite' }, { id: 'luxury-gift', label: 'Luxury Rigid' }, { id: 'cardboard-custom', label: 'Shipping Mailer' }, { id: 'retail-business', label: 'Retail Folding' }, ].map((cat)
+                                => (
+                                <button key={cat.id} onClick={()=> setStudioCategory(cat.id)}
+                      className={`p-2.5 rounded-xl text-xs font-semibold border text-center transition-all ${
+                        studioCategory === cat.id
+                          ? 'bg-[#722F37] text-white border-[#722F37] shadow-xs'
+                          : 'bg-white border-[#EADBCE] text-[#28211D] hover:bg-[#F8F4E7]'
+                      }`}
+                    >
+                      {cat.label}
+                    </button> ))}
+                            </div>
+                        </div>
+
+                        {/* Exact Dimensions Inputs */}
+                        <div className="space-y-3 bg-[#F8F4E7]/60 p-4 rounded-2xl border border-[#EADBCE]">
+                            <div className="flex items-center justify-between">
+                                <label className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                    2. Dimensions (Centimeters)
+                  </label>
+                                <span className="text-[11px] text-[#6B5E55]">
+                    L: {boxLength}cm | W: {boxWidth}cm | H: {boxHeight}cm
+                  </span>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-3">
+                                {/* Length */}
+                                <div>
+                                    <label className="block text-[11px] font-medium text-[#6B5E55] mb-1">
+                      Length (10-50 cm)
+                    </label>
+                                    <input type="number" min="10" max="50" value={boxLength} onChange={(e)=> setBoxLength(Math.max(10, Math.min(50, Number(e.target.value) || 10)))} className="w-full px-3 py-2 rounded-lg border border-[#EADBCE] bg-white
+                                    text-sm font-semibold text-[#28211D] focus:ring-2 focus:ring-[#722F37]" />
+                                </div>
+
+                                {/* Width */}
+                                <div>
+                                    <label className="block text-[11px] font-medium text-[#6B5E55] mb-1">
+                      Width (10-40 cm)
+                    </label>
+                                    <input type="number" min="10" max="40" value={boxWidth} onChange={(e)=> setBoxWidth(Math.max(10, Math.min(40, Number(e.target.value) || 10)))} className="w-full px-3 py-2 rounded-lg border border-[#EADBCE] bg-white
+                                    text-sm font-semibold text-[#28211D] focus:ring-2 focus:ring-[#722F37]" />
+                                </div>
+
+                                {/* Height */}
+                                <div>
+                                    <label className="block text-[11px] font-medium text-[#6B5E55] mb-1">
+                      Height (3-25 cm)
+                    </label>
+                                    <input type="number" min="3" max="25" value={boxHeight} onChange={(e)=> setBoxHeight(Math.max(3, Math.min(25, Number(e.target.value) || 3)))} className="w-full px-3 py-2 rounded-lg border border-[#EADBCE] bg-white text-sm
+                                    font-semibold text-[#28211D] focus:ring-2 focus:ring-[#722F37]" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Substrate Material Selection */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                  3. Board Substrate & Material
+                </label>
+                            <div className="space-y-2">
+                                {SUBSTRATES.map((sub) => (
+                                <div key={sub.id} onClick={()=> setSelectedSubstrate(sub.id)} className={`p-3 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${ selectedSubstrate === sub.id ? 'border-[#722F37] bg-[#722F37]/5 shadow-xs' : 'border-[#EADBCE]
+                                    bg-white hover:border-[#722F37]/50' }`} >
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-5 h-5 rounded-full border border-black/20" style={{ backgroundColor: sub.colorHex }} />
+                                        <span className="text-xs sm:text-sm font-medium text-[#28211D]">
+                          {sub.name}
+                        </span>
+                                    </div>
+                                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${ selectedSubstrate===s ub.id ? 'border-[#722F37] bg-[#722F37]' : 'border-[#EADBCE]' }`}>
+                                        {selectedSubstrate === sub.id &&
+                                        <div className="w-1.5 h-1.5 bg-white rounded-full" />}
+                                    </div>
+                                </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Print Technique */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                  4. Printing & Embellishment
+                </label>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {PRINT_TYPES.map((print) => (
+                                <button key={print.id} onClick={()=> setSelectedPrint(print.id)}
+                      className={`p-2.5 rounded-xl text-left border text-xs font-medium transition-all ${
+                        selectedPrint === print.id
+                          ? 'bg-[#722F37] text-white border-[#722F37]'
+                          : 'bg-white border-[#EADBCE] text-[#28211D] hover:bg-[#F8F4E7]'
+                      }`}
+                    >
+                      {print.name}
+                    </button> ))}
+                            </div>
+                        </div>
+
+                        {/* Finishing Technique */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                  5. Surface Lamination & Coating
+                </label>
+                            <div className="grid grid-cols-3 gap-2">
+                                {FINISHES.map((f) => (
+                                <button key={f.id} onClick={()=> setSelectedFinish(f.id)}
+                      className={`p-2 rounded-xl text-xs font-medium border text-center transition-all ${
+                        selectedFinish === f.id
+                          ? 'bg-[#722F37] text-white border-[#722F37]'
+                          : 'bg-white border-[#EADBCE] text-[#28211D] hover:bg-[#F8F4E7]'
+                      }`}
+                    >
+                      {f.name.split(' ')[0]} {f.name.split(' ')[1] || ''}
+                    </button> ))}
+                            </div>
+                        </div>
+
+                        {/* Quantity Tier Selector */}
+                        <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                                <label className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                    6. Production Volume
+                  </label> {estimationBreakdown.discountPercent > 0 && (
+                                <span className="text-[11px] font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded">
+                      {estimationBreakdown.discountPercent}% Volume Savings Applied
+                    </span> )}
+                            </div>
+
+                            <div className="grid grid-cols-5 gap-2">
+                                {[250, 500, 1000, 2500, 5000].map((qty) => (
+                                <button key={qty} onClick={()=> setQuantity(qty)}
+                      className={`py-2 rounded-xl text-xs font-bold border transition-all ${
+                        quantity === qty
+                          ? 'bg-[#722F37] text-white border-[#722F37]'
+                          : 'bg-white border-[#EADBCE] text-[#28211D] hover:bg-[#F8F4E7]'
+                      }`}
+                    >
+                      {qty.toLocaleString()}
+                    </button> ))}
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {/* ========================================== INSTANT QUOTATION ESTIMATOR WIDGET ========================================== */}
+                <div id="estimator" className="mt-8 bg-[#F8F4E7] rounded-3xl p-6 sm:p-8 border border-[#EADBCE] space-y-6">
+
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#EADBCE] pb-6">
+                        <div>
+                            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-amber-100/80 text-amber-900 text-[11px] font-semibold mb-2">
+                                <Info className="w-3.5 h-3.5 shrink-0" />
+                                <span>Illustrative Demonstration Estimate — Final price subject to confirmation</span>
+                            </div>
+                            <h3 className="font-serif text-2xl font-bold text-[#722F37]">
+                                Instant Production Cost Estimate
+                            </h3>
+                            <p className="text-xs text-[#6B5E55]">
+                                Calculated based on {estimationBreakdown.surfaceAreaCm2} cm² total surface area, tooling, and print setup.
+                            </p>
+                        </div>
+
+                        {/* Price Figures */}
+                        <div className="text-left sm:text-right">
+                            <span className="text-xs text-[#6B5E55] block">Estimated Unit Price</span>
+                            <div className="text-3xl font-serif font-bold text-[#722F37]">
+                                ₹{estimationBreakdown.unitPrice} <span className="text-sm font-sans font-normal text-[#6B5E55]">/ box</span>
+                            </div>
+                            <span className="text-xs text-[#6B5E55] block mt-0.5">
+                  Batch Total for {quantity.toLocaleString()} units: <strong>₹{estimationBreakdown.totalEstimate.toLocaleString('en-IN')}</strong>
+                </span>
+                        </div>
+                    </div>
+
+                    {/* Cost Breakdown Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+                        <div className="bg-white p-3 rounded-xl border border-[#EADBCE]">
+                            <span className="text-[#6B5E55] block mb-1">Board Material Base:</span>
+                            <span className="font-bold text-[#28211D]">₹{estimationBreakdown.rawMaterialUnitCost} / unit</span>
+                        </div>
+                        <div className="bg-white p-3 rounded-xl border border-[#EADBCE]">
+                            <span className="text-[#6B5E55] block mb-1">Plates & Print:</span>
+                            <span className="font-bold text-[#28211D]">₹{estimationBreakdown.printUnitCost} / unit</span>
+                        </div>
+                        <div className="bg-white p-3 rounded-xl border border-[#EADBCE]">
+                            <span className="text-[#6B5E55] block mb-1">Finishing Tier:</span>
+                            <span className="font-bold text-[#28211D]">{FINISHES.find(f => f.id === selectedFinish)?.name.split(' ')[0]}</span>
+                        </div>
+                        <div className="bg-white p-3 rounded-xl border border-[#EADBCE]">
+                            <span className="text-[#6B5E55] block mb-1">Tier Discount:</span>
+                            <span className="font-bold text-green-700">{estimationBreakdown.discountPercent}% Off</span>
+                        </div>
+                    </div>
+
+                    {/* WhatsApp CTA with pre-filled parameters */}
+                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-xs text-[#6B5E55] max-w-xl">
+                            Ready to review physical sample boards or request a formal commercial invoice with GST? Tap below to send this specification directly to our technical desk on WhatsApp.
+                        </p>
+
+                        <a href={generateWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 shrink-0">
+                            <MessageCircle className="w-5 h-5" />
+                            <span>Request Official Quote on WhatsApp</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        {/* ========================================== HOW IT WORKS (3 SIMPLE STEPS) ========================================== */}
+        <section id="how-it-works" className="py-16 lg:py-24 border-b border-[#EADBCE]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+                <div className="text-center max-w-2xl mx-auto space-y-3">
+                    <h2 className="text-xs font-bold tracking-widest uppercase text-[#722F37]">
+                        Seamless Commercial Execution
+                    </h2>
+                    <p className="font-serif text-3xl sm:text-4xl font-bold text-[#722F37]">
+                        From Concept to Crating in 3 Steps
+                    </p>
+                    <p className="text-sm sm:text-base text-[#6B5E55]">
+                        We handle CAD dieline generation, sample physical proofing, and volume industrial die-cutting under one roof.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+
+                    {/* Step 1 */}
+                    <div className="bg-white rounded-2xl p-6 border border-[#EADBCE] shadow-xs relative space-y-4">
+                        <div className="w-12 h-12 rounded-xl bg-[#722F37] text-white font-serif font-bold text-xl flex items-center justify-center">
+                            1
+                        </div>
+                        <h3 className="font-serif text-xl font-bold text-[#722F37]">
+                            CAD Prototyping & Dielines
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#6B5E55] leading-relaxed">
+                            Submit your required dimensions or send sample sweets/wedding stationery. Our structural engineers produce exact digital dielines and unprinted white sample mockups within 48 hours.
+                        </p>
+                        <div className="text-xs font-semibold text-[#722F37] flex items-center gap-1">
+                            <span>Free Dieline PDF with Order</span>
+                            <ChevronRight className="w-4 h-4" />
+                        </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="bg-white rounded-2xl p-6 border border-[#EADBCE] shadow-xs relative space-y-4">
+                        <div className="w-12 h-12 rounded-xl bg-[#722F37] text-white font-serif font-bold text-xl flex items-center justify-center">
+                            2
+                        </div>
+                        <h3 className="font-serif text-xl font-bold text-[#722F37]">
+                            Heidelberg Offset & Foiling
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#6B5E55] leading-relaxed">
+                            We run high-precision multi-color offset presses calibrated with spectrophotometers. Hot-foil brass dies stamp metallic crests with sub-millimeter registration and scratch-resistant adhesion.
+                        </p>
+                        <div className="text-xs font-semibold text-[#722F37] flex items-center gap-1">
+                            <span>24K Gold & Rose Foil Options</span>
+                            <ChevronRight className="w-4 h-4" />
+                        </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="bg-white rounded-2xl p-6 border border-[#EADBCE] shadow-xs relative space-y-4">
+                        <div className="w-12 h-12 rounded-xl bg-[#722F37] text-white font-serif font-bold text-xl flex items-center justify-center">
+                            3
+                        </div>
+                        <h3 className="font-serif text-xl font-bold text-[#722F37]">
+                            Rigid Forming & Pan-India Dispatch
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#6B5E55] leading-relaxed">
+                            Automated corner taping lines assemble rigid bases, while master artisans wrap delicate silk inlays and magnetic flaps. Every batch is moisture-sealed in 7-ply master cartons.
+                        </p>
+                        <div className="text-xs font-semibold text-[#722F37] flex items-center gap-1">
+                            <span>Moisture-Proof Pallet Crating</span>
+                            <ChevronRight className="w-4 h-4" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        {/* ========================================== ABOUT AKASHDEEP BOXES SECTION ========================================== */}
+        <section id="about" className="py-16 lg:py-24 bg-white border-b border-[#EADBCE]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+                    {/* Image Showcase */}
+                    <div className="lg:col-span-5">
+                        <div className="relative rounded-3xl overflow-hidden border border-[#EADBCE] shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=80" alt="Akashdeep Boxes Workshop Craftsmanship" className="w-full h-84 sm:h-96 object-cover" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#722F37]/80 via-transparent to-transparent" />
+                            <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                                <span className="text-xs font-bold tracking-widest uppercase text-[#D7A781]">
+                    Packaging Atelier
+                  </span>
+                                <p className="font-serif text-xl font-bold">
+                                    Blending Traditional Box Mitering with Automated Precision
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Narrative */}
+                    <div className="lg:col-span-7 space-y-5">
+                        <span className="text-xs font-bold tracking-widest uppercase text-[#722F37]">
+                About Akashdeep Boxes
+              </span>
+
+                        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#722F37] leading-tight">
+                            Crafting Keepsakes That Turn Every Unboxing into an Unforgettable Celebration.
+                        </h2>
+
+                        <p className="text-sm sm:text-base text-[#6B5E55] leading-relaxed">
+                            At <strong>Akashdeep Boxes</strong>, we believe exceptional packaging is the silent ambassador of your brand. Founded to serve premium confectioners, wedding planners, and luxury retailers, our manufacturing unit brings together
+                            veteran rigid box craftsmen and computerized folding-box infrastructure.
+                        </p>
+
+                        <p className="text-sm sm:text-base text-[#6B5E55] leading-relaxed">
+                            Whether you need 250 bespoke wedding invitation boxes with intricate brass fittings or 50,000 branded mithai boxes during festive seasons, our focus remains steadfast: sharp 90-degree corners, food-grade raw materials, and flawless metallic foil stamps.
+                        </p>
+
+                        <div className="pt-4 border-t border-[#EADBCE] grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            <div>
+                                <div className="font-serif text-2xl font-bold text-[#722F37]">Food-Grade</div>
+                                <div className="text-xs text-[#6B5E55]">Certified Board Stock</div>
+                            </div>
+                            <div>
+                                <div className="font-serif text-2xl font-bold text-[#722F37]">Zero Crushing</div>
+                                <div className="text-xs text-[#6B5E55]">Heavy-Duty Kappa Cores</div>
+                            </div>
+                            <div>
+                                <div className="font-serif text-2xl font-bold text-[#722F37]">Pan-India</div>
+                                <div className="text-xs text-[#6B5E55]">Doorstep Cargo Freight</div>
+                            </div>
+                        </div>
+
+                        {/* Explicit Demo Disclaimer */}
+                        <div className="p-3 bg-[#F8F4E7] rounded-xl border border-[#EADBCE] text-[11px] text-[#6B5E55]">
+                            <strong>Client Demo Notice:</strong> Machine counts, certified audit papers, and factory addresses presented on this preview are demonstration placeholders that will be updated with your confirmed business details upon commissioning.
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        {/* ========================================== CONTACT & SAMPLE KIT ENQUIRY FORM ========================================== */}
+        <section id="contact" className="py-16 lg:py-24 border-b border-[#EADBCE]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div className="max-w-3xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-[#EADBCE] shadow-sm space-y-8">
+
+                    <div className="text-center space-y-2">
+                        <span className="text-xs font-bold tracking-widest uppercase text-[#722F37]">
+                Connect With Our Team
+              </span>
+                        <h2 className="font-serif text-3xl font-bold text-[#722F37]">
+                            Order a Physical Sample Proofing Kit
+                        </h2>
+                        <p className="text-xs sm:text-sm text-[#6B5E55]">
+                            Touch and feel our rigid paper weights, evaluate gold foil textures, and test our food-contact partition trays firsthand before placing a bulk order.
+                        </p>
+                    </div>
+
+                    {contactFormSubmitted ? (
+                    <div className="bg-[#F8F4E7] border border-green-300 rounded-2xl p-8 text-center space-y-3 animate-fadeIn">
+                        <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto" />
+                        <h3 className="font-serif text-xl font-bold text-[#722F37]">
+                            Thank You, {contactForm.name}!
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#6B5E55] max-w-md mx-auto">
+                            Your sample kit request has been recorded. Our packaging consultant will reach out via <strong>{contactForm.phone}</strong> and <strong>{contactForm.email}</strong> within 1 business day.
+                        </p>
+                        <button onClick={()=> {
+                    setContactFormSubmitted(false);
+                    setContactForm({
+                      name: '',
+                      company: '',
+                      phone: '',
+                      email: '',
+                      requirements: '',
+                      sampleKitRequested: true
+                    });
+                  }}
+                  className="mt-4 px-4 py-2 bg-[#722F37] text-white rounded-xl text-xs font-semibold"
+                >
+                  Submit Another Enquiry
+                </button>
+                    </div>
+                    ) : (
+                    <form onSubmit={handleContactSubmit} className="space-y-4">
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {/* Full Name */}
+                            <div>
+                                <label className="block text-xs font-semibold text-[#28211D] mb-1">
+                      Your Full Name *
+                    </label>
+                                <input type="text" placeholder="e.g. Ramesh Agrawal" value={contactForm.name} onChange={(e)=> setContactForm({ ...contactForm, name: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE]
+                                bg-[#F8F4E7]/40 text-sm focus:ring-2 focus:ring-[#722F37] focus:outline-none" /> {contactErrors.name && (
+                                <p className="text-[11px] text-red-600 mt-1">{contactErrors.name}</p>
+                                )}
+                            </div>
+
+                            {/* Company / Brand */}
+                            <div>
+                                <label className="block text-xs font-semibold text-[#28211D] mb-1">
+                      Brand / Confectionery / Event Name
+                    </label>
+                                <input type="text" placeholder="e.g. Anand Sweets & Caterers" value={contactForm.company} onChange={(e)=> setContactForm({ ...contactForm, company: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE]
+                                bg-[#F8F4E7]/40 text-sm focus:ring-2 focus:ring-[#722F37] focus:outline-none" />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {/* Phone */}
+                            <div>
+                                <label className="block text-xs font-semibold text-[#28211D] mb-1">
+                      Phone Number (WhatsApp Preferred) *
+                    </label>
+                                <input type="tel" placeholder="+91 98765 43210" value={contactForm.phone} onChange={(e)=> setContactForm({ ...contactForm, phone: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] bg-[#F8F4E7]/40
+                                text-sm focus:ring-2 focus:ring-[#722F37] focus:outline-none" /> {contactErrors.phone && (
+                                <p className="text-[11px] text-red-600 mt-1">{contactErrors.phone}</p>
+                                )}
+                            </div>
+
+                            {/* Email */}
+                            <div>
+                                <label className="block text-xs font-semibold text-[#28211D] mb-1">
+                      Email Address *
+                    </label>
+                                <input type="email" placeholder="contact@example.com" value={contactForm.email} onChange={(e)=> setContactForm({ ...contactForm, email: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE]
+                                bg-[#F8F4E7]/40 text-sm focus:ring-2 focus:ring-[#722F37] focus:outline-none" /> {contactErrors.email && (
+                                <p className="text-[11px] text-red-600 mt-1">{contactErrors.email}</p>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Packaging Requirements */}
+                        <div>
+                            <label className="block text-xs font-semibold text-[#28211D] mb-1">
+                    Describe Box Needs (Dimensions, Estimated Quantity, Timeline) *
+                  </label>
+                            <textarea rows={3} placeholder="We require approximately 1,000 gold foil mithai boxes (24x24x6 cm) with 16 food-grade dividers by next month..." value={contactForm.requirements} onChange={(e)=> setContactForm({ ...contactForm, requirements: e.target.value })}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] bg-[#F8F4E7]/40 text-sm focus:ring-2 focus:ring-[#722F37] focus:outline-none"
+                  />
+                  {contactErrors.requirements && (
+                    <p className="text-[11px] text-red-600 mt-1">{contactErrors.requirements}</p>
+                  )}
+                </div>
+
+                {/* Sample Kit Checkbox */}
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-[#F8F4E7] border border-[#EADBCE]">
+                  <input
+                    type="checkbox"
+                    id="sampleKitCheckbox"
+                    checked={contactForm.sampleKitRequested}
+                    onChange={(e) => setContactForm({ ...contactForm, sampleKitRequested: e.target.checked })}
+                    className="w-4 h-4 text-[#722F37] rounded focus:ring-[#722F37] cursor-pointer"
+                  />
+                  <label htmlFor="sampleKitCheckbox" className="text-xs text-[#28211D] font-medium cursor-pointer">
+                    Include physical sample material kit (Paper swatches, foil shade card, and rigid box corner cutaway)
+                  </label>
+                </div>
+
+                {/* Submit CTA */}
+                <button
+                  type="submit"
+                  className="w-full py-3.5 rounded-xl bg-[#722F37] text-[#F8F4E7] font-semibold text-sm hover:bg-[#5C252C] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Send Request & Reserve Sample Kit</span>
+                </button>
+
+              </form>
+            )}
+
+            {/* Quick Contact Cards */}
+            <div className="pt-6 border-t border-[#EADBCE] grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-[#F8F4E7] flex items-center justify-center text-[#722F37] shrink-0">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div className="text-xs">
+                  <span className="font-semibold text-[#28211D] block">Direct Inquiry</span>
+                  <span className="text-[#6B5E55]">+91 98765 43210</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-[#F8F4E7] flex items-center justify-center text-[#722F37] shrink-0">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <div className="text-xs">
+                  <span className="font-semibold text-[#28211D] block">Commercial Desk</span>
+                  <span className="text-[#6B5E55]">quotes@akashdeepboxes.com</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-[#F8F4E7] flex items-center justify-center text-[#722F37] shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div className="text-xs">
+                  <span className="font-semibold text-[#28211D] block">Industrial Unit</span>
+                  <span className="text-[#6B5E55]">Packaging Hub, India</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ==========================================
+          FOOTER
+      ========================================== */}
+      <footer className="bg-[#28211D] text-[#F8F4E7] py-12 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            {/* Col 1: Brand */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-[#722F37] text-white flex items-center justify-center">
+                  <Box className="w-4 h-4" />
+                </div>
+                <span className="font-serif text-lg font-bold text-white tracking-wide">
+                  Akashdeep Boxes
+                </span>
+              </div>
+              <p className="text-neutral-400 leading-relaxed text-[11px]">
+                Manufacturer of bespoke rigid sweet boxes, luxury wedding invitation folios, and printed e-commerce packaging. Serving clients across India.
+              </p>
+            </div>
+
+            {/* Col 2: Navigation */}
+            <div className="space-y-2">
+              <span className="font-bold text-white uppercase tracking-wider text-[11px] block">
+                Quick Navigation
+              </span>
+              <ul className="space-y-1.5 text-neutral-400">
+                <li><a href="#collections" className="hover:text-white transition-colors">Product Categories</a></li>
+                <li><a href="#custom-studio" className="hover:text-white transition-colors">3D Custom Studio</a></li>
+                <li><a href="#estimator" className="hover:text-white transition-colors">Cost Estimator</a></li>
+                <li><a href="#how-it-works" className="hover:text-white transition-colors">Production Process</a></li>
+              </ul>
+            </div>
+
+            {/* Col 3: Categories */}
+            <div className="space-y-2">
+              <span className="font-bold text-white uppercase tracking-wider text-[11px] block">
+                Packaging Collections
+              </span>
+              <ul className="space-y-1.5 text-neutral-400">
+                <li>Mithai & Sweet Boxes</li>
+                <li>Wedding Invitation Suites</li>
+                <li>Handcrafted Keepsake Gift Boxes</li>
+                <li>Custom Corrugated Mailers</li>
+              </ul>
+            </div>
+
+            {/* Col 4: Business Disclaimers */}
+            <div className="space-y-2">
+              <span className="font-bold text-white uppercase tracking-wider text-[11px] block">
+                Demonstration Verification
+              </span>
+              <p className="text-neutral-400 text-[11px] leading-relaxed">
+                Prices and lead times shown are indicative estimates. Official orders require formal dieline approval and GST proforma invoicing.
+              </p>
+              <div className="pt-2">
+                <a
+                  href={`https://wa.me/${SAMPLE_WHATSAPP_PHONE}?text=${encodeURIComponent('Hi Akashdeep Boxes, requesting official brochure.')}`}
+                  className="inline-flex items-center gap-1.5 text-[#D7A781] hover:underline font-semibold"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>Request Full PDF Catalog</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="pt-8 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between text-neutral-500 text-[11px] gap-2">
+            <div>
+              © {new Date().getFullYear()} Akashdeep Boxes. All rights reserved.
+            </div>
+            <div className="flex gap-4">
+              <span>Privacy Policy</span>
+              <span>•</span>
+              <span>Terms of Production</span>
+              <span>•</span>
+              <span>Dieline Specifications</span>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+      {/* ==========================================
+          MULTI-ANGLE PRODUCT DETAIL MODAL
+      ========================================== */}
+      {activeModalProduct && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">
+          
+          <div
+            className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto border border-[#EADBCE] shadow-2xl relative"
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setActiveModalProduct(null)}
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 border border-[#EADBCE] text-[#28211D] flex items-center justify-center hover:bg-[#722F37] hover:text-white transition-colors"
+              aria-label="Close dialog"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8">
+              
+              {/* Left Images & Angle Switcher */}
+              <div className="md:col-span-7 space-y-4">
+                
+                {/* Main Large Image */}
+                <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-[#F8F4E7] border border-[#EADBCE]">
+                  <img
+                    src={activeModalProduct.images[activeAngleKey]}
+                    alt={`${activeModalProduct.name} - ${activeAngleKey} angle`}
+                    className="w-full h-full object-cover transition-opacity duration-300"
+                  />
+                  <div className="absolute bottom-3 left-3 bg-[#722F37] text-white text-[11px] font-semibold px-2.5 py-1 rounded-md uppercase">
+                    View: {activeAngleKey.toUpperCase()}
+                  </div>
+                </div>
+
+                {/* Angle Thumbnails */}
+                <div className="grid grid-cols-4 gap-2">
+                  {[
+                    { key: 'front', label: 'Exterior' },
+                    { key: 'angle', label: 'Perspective' },
+                    { key: 'open', label: 'Open Tray' },
+                    { key: 'detail', label: 'Foil Macro' },
+                  ].map((ang) => (
+                    <button
+                      key={ang.key}
+                      onClick={() => setActiveAngleKey(ang.key)}
+                      className={`p-1.5 rounded-xl border text-center transition-all ${
+                        activeAngleKey === ang.key
+                          ? 'border-[#722F37] bg-[#722F37]/10 ring-1 ring-[#722F37]'
+                          : 'border-[#EADBCE] bg-[#F8F4E7] hover:bg-white'
+                      }`}
+                    >
+                      <div className="aspect-square rounded-lg overflow-hidden mb-1">
+                        <img
+                          src={activeModalProduct.images[ang.key]}
+                          alt={ang.label}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <span className="text-[10px] font-semibold text-[#28211D] block truncate">
+                        {ang.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+
+              </div>
+
+              {/* Right Specifications Sheet */}
+              <div className="md:col-span-5 flex flex-col justify-between space-y-4">
+                
+                <div className="space-y-3">
+                  <div className="inline-block px-2.5 py-1 rounded bg-[#D7A781]/30 text-[#722F37] text-xs font-bold uppercase">
+                    {activeModalProduct.categoryName}
+                  </div>
+
+                  <h3 className="font-serif text-2xl font-bold text-[#722F37] leading-tight">
+                    {activeModalProduct.name}
+                  </h3>
+
+                  <p className="text-xs text-[#6B5E55] leading-relaxed">
+                    {activeModalProduct.description}
+                  </p>
+
+                  {/* Spec Sheet Table */}
+                  <div className="pt-2 border-t border-[#EADBCE] space-y-2 text-xs">
+                    <div className="flex justify-between py-1 border-b border-[#F8F4E7]">
+                      <span className="text-[#6B5E55]">Dimensions:</span>
+                      <span className="font-semibold text-[#28211D]">{activeModalProduct.dimensions}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-[#F8F4E7]">
+                      <span className="text-[#6B5E55]">Board Substrate:</span>
+                      <span className="font-semibold text-[#28211D] text-right max-w-[60%]">{activeModalProduct.material}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-[#F8F4E7]">
+                      <span className="text-[#6B5E55]">Surface Finishing:</span>
+                      <span className="font-semibold text-[#28211D] text-right max-w-[60%]">{activeModalProduct.finish}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-[#F8F4E7]">
+                      <span className="text-[#6B5E55]">Partitions / Tray:</span>
+                      <span className="font-semibold text-[#28211D] text-right max-w-[60%]">{activeModalProduct.insertTrays}</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-[#F8F4E7]">
+                      <span className="text-[#6B5E55]">Minimum Order:</span>
+                      <span className="font-bold text-[#722F37]">{activeModalProduct.minOrderQty} units</span>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-[#6B5E55]">Production Lead Time:</span>
+                      <span className="font-semibold text-[#28211D]">{activeModalProduct.leadTime}</span>
+                    </div>
+                  </div>
+
+                  {/* Feature Bullets */}
+                  <div className="space-y-1 pt-1">
+                    {activeModalProduct.features.map((feat, idx) => (
+                      <div key={idx} className="flex items-center gap-1.5 text-xs text-[#28211D]">
+                        <Check className="w-3.5 h-3.5 text-green-700 shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Modal Bottom CTAs */}
+                <div className="pt-4 border-t border-[#EADBCE] space-y-2">
+                  <button
+                    onClick={() => handleConfigureSimilar(activeModalProduct)}
+                    className="w-full py-3 rounded-xl bg-[#722F37] hover:bg-[#5C252C] text-[#F8F4E7] font-semibold text-xs shadow-sm flex items-center justify-center gap-2"
+                  >
+                    <Sliders className="w-4 h-4" />
+                    <span>Load Dieline into Custom Studio</span>
+                  </button>
+
+                  <a
+                    href={`https://wa.me/${SAMPLE_WHATSAPP_PHONE}?text=${encodeURIComponent(`Hello, I am interested in inquiring about ${activeModalProduct.name} (${activeModalProduct.dimensions}). Could you please send exact sample rates?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-xl border border-[#25D366] text-[#128C7E] bg-[#25D366]/10 hover:bg-[#25D366]/20 font-semibold text-xs flex items-center justify-center gap-2 transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                    <span>Quick Inquiry on WhatsApp</span>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* ==========================================
+          SIDE-BY-SIDE PRODUCT COMPARISON DRAWER
+      ========================================== */}
+      {isCompareOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">
+          
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto border border-[#EADBCE] shadow-2xl p-5 sm:p-8 space-y-6">
+            
+            <div className="flex items-center justify-between border-b border-[#EADBCE] pb-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#722F37]">
+                  Side-By-Side Comparison
+                </span>
+                <h3 className="font-serif text-2xl font-bold text-[#722F37]">
+                  Selected Box Specifications ({compareList.length}/3)
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {compareList.length > 0 && (
+                  <button
+                    onClick={() => setCompareList([])}
+                    className="text-xs text-red-600 hover:underline font-semibold"
+                  >
+                    Clear All
+                  </button>
+                )}
+                <button
+                  onClick={() => setIsCompareOpen(false)}
+                  className="w-8 h-8 rounded-full border border-[#EADBCE] flex items-center justify-center hover:bg-[#722F37] hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {compareList.length === 0 ? (
+              <div className="text-center py-12 space-y-3">
+                <SlidersHorizontal className="w-10 h-10 text-[#D7A781] mx-auto" />
+                <h4 className="font-serif text-lg font-bold text-[#722F37]">No Boxes Added Yet</h4>
+                <p className="text-xs text-[#6B5E55] max-w-sm mx-auto">
+                  Click the "Compare" button on any product card in the collections catalog to review differences side-by-side.
+                </p>
+                <button
+                  onClick={() => setIsCompareOpen(false)}
+                  className="px-4 py-2 rounded-xl bg-[#722F37] text-white text-xs font-semibold"
+                >
+                  Browse Catalog
+                </button>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="border-b border-[#EADBCE]">
+                      <th className="p-3 font-semibold text-[#6B5E55] w-1/4">Specification</th>
+                      {compareList.map((item) => (
+                        <th key={item.id} className="p-3 font-bold text-[#722F37] w-1/4">
+                          <div className="space-y-2">
+                            <div className="aspect-video rounded-lg overflow-hidden bg-[#F8F4E7] border border-[#EADBCE]">
+                              <img src={item.images.front} alt={item.name} className="w-full h-full object-cover" />
+                            </div>
+                            <div className="truncate font-serif text-sm">{item.name}</div>
+                            <button
+                              onClick={() => toggleCompare(item)}
+                              className="text-[10px] text-red-600 hover:underline font-medium block"
+                            >
+                              Remove from Compare
+                            </button>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+
+                  <tbody className="divide-y divide-[#F8F4E7]">
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Category</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 font-medium text-[#28211D]">{item.categoryName}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Standard Dimensions</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 font-bold text-[#722F37]">{item.dimensions}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Board Substrate</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 text-[#28211D]">{item.material}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Finishing & Embellishment</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 text-[#28211D]">{item.finish}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Partition / Divider Trays</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 text-[#28211D]">{item.insertTrays}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Minimum Order (MOQ)</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 font-bold text-[#722F37]">{item.minOrderQty} units</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Indicative Range</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3 font-semibold text-green-800">{item.unitPriceRange}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-semibold text-[#6B5E55]">Action</td>
+                      {compareList.map(item => (
+                        <td key={item.id} className="p-3">
+                          <button
+                            onClick={() => {
+                              setIsCompareOpen(false);
+                              handleConfigureSimilar(item);
+                            }}
+                            className="px-3 py-1.5 rounded-lg bg-[#722F37] text-white text-xs font-semibold hover:bg-[#5C252C]"
+                          >
+                            Configure in Studio
+                          </button>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+          </div>
+
+        </div>
+      )}
+
+    </div>
+  );
+}

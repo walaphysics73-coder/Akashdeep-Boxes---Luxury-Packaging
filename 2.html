@@ -1,0 +1,3038 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Akashdeep Boxes | Luxury Packaging & Wedding Invitation Boxes</title>
+  <meta name="description" content="Custom printed rigid boxes, luxury wedding invitation suites, and gourmet mithai packaging by Akashdeep Boxes.">
+  
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. MOBILE-FIRST DESIGN TOKENS & SYSTEM
+       ========================================================================== */
+    :root {
+      --bg-warm-ivory: #F8F6F1;
+      --bg-soft-sage: #E5EDE3;
+      --bg-muted-peach: #F3E3D8;
+      --bg-mist-blue: #E5EAF0;
+      --bg-warm-sand: #D9CDBB;
+      --accent-sage: #4C6255;
+      --accent-sage-dark: #37473e;
+      --accent-gold: #B89053;
+      --text-main: #303A34;
+      --text-muted: #627068;
+      --border-subtle: rgba(76, 98, 85, 0.14);
+
+      /* Neumorphic Lighting */
+      --neu-light: #FFFFFF;
+      --neu-dark: rgba(198, 190, 178, 0.52);
+      --neu-inset-dark: rgba(180, 172, 160, 0.45);
+
+      --shadow-raised: 6px 6px 14px var(--neu-dark), -6px -6px 14px var(--neu-light);
+      --shadow-raised-sm: 3px 3px 8px var(--neu-dark), -3px -3px 8px var(--neu-light);
+      --shadow-inset: inset 3px 3px 6px var(--neu-inset-dark), inset -3px -3px 6px var(--neu-light);
+      --shadow-inset-sm: inset 2px 2px 4px var(--neu-inset-dark), inset -2px -2px 4px var(--neu-light);
+
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --header-height: 68px;
+    }
+
+    /* Universal Strict Box Sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent Horizontal Overflow on Any Screen */
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-warm-ivory);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      font-size: clamp(0.9375rem, 0.88rem + 0.25vw, 1.05rem);
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* Flex & Grid zero-minwidth guardrail */
+    div, section, article, nav, header, footer, form, label, ul, li {
+      min-width: 0;
+    }
+
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Typography & Hierarchy */
+    .font-serif {
+      font-family: var(--font-display);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-sage);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+      color: var(--text-main);
+      overflow-wrap: break-word;
+    }
+
+    p {
+      overflow-wrap: break-word;
+    }
+
+    /* Container Utility */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: clamp(1rem, 4vw, 2rem);
+      padding-right: clamp(1rem, 4vw, 2rem);
+    }
+
+    /* ==========================================================================
+       2. REUSABLE NEUMORPHIC UI CLASSES
+       ========================================================================== */
+    .neu-card {
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .neu-card-sm {
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised-sm);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      width: 100%;
+    }
+
+    .neu-sunken {
+      background: #f1ede5;
+      box-shadow: var(--shadow-inset);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(76, 98, 85, 0.08);
+      width: 100%;
+    }
+
+    .neu-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-warm-ivory);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow-raised-sm);
+      transition: all 0.15s ease;
+      user-select: none;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .neu-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 5px 5px 12px var(--neu-dark), -5px -5px 12px var(--neu-light);
+    }
+
+    .neu-btn:active, .neu-btn.active {
+      box-shadow: var(--shadow-inset-sm);
+      color: var(--accent-sage);
+      transform: translateY(1px);
+    }
+
+    .neu-btn-primary {
+      background: var(--accent-sage);
+      color: #FFFFFF;
+      box-shadow: 4px 4px 12px rgba(76, 98, 85, 0.35), -3px -3px 8px var(--neu-light);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .neu-btn-primary:hover {
+      background: var(--accent-sage-dark);
+      color: #FFFFFF;
+    }
+
+    .neu-input, select.neu-input, textarea.neu-input {
+      width: 100%;
+      max-width: 100%;
+      min-height: 44px;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-md);
+      background: #f2ede4;
+      box-shadow: var(--shadow-inset-sm);
+      border: 1px solid rgba(76, 98, 85, 0.15);
+      font-family: var(--font-body);
+      font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .neu-input:focus {
+      border-color: var(--accent-sage);
+      box-shadow: var(--shadow-inset), 0 0 0 2px rgba(76, 98, 85, 0.18);
+    }
+
+    .neu-pill {
+      min-height: 44px;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised-sm);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .neu-pill.active {
+      box-shadow: var(--shadow-inset-sm);
+      color: var(--accent-sage);
+      background: #eee8de;
+      border-color: rgba(76, 98, 85, 0.25);
+    }
+
+    /* ==========================================================================
+       3. HEADER & MOBILE HAMBURGER NAVIGATION
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(248, 246, 241, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 10px rgba(180, 172, 160, 0.15);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-height);
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--text-main);
+      min-width: 0;
+    }
+
+    .logo-symbol {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: var(--radius-md);
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-sage);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .logo-text {
+      min-width: 0;
+    }
+
+    .logo-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .logo-text span {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-gold);
+      font-weight: 600;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-desktop a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+
+    .nav-desktop a:hover {
+      color: var(--accent-sage);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .header-quote-desktop {
+      display: none;
+    }
+
+    .btn-hamburger {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised-sm);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      color: var(--text-main);
+      gap: 5px;
+      padding: 0;
+    }
+
+    .hamburger-bar {
+      width: 20px;
+      height: 2px;
+      background: var(--text-main);
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .btn-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .btn-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+      opacity: 0;
+    }
+    .btn-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Drawer Overlay & Panel */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(48, 58, 52, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 95;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(85vw, 340px);
+      background: var(--bg-warm-ivory);
+      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .drawer-links a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-md);
+      background: #f4efe7;
+      box-shadow: var(--shadow-raised-sm);
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION (Clean Mobile Stack -> Desktop Editorial Split)
+       ========================================================================== */
+    .hero-section {
+      padding: clamp(2rem, 5vw, 4rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+      width: 100%;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      width: 100%;
+      text-align: left;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-soft-sage);
+      color: var(--accent-sage-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-raised-sm);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      max-width: 100%;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--accent-sage);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.9375rem, 0.88rem + 0.25vw, 1.0625rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      max-width: 580px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    .hero-visual {
+      width: 100%;
+    }
+
+    .hero-frame {
+      padding: clamp(0.75rem, 3vw, 1.25rem);
+      border-radius: var(--radius-lg);
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      width: 100%;
+    }
+
+    .hero-stage {
+      height: clamp(230px, 45vw, 320px);
+      border-radius: var(--radius-md);
+      background: linear-gradient(145deg, #f0eae1, #e6ded2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-inset-sm);
+      width: 100%;
+    }
+
+    .hero-box-mockup {
+      width: min(80%, 220px);
+      height: 150px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #FAF7F0, #EAE0D2);
+      box-shadow: 10px 14px 26px rgba(110, 95, 80, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      text-align: center;
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-box-mockup:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .hero-ribbon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 24px;
+      background: var(--accent-sage);
+      box-shadow: 0 0 6px rgba(76, 98, 85, 0.3);
+      border-left: 1px solid rgba(255, 255, 255, 0.4);
+      border-right: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .hero-seal {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #DEBF8A, #B89053);
+      box-shadow: 0 4px 10px rgba(184, 144, 83, 0.35);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-floating-tag {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* ==========================================================================
+       5. PRODUCT CATEGORIES (6 CARDS - Responsive Grid)
+       ========================================================================== */
+    .section-wrap {
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+      width: 100%;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto clamp(1.75rem, 4vw, 2.75rem);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .section-sub {
+      font-size: clamp(0.875rem, 0.82rem + 0.2vw, 0.975rem);
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .category-card {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      min-height: 160px;
+      position: relative;
+    }
+
+    .category-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-sage);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      border-top-left-radius: var(--radius-lg);
+      border-bottom-left-radius: var(--radius-lg);
+    }
+
+    .category-card:hover::after, .category-card:focus::after {
+      opacity: 1;
+    }
+
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: #f1ede5;
+      box-shadow: var(--shadow-inset-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-sage);
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .category-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .category-card p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .category-link {
+      margin-top: 0.85rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--accent-sage);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* ==========================================================================
+       6. INTERACTIVE PRODUCT CATALOGUE & FILTER ROW
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+      width: 100%;
+    }
+
+    .filter-pills-row {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      width: 100%;
+    }
+
+    .search-input-wrap {
+      width: 100%;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .product-card {
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.85rem;
+    }
+
+    .product-media {
+      height: 190px;
+      border-radius: var(--radius-md);
+      background: #f3efe7;
+      box-shadow: var(--shadow-inset-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0.75rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .box-graphic-stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover .box-graphic-stage {
+      transform: scale(1.03);
+    }
+
+    .badge-sample-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(248, 246, 241, 0.92);
+      border: 1px solid rgba(76, 98, 85, 0.15);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--accent-sage);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-raised-sm);
+    }
+
+    .btn-multi-angle-peek {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(248, 246, 241, 0.95);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--text-main);
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-raised-sm);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      min-height: 32px;
+    }
+
+    .product-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-category-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-gold);
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    .spec-table-mini {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: #f4f0e9;
+      padding: 0.65rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-inset-sm);
+      margin-bottom: 0.75rem;
+    }
+
+    .spec-table-mini strong {
+      color: var(--text-main);
+    }
+
+    .card-actions-row {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .card-actions-row button {
+      min-height: 44px;
+    }
+
+    .empty-state-notice {
+      grid-column: 1 / -1;
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+      background: var(--bg-warm-ivory);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-inset);
+    }
+
+    /* ==========================================================================
+       7. MULTI-ANGLE GALLERY LIGHTBOX MODAL
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(48, 58, 52, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: 100%;
+      max-width: 780px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--bg-warm-ivory);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      padding: clamp(1rem, 3vw, 1.75rem);
+      position: relative;
+      margin: auto;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-warm-ivory);
+      box-shadow: var(--shadow-raised-sm);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      z-index: 10;
+    }
+
+    .gallery-stage-large {
+      height: clamp(200px, 40vw, 290px);
+      border-radius: var(--radius-md);
+      background: #f1ede4;
+      box-shadow: var(--shadow-inset);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+      width: 100%;
+    }
+
+    .gallery-angle-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.25rem 0.55rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--accent-sage);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .gallery-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(248, 246, 241, 0.9);
+      box-shadow: var(--shadow-raised-sm);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--text-main);
+      z-index: 5;
+    }
+
+    .gallery-nav-prev { left: 8px; }
+    .gallery-nav-next { right: 8px; }
+
+    .thumbnails-strip {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+
+    .thumb-btn {
+      flex: 0 0 70px;
+      height: 58px;
+      border-radius: var(--radius-sm);
+      background: #eeeae0;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow-raised-sm);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      transition: all 0.15s ease;
+      padding: 0.25rem;
+      min-height: 44px;
+    }
+
+    .thumb-btn.active {
+      box-shadow: var(--shadow-inset-sm);
+      color: var(--accent-sage);
+      font-weight: 700;
+      border-color: var(--accent-sage);
+    }
+
+    /* ==========================================================================
+       8. LIVE CUSTOM BOX STUDIO (Clean Mobile Stack -> Desktop Grid)
+       ========================================================================== */
+    .studio-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: clamp(1rem, 3vw, 1.75rem);
+      width: 100%;
+    }
+
+    .studio-viewport {
+      background: #f1eee6;
+      box-shadow: var(--shadow-inset);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.25rem, 3vw, 2rem) 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 290px;
+      position: relative;
+      width: 100%;
+    }
+
+    .box-3d-scene {
+      perspective: 900px;
+      width: 100%;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .studio-box-object {
+      width: min(85%, 210px);
+      height: 135px;
+      border-radius: 12px;
+      background: var(--bg-soft-sage);
+      box-shadow: 10px 14px 24px rgba(100, 90, 80, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.75rem;
+      transform: rotateX(12deg) rotateY(-14deg);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+    }
+
+    .studio-box-object.tilt-alt {
+      transform: rotateX(4deg) rotateY(16deg);
+    }
+
+    .studio-box-lid-line {
+      position: absolute;
+      top: 22px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(76, 98, 85, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .studio-box-logo-preview {
+      max-width: 140px;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: all 0.25s ease;
+      margin-top: 0.4rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .finish-gold-foil {
+      background: linear-gradient(135deg, #A88344 0%, #E8D298 50%, #997334 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.8));
+    }
+
+    .finish-deboss {
+      color: #3b443f;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8), -1px -1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .finish-uv {
+      color: #27302b;
+      text-shadow: 0 0 1px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .studio-controls-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      width: 100%;
+    }
+
+    .studio-option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+    }
+
+    .studio-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .color-swatches-row {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      box-shadow: var(--shadow-raised-sm);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.15s ease;
+    }
+
+    .color-swatch-btn.active {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 2px var(--accent-sage);
+    }
+
+    .studio-spec-summary {
+      background: #f3efe7;
+      box-shadow: var(--shadow-inset-sm);
+      border-radius: var(--radius-md);
+      padding: 0.85rem;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       9. BULK ORDER QUOTE ESTIMATOR
+       ========================================================================== */
+    .quote-box {
+      padding: clamp(1rem, 3vw, 1.75rem);
+      width: 100%;
+    }
+
+    .quote-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      width: 100%;
+    }
+
+    .touch-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      min-height: 44px;
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      background: #f4efe7;
+      box-shadow: var(--shadow-raised-sm);
+    }
+
+    .touch-checkbox-label input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent-sage);
+    }
+
+    .quote-output-card {
+      background: linear-gradient(145deg, #f0eae0, #faf7f2);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-raised);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .quote-price-tag {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1.8rem + 1vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0.4rem 0;
+    }
+
+    .sample-disclaimer-banner {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      background: #f0ece3;
+      padding: 0.45rem 0.65rem;
+      border-radius: var(--radius-sm);
+      margin-top: 0.75rem;
+      border: 1px dashed rgba(76, 98, 85, 0.25);
+      text-align: left;
+    }
+
+    /* ==========================================================================
+       10. WHY US / THREE-STEP PROCESS
+       ========================================================================== */
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+      width: 100%;
+    }
+
+    .step-card {
+      padding: 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-soft-sage);
+      box-shadow: var(--shadow-raised-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-sage);
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* ==========================================================================
+       11. CONTACT & WHATSAPP FORM
+       ========================================================================== */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: clamp(1rem, 3vw, 1.75rem);
+      width: 100%;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 0.85rem;
+      width: 100%;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .error-msg {
+      color: #B24C4C;
+      font-size: 0.75rem;
+      display: none;
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       12. STICKY COMPARISON DOCK & MODAL
+       ========================================================================== */
+    .compare-dock {
+      position: fixed;
+      bottom: calc(env(safe-area-inset-bottom, 1rem) + 0.5rem);
+      left: 1rem;
+      right: 1rem;
+      max-width: 580px;
+      margin: 0 auto;
+      z-index: 85;
+      background: rgba(248, 246, 241, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      padding: 0.65rem 1rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .compare-dock.visible {
+      display: flex;
+    }
+
+    .compare-slots {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      max-width: 60%;
+    }
+
+    .compare-chip {
+      background: #eeeae1;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      box-shadow: var(--shadow-inset-sm);
+      white-space: nowrap;
+    }
+
+    .compare-chip-remove {
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: bold;
+      padding: 0.2rem;
+    }
+
+    /* Responsive Comparison Modal (Cards on Mobile, Table on Desktop) */
+    .compare-card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .compare-single-card {
+      background: #f3efe7;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-inset-sm);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       13. FLOATING WHATSAPP BUTTON (Docked Safe Area)
+       ========================================================================== */
+    .floating-whatsapp-btn {
+      position: fixed;
+      bottom: calc(env(safe-area-inset-bottom, 1rem) + 4.5rem);
+      right: 1rem;
+      z-index: 80;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 2px solid #FFFFFF;
+      transition: transform 0.2s ease;
+    }
+
+    .floating-whatsapp-btn:hover {
+      transform: scale(1.06);
+    }
+
+    /* ==========================================================================
+       14. FOOTER
+       ========================================================================== */
+    .site-footer {
+      background: #EDE8DE;
+      border-top: 1px solid rgba(255, 255, 255, 0.8);
+      padding: clamp(2.5rem, 5vw, 3.5rem) 0 1.5rem;
+      margin-top: 3.5rem;
+      width: 100%;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+
+    .footer-brand h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-col h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .footer-col a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(76, 98, 85, 0.15);
+      padding-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       15. PROGRESSIVE ENHANCEMENT MEDIA QUERIES (Mobile-First)
+       ========================================================================== */
+    
+    /* 480px: Larger Phones & Small Phablets */
+    @media (min-width: 480px) {
+      .hero-ctas {
+        flex-direction: row;
+        width: auto;
+      }
+      .checkbox-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .spec-table-mini {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* 640px: Phablets / Tablets */
+    @media (min-width: 640px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .compare-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* 768px: Full Tablets */
+    @media (min-width: 768px) {
+      .filter-bar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .search-input-wrap {
+        width: 260px;
+        flex-shrink: 0;
+      }
+      .hero-stage {
+        height: 280px;
+      }
+      .compare-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .quote-grid {
+        flex-direction: row;
+      }
+      .quote-grid > div:first-child {
+        flex: 1.2;
+      }
+      .quote-output-card {
+        flex: 0.8;
+      }
+    }
+
+    /* 1024px: Laptops & Desktop */
+    @media (min-width: 1024px) {
+      .nav-desktop {
+        display: flex;
+      }
+      .btn-hamburger {
+        display: none;
+      }
+      .header-quote-desktop {
+        display: inline-flex;
+      }
+      .hero-grid {
+        flex-direction: row;
+        align-items: center;
+      }
+      .hero-copy {
+        flex: 1.15;
+      }
+      .hero-visual {
+        flex: 0.85;
+      }
+      .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .studio-wrapper {
+        flex-direction: row;
+        align-items: stretch;
+      }
+      .studio-viewport {
+        flex: 1.1;
+      }
+      .studio-controls-grid {
+        flex: 0.9;
+      }
+      .contact-grid {
+        flex-direction: row;
+      }
+      .contact-grid > form {
+        flex: 1.1;
+      }
+      .contact-grid > div:last-child {
+        flex: 0.9;
+      }
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .floating-whatsapp-btn {
+        bottom: 2rem;
+        right: 2rem;
+      }
+    }
+
+    /* Accessibility: Respect Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" id="mainHeader">
+    <div class="container header-inner">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="logo-mark" aria-label="Akashdeep Boxes Home">
+        <div class="logo-symbol">A</div>
+        <div class="logo-text">
+          <h1>Akashdeep Boxes</h1>
+          <span>Bespoke Packaging 2026</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <a href="#hero">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#catalogue">Catalogue</a>
+        <a href="#studio">Custom Studio</a>
+        <a href="#estimator">Quote Estimator</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Header CTAs & Hamburger Toggle -->
+      <div class="header-actions">
+        <a href="#estimator" class="neu-btn neu-btn-primary header-quote-desktop">
+          Get a Quote
+        </a>
+        <button class="btn-hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Backdrop Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="logo-mark">
+        <div class="logo-symbol">A</div>
+        <div class="logo-text">
+          <h1>Akashdeep</h1>
+          <span>Packaging Menu</span>
+        </div>
+      </div>
+      <button class="neu-btn" style="min-height: 40px; padding: 0.4rem 0.8rem;" id="closeDrawerBtn" aria-label="Close menu">✕</button>
+    </div>
+
+    <div class="drawer-links">
+      <a href="#hero" class="nav-mobile-link">Home</a>
+      <a href="#categories" class="nav-mobile-link">Product Categories</a>
+      <a href="#catalogue" class="nav-mobile-link">Product Catalogue</a>
+      <a href="#studio" class="nav-mobile-link">Live Custom Studio</a>
+      <a href="#estimator" class="nav-mobile-link">Quote Estimator</a>
+      <a href="#contact" class="nav-mobile-link">Contact & Enquiries</a>
+    </div>
+
+    <div style="margin-top: auto; padding-top: 1rem;">
+      <a href="#estimator" class="neu-btn neu-btn-primary nav-mobile-link" style="width: 100%;">
+        Request Wholesale Quote
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      
+      <div class="hero-copy">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Custom Packaging Manufacturer • India
+        </div>
+        <h2 class="hero-title">Packaging That Makes Every Occasion Special.</h2>
+        <p class="hero-subtitle">
+          Custom printed boxes, wedding invitation packaging, sweet mithai boxes, and thoughtful bespoke packaging solutions engineered with certified food-grade boards and hot foil embossing.
+        </p>
+        <div class="hero-ctas">
+          <a href="#catalogue" class="neu-btn neu-btn-primary">Explore Products</a>
+          <a href="#studio" class="neu-btn">Customize Your Box</a>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card with Soft Neumorphic Frame -->
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <div class="hero-stage">
+            <div class="hero-box-mockup">
+              <div class="hero-ribbon"></div>
+              <div class="hero-seal">AB</div>
+              <div style="margin-top: 1rem; font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #43392E;">
+                Akashdeep Heritage
+              </div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8C7B68;">
+                Rigid Keepsake Box
+              </div>
+            </div>
+            <div class="hero-floating-tag">
+              <span style="color: var(--accent-sage);">✦</span> Multi-Cavity & Custom Emboss
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PRODUCT CATEGORIES (6 CARDS)
+       ========================================================================== */
+  -->
+  <section class="section-wrap" id="categories" style="background: rgba(229, 237, 227, 0.35);">
+    <div class="container">
+      
+      <div class="section-head">
+        <span class="eyebrow">Manufacturing Expertise</span>
+        <h2 class="section-title">Packaging Disciplines</h2>
+        <p class="section-sub">Select any discipline below to filter our active catalogue.</p>
+      </div>
+
+      <div class="categories-grid">
+        
+        <div class="neu-card category-card" onclick="filterByCat('wedding-invitation')" role="button" tabindex="0">
+          <div>
+            <div class="category-icon">✉</div>
+            <h3>Wedding Invitation Boxes</h3>
+            <p>Rigid folios, magnetic flaps, scroll boxes, and ribbon-tied keepsake invitation suites.</p>
+          </div>
+          <div class="category-link">Explore Designs <span>→</span></div>
+        </div>
+
+        <div class="neu-card category-card" onclick="filterByCat('mithai-sweet')" role="button" tabindex="0">
+          <div>
+            <div class="category-icon">✦</div>
+            <h3>Mithai & Sweet Boxes</h3>
+            <p>Certified food-grade partitions, grease-resistant liners, and traditional Indian confection packaging.</p>
+          </div>
+          <div class="category-link">Explore Designs <span>→</span></div>
+        </div>
+
+        <div class="neu-card category-card" onclick="filterByCat('custom-printed')" role="button" tabindex="0">
+          <div>
+            <div class="category-icon">❖</div>
+            <h3>Custom Printed Packaging</h3>
+            <p>Full offset CMYK, pantone spot hues, UV coating, and tactile debossing on heavy cardstocks.</p>
+          </div>
+          <div class="category-link">Explore Designs <span>→</span></div>
+        </div>
+
+        <div class="neu-card category-card" onclick="filterByCat('gift-premium')" role="button" tabindex="0">
+          <div>
+            <div class="category-icon">🎁</div>
+            <h3>Gift & Premium Packaging</h3>
+            <p>Heavy kappa board gift boxes, dry-fruit hampers, luxury drawer boxes, and corporate suites.</p>
+          </div>
+          <div class="category-link">Explore Designs <span>→</span></div>
+        </div>
+
+        <div class="neu-card category-card" onclick="filterByCat('wedding-cards')" role="button" tabindex="0">
+          <div>
+            <div class="category-icon">💍</div>
+            <h3>Wedding Cards & Inserts</h3>
+            <p>Laser-cut cards, handmade deckled paper inserts, wax seal accents, and coordinated envelopes.</p>
+          </div>
+          <div class="category-link">Explore Designs <span>→</span></div>
+        </div>
+
+        <div class="neu-card category-card" onclick="filterByCat('promotional-boxes')" role="button" tabindex="0">
+          <div>
+            <div class="category-icon">🏷</div>
+            <h3>Business & Promotional</h3>
+            <p>Brand merchandise cartons, influencer PR mailer packaging, and launch event containers.</p>
+          </div>
+          <div class="category-link">Explore Designs <span>→</span></div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       INTERACTIVE PRODUCT CATALOGUE (8 DISTINCT ITEMS)
+       ========================================================================== */
+  -->
+  <section class="section-wrap" id="catalogue">
+    <div class="container">
+      
+      <div class="section-head">
+        <span class="eyebrow">Curated Collection</span>
+        <h2 class="section-title">Featured Packaging Designs</h2>
+        <p class="section-sub">Inspect specifications, trigger the multi-angle structural viewer, or compare items.</p>
+      </div>
+
+      <!-- Controls Row: Search & Filters -->
+      <div class="filter-bar">
+        <div class="filter-pills-row" id="filterPillsContainer">
+          <button class="neu-pill active" data-cat="all" onclick="applyCatFilter('all')">All Boxes</button>
+          <button class="neu-pill" data-cat="wedding-invitation" onclick="applyCatFilter('wedding-invitation')">Wedding Invites</button>
+          <button class="neu-pill" data-cat="mithai-sweet" onclick="applyCatFilter('mithai-sweet')">Mithai & Sweets</button>
+          <button class="neu-pill" data-cat="gift-premium" onclick="applyCatFilter('gift-premium')">Hampers & Gifts</button>
+          <button class="neu-pill" data-cat="custom-printed" onclick="applyCatFilter('custom-printed')">Printed Mono</button>
+        </div>
+
+        <div class="search-input-wrap">
+          <input type="text" id="catalogueSearch" class="neu-input" placeholder="Search by name, use, or board..." oninput="handleSearch(this.value)" aria-label="Search products">
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MULTI-ANGLE GALLERY LIGHTBOX MODAL
+       ========================================================================== */
+  -->
+  <div class="modal-overlay" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+    <div class="modal-panel">
+      <button class="modal-close-btn" onclick="closeGalleryModal()" aria-label="Close preview modal">✕</button>
+      
+      <div style="margin-bottom: 0.75rem;">
+        <span class="eyebrow" id="modalCategoryBadge">Structural Inspection</span>
+        <h3 class="font-serif" id="modalProductTitle" style="font-size: 1.5rem; font-weight: 700;">Product Name</h3>
+      </div>
+
+      <!-- Large Stage Preview with Touch-Friendly Prev/Next -->
+      <div class="gallery-stage-large">
+        <span class="gallery-angle-label" id="modalAngleLabel">Front View</span>
+        <button class="gallery-nav-btn gallery-nav-prev" onclick="stepGalleryAngle(-1)" aria-label="Previous view">‹</button>
+        <div id="modalAngleArtwork" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+          <!-- Active angle rendered here -->
+        </div>
+        <button class="gallery-nav-btn gallery-nav-next" onclick="stepGalleryAngle(1)" aria-label="Next view">›</button>
+      </div>
+
+      <!-- Clickable Thumbnails Row -->
+      <div class="thumbnails-strip" id="modalThumbnailsStrip">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- Sample Specifications Accordion -->
+      <div class="neu-sunken" style="padding: 0.85rem; margin-bottom: 1rem;">
+        <h4 style="font-size: 0.8125rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--accent-sage);">
+          Sample Engineering Specifications (Demo Baseline)
+        </h4>
+        <div id="modalSpecContent" style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.55;">
+          <!-- Specs injected here -->
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+        <button class="neu-btn neu-btn-primary" id="btnModalWhatsApp" onclick="enquireFromModal()">
+          Enquire on WhatsApp
+        </button>
+        <button class="neu-btn" onclick="closeGalleryModal()">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       UNIQUE FEATURE: LIVE CUSTOM BOX STUDIO (Configurator)
+       ========================================================================== */
+  -->
+  <section class="section-wrap" id="studio" style="background: rgba(243, 227, 216, 0.35);">
+    <div class="container">
+      
+      <div class="section-head">
+        <span class="eyebrow">Bespoke Configurator</span>
+        <h2 class="section-title">Live Custom Box Studio</h2>
+        <p class="section-sub">
+          Test dimensions, tactile colorways, and hot foil debossing in real-time before factory tooling.
+        </p>
+      </div>
+
+      <div class="neu-card studio-wrapper">
+        
+        <!-- Interactive Preview Viewport -->
+        <div class="studio-viewport">
+          <div style="position: absolute; top: 12px; left: 16px; font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">
+            ✦ Concept Preview
+          </div>
+
+          <div class="box-3d-scene" id="studio3DScene">
+            <div class="studio-box-object" id="studioBoxObject">
+              <div class="studio-box-lid-line"></div>
+              <div id="studioBoxBadge" style="font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted);">
+                Akashdeep Edition
+              </div>
+              <div class="studio-box-logo-preview finish-gold-foil" id="studioBoxLogoText">
+                Shree Sweets
+              </div>
+              <div id="studioBoxDimText" style="font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.4rem;">
+                8.0" × 6.0" × 2.5"
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; justify-content: center;">
+            <button class="neu-pill" onclick="toggleBoxTilt()">Rotate Perspective</button>
+            <button class="neu-pill" onclick="resetStudio()">Reset Defaults</button>
+          </div>
+        </div>
+
+        <!-- Studio Controls Form -->
+        <div class="studio-controls-grid">
+          
+          <div class="studio-option-group">
+            <label class="studio-label" for="studioStyle">1. Box Construction Style</label>
+            <select id="studioStyle" class="neu-input" onchange="updateStudioState()">
+              <option value="magnetic">Magnetic Flap Rigid Box (Kappa Board)</option>
+              <option value="lid-base">Classic 2-Piece Lid & Base Box</option>
+              <option value="drawer">Slide-Out Matchbox Drawer Style</option>
+              <option value="monocarton">Heavy Folding Mono-Carton (Food Grade)</option>
+            </select>
+          </div>
+
+          <div class="studio-option-group">
+            <label class="studio-label">2. Premium Color Theme</label>
+            <div class="color-swatches-row">
+              <button class="color-swatch-btn active" style="background: #E5EDE3;" onclick="setStudioColor('#E5EDE3', this)" aria-label="Soft Sage"></button>
+              <button class="color-swatch-btn" style="background: #F8F6F1;" onclick="setStudioColor('#F8F6F1', this)" aria-label="Warm Ivory"></button>
+              <button class="color-swatch-btn" style="background: #F3E3D8;" onclick="setStudioColor('#F3E3D8', this)" aria-label="Muted Peach"></button>
+              <button class="color-swatch-btn" style="background: #E5EAF0;" onclick="setStudioColor('#E5EAF0', this)" aria-label="Mist Blue"></button>
+              <button class="color-swatch-btn" style="background: #D9CDBB;" onclick="setStudioColor('#D9CDBB', this)" aria-label="Warm Sand"></button>
+            </div>
+          </div>
+
+          <div class="studio-option-group">
+            <label class="studio-label" for="studioLogoInput">3. Custom Logo / Brand Text</label>
+            <input type="text" id="studioLogoInput" class="neu-input" value="Shree Sweets" placeholder="Type shop or couple name" oninput="updateStudioLogoText(this.value)">
+          </div>
+
+          <div class="studio-option-group">
+            <label class="studio-label" for="studioFinish">4. Embellishment Finish</label>
+            <select id="studioFinish" class="neu-input" onchange="updateStudioFinish(this.value)">
+              <option value="finish-gold-foil">Hot Stamped Gold Foil</option>
+              <option value="finish-deboss">Deep Blind Deboss</option>
+              <option value="finish-uv">Gloss Spot UV</option>
+            </select>
+          </div>
+
+          <div class="studio-spec-summary">
+            <strong>Configuration Summary:</strong>
+            <div id="studioSummaryText">
+              Magnetic Flap Rigid Box in Soft Sage with Hot Stamped Gold Foil.
+            </div>
+          </div>
+
+          <button class="neu-btn neu-btn-primary" onclick="requestStudioDesign()">
+            Request Custom Specification via WhatsApp
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BULK ORDER QUOTE ESTIMATOR
+       ========================================================================== */
+  -->
+  <section class="section-wrap" id="estimator">
+    <div class="container">
+      
+      <div class="section-head">
+        <span class="eyebrow">Budget Planning</span>
+        <h2 class="section-title">Bulk Order Quote Estimator</h2>
+        <p class="section-sub">
+          Generate an immediate planning benchmark for manufacturing runs. Final price is confirmed upon physical die-line sign-off.
+        </p>
+      </div>
+
+      <div class="neu-card quote-box">
+        <div class="quote-grid">
+          
+          <!-- Inputs Column -->
+          <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+            
+            <div class="form-group">
+              <label for="quoteBoxType">Box Classification</label>
+              <select id="quoteBoxType" class="neu-input" onchange="calculateQuote()">
+                <option value="rigid-sweet">Rigid Kappa Mithai Box (1000 GSM)</option>
+                <option value="wedding-suite">Luxury Wedding Invitation Folio (1400 GSM)</option>
+                <option value="gift-hamper">Deep Rigid Festive Hamper Box</option>
+                <option value="mono-carton">Folding Board Sweet Box (350 GSM Cyber-XL)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                <label for="quoteQuantity">Batch Order Quantity</label>
+                <span id="quoteQtyBadge" class="neu-pill" style="min-height: 32px; font-weight: 700; color: var(--accent-sage);">1,000 Pcs</span>
+              </div>
+              <input type="range" id="quoteQuantity" min="250" max="10000" step="50" value="1000" class="neu-input" style="padding: 0; cursor: pointer;" oninput="calculateQuote()" aria-label="Batch Order Quantity">
+              <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.25rem;">
+                <span>250</span>
+                <span>1,000</span>
+                <span>5,000</span>
+                <span>10,000+</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Finishing Options Included</label>
+              <div class="checkbox-grid">
+                <label class="touch-checkbox-label">
+                  <input type="checkbox" id="chkFoil" checked onchange="calculateQuote()"> Gold Foil Stamping
+                </label>
+                <label class="touch-checkbox-label">
+                  <input type="checkbox" id="chkTray" checked onchange="calculateQuote()"> Food Grade Gold Tray
+                </label>
+                <label class="touch-checkbox-label">
+                  <input type="checkbox" id="chkUV" onchange="calculateQuote()"> Raised Spot UV
+                </label>
+                <label class="touch-checkbox-label">
+                  <input type="checkbox" id="chkMagnet" onchange="calculateQuote()"> Hidden Magnet Closures
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="quoteCity">Delivery Destination (City / State)</label>
+              <input type="text" id="quoteCity" class="neu-input" placeholder="e.g. Jodhpur, Rajasthan or Mumbai" value="Jodhpur">
+            </div>
+
+          </div>
+
+          <!-- Output Column -->
+          <div class="quote-output-card">
+            <span class="eyebrow" style="margin-bottom: 0;">Indicative Estimate</span>
+            <div class="quote-price-tag" id="quoteRateDisplay">₹54.50</div>
+            <div style="font-size: 0.8125rem; color: var(--text-muted);">Estimated Per Unit Cost</div>
+            
+            <div class="neu-sunken" style="margin: 1rem 0; padding: 0.85rem; font-size: 0.8125rem; text-align: left; line-height: 1.6;">
+              <div style="display: flex; justify-content: space-between;">
+                <span>Batch Total:</span>
+                <strong id="quoteBatchTotal">₹54,500</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span>Est. Production:</span>
+                <span>8 - 10 Working Days</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span>Vector Dieline:</span>
+                <span style="color: var(--accent-sage); font-weight: 700;">Complimentary</span>
+              </div>
+            </div>
+
+            <button class="neu-btn neu-btn-primary" style="width: 100%;" onclick="sendQuotationWhatsApp()">
+              Request Confirmed Factory Quote
+            </button>
+
+            <div class="sample-disclaimer-banner">
+              *Sample values for demo modeling. Actual quote determined by finalized dimensions, paper weight (GSM), and prevailing board indices.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       HOW IT WORKS / PROCESS
+       ========================================================================== */
+  -->
+  <section class="section-wrap" style="background: rgba(229, 234, 240, 0.4);">
+    <div class="container">
+      
+      <div class="section-head">
+        <span class="eyebrow">Three-Step Ordering</span>
+        <h2 class="section-title">How Akashdeep Delivers Precision</h2>
+        <p class="section-sub">From concept drawing to delivery at your doorstep.</p>
+      </div>
+
+      <div class="process-steps-grid">
+        
+        <div class="neu-card step-card">
+          <div class="step-num">1</div>
+          <h3 class="font-serif" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Explore & Select</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+            Browse proven box silhouettes, partition designs, and cardstocks or submit custom dimensional requirements.
+          </p>
+        </div>
+
+        <div class="neu-card step-card">
+          <div class="step-num">2</div>
+          <h3 class="font-serif" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Sample Proofing</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+            We calibrate precise digital vector dielines and construct physical unprinted or printed white samples for approval.
+          </p>
+        </div>
+
+        <div class="neu-card step-card">
+          <div class="step-num">3</div>
+          <h3 class="font-serif" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.4rem;">Commercial Batch</h3>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+            High-speed die-punching, automated rigid box wrapping, and reinforced cargo packing for transit across India.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONTACT & ENQUIRY FORM
+       ========================================================================== */
+  -->
+  <section class="section-wrap" id="contact">
+    <div class="container">
+      
+      <div class="section-head">
+        <span class="eyebrow">Connect Directly</span>
+        <h2 class="section-title">Request a Consultation</h2>
+        <p class="section-sub">Have a wedding date or seasonal sweet festival approaching? Discuss your packaging blueprint.</p>
+      </div>
+
+      <div class="neu-card contact-grid">
+        
+        <!-- Form Left -->
+        <form id="enquiryForm" onsubmit="handleFormSubmit(event)" novalidate>
+          
+          <div class="form-group">
+            <label for="contactName">Your Name / Contact Person *</label>
+            <input type="text" id="contactName" class="neu-input" placeholder="e.g. Rohit Agarwal" required>
+            <span class="error-msg" id="nameError">Please enter your name.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactBusiness">Business or Occasion Name</label>
+            <input type="text" id="contactBusiness" class="neu-input" placeholder="e.g. Agarwal Sweets or Wedding of Rohit & Ananya">
+          </div>
+
+          <div class="form-group">
+            <label for="contactPhone">Phone / WhatsApp Number *</label>
+            <input type="tel" id="contactPhone" class="neu-input" placeholder="+91 98765 43210" required>
+            <span class="error-msg" id="phoneError">Please provide a valid 10-digit number.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactCategory">Packaging Requirement</label>
+            <select id="contactCategory" class="neu-input">
+              <option value="Wedding Invitation Boxes">Wedding Invitation Boxes</option>
+              <option value="Mithai & Sweet Packaging">Mithai & Sweet Packaging</option>
+              <option value="Custom Gift Hampers">Custom Gift Hampers</option>
+              <option value="Mono-Cartons & Printed Board">Mono-Cartons & Printed Board</option>
+              <option value="Other Packaging">Other Packaging</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Specific Requirements / Sizes / Estimated Quantity</label>
+            <textarea id="contactMessage" class="neu-input" style="height: 90px; padding: 0.65rem 1rem; resize: vertical;" placeholder="Include details such as box dimensions, required partitions, or wedding dates..."></textarea>
+          </div>
+
+          <button type="submit" class="neu-btn neu-btn-primary" style="width: 100%;">
+            Submit Enquiry & Open WhatsApp
+          </button>
+        </form>
+
+        <!-- Business Details Right -->
+        <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 1.25rem; background: #f3efe7; padding: 1.25rem; border-radius: var(--radius-md); box-shadow: var(--shadow-inset-sm);">
+          <div>
+            <h3 class="font-serif" style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--accent-sage);">
+              Akashdeep Quality Assurances
+            </h3>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1rem;">
+              Every batch undergoes structural testing for load bearing, lid alignment, odorless food-safe adherence, and corner durability during transit.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.8125rem;">
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <span style="color: var(--accent-sage); font-weight: bold;">✔</span>
+                <span><strong>500+ Tested Dies:</strong> Save custom die-punch development fees.</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <span style="color: var(--accent-sage); font-weight: bold;">✔</span>
+                <span><strong>Certified Food-Safe Boards:</strong> Virgin kappa and ivory cardstocks.</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <span style="color: var(--accent-sage); font-weight: bold;">✔</span>
+                <span><strong>Direct WhatsApp Desk:</strong> Instant feedback from structural designers.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="neu-card-sm" style="padding: 0.85rem; text-align: center;">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Configured Support Desk:</div>
+            <div style="font-weight: 700; color: var(--accent-sage); margin: 0.2rem 0;" id="displayWhatsAppPhone">
+              +91 (Configured in Script)
+            </div>
+            <div style="font-size: 0.6875rem; color: var(--text-muted);">
+              Submitting formats order specs directly into WhatsApp.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== */
+  -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-brand">
+        <h2>Akashdeep Boxes</h2>
+        <p style="font-size: 0.8125rem; color: var(--text-muted); max-width: 320px; line-height: 1.5;">
+          Indian packaging manufacturer specializing in custom printed boxes, wedding invitation suites, sweets packaging, and bespoke rigid gift containers.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product Disciplines</h4>
+        <ul>
+          <li><a href="#catalogue">Mithai & Sweet Boxes</a></li>
+          <li><a href="#catalogue">Wedding Invitation Suites</a></li>
+          <li><a href="#catalogue">Dry Fruit Gift Hampers</a></li>
+          <li><a href="#catalogue">Custom Printed Mono-Cartons</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation & Actions</h4>
+        <ul>
+          <li><a href="#studio">Live 3D Customizer</a></li>
+          <li><a href="#estimator">Quote Estimator</a></li>
+          <li><a href="#contact">Direct Consultation</a></li>
+          <li><a href="#mainHeader">Back to Top ↑</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© 2026 Akashdeep Boxes. Client Presentation Demo. All specifications marked illustrative.</div>
+      <div>100% Mobile-First Responsive Design System</div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       STICKY COMPARISON DOCK & COMPARISON MODAL
+       ========================================================================== */
+  -->
+  <div class="compare-dock" id="compareDock">
+    <div style="min-width: 0;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-sage); white-space: nowrap;">
+        Compare (<span id="compareCount">0</span>/3)
+      </div>
+      <div class="compare-slots" id="compareSlots">
+        <!-- Injected chips -->
+      </div>
+    </div>
+    <div style="display: flex; gap: 0.4rem; align-items: center; flex-shrink: 0;">
+      <button class="neu-btn" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; min-height: 38px;" onclick="openComparisonModal()">Compare</button>
+      <button class="neu-btn" style="padding: 0.4rem 0.55rem; font-size: 0.75rem; min-height: 38px;" onclick="clearComparison()">Clear</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="compareModal" role="dialog" aria-modal="true" aria-labelledby="compareModalTitle">
+    <div class="modal-panel" style="max-width: 720px;">
+      <button class="modal-close-btn" onclick="closeComparisonModal()" aria-label="Close comparison">✕</button>
+      <h3 class="font-serif" id="compareModalTitle" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Product Comparison</h3>
+      <div id="compareCardsContainer" class="compare-card-grid">
+        <!-- Injected Comparison Cards -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Action Button -->
+  <a href="javascript:void(0)" onclick="triggerGeneralWhatsApp()" class="floating-whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.15c-1.5 0-2.97-.4-4.26-1.16l-.31-.18-3.16.83.84-3.08-.2-.32a8.21 8.21 0 01-1.26-4.43c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.82c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.17 1.74 2.66 4.22 3.73.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/>
+    </svg>
+  </a>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT: DATASET & INTERACTION LOGIC
+       ========================================================================== */
+  -->
+  <script>
+    /* ==========================================================================
+       A. CONFIGURATION
+       ========================================================================== */
+    const BUSINESS_WHATSAPP_NUMBER = "919876543210"; 
+
+    const PRICING_CONFIG = {
+      baseRates: {
+        "rigid-sweet": 42.00,
+        "wedding-suite": 110.00,
+        "gift-hamper": 82.00,
+        "mono-carton": 18.00
+      },
+      additions: {
+        foil: 5.50,
+        tray: 4.00,
+        uv: 3.50,
+        magnet: 8.00
+      },
+      volumeDiscounts: [
+        { minQty: 5000, multiplier: 0.72 },
+        { minQty: 2500, multiplier: 0.82 },
+        { minQty: 1000, multiplier: 0.90 },
+        { minQty: 250,  multiplier: 1.00 }
+      ]
+    };
+
+    /* ==========================================================================
+       B. DATASET: 8 DISTINCT PACKAGING PRODUCTS WITH MULTI-ANGLE VIEWS
+       ========================================================================== */
+    const PRODUCTS = [
+      {
+        id: "p1",
+        name: "Imperial 12-Cavity Mithai Box",
+        category: "mithai-sweet",
+        categoryLabel: "Mithai & Sweet Boxes",
+        suggestedUse: "High-end Kaju Katli, Peda, & Royal Dry Fruit Confections",
+        material: "1200 GSM Kappa Board with 157 GSM Pearl Art Paper",
+        dimensions: "9.5\" × 7.2\" × 2.2\"",
+        sampleMOQ: "500 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="10" width="150" height="100" rx="8" fill="#F8F6F1" stroke="#D9CDBB" stroke-width="2"/><rect x="22" y="22" width="126" height="76" rx="4" fill="none" stroke="#B89053" stroke-dasharray="4,3"/><text x="85" y="65" font-family="'Cormorant Garamond', serif" font-size="14" font-weight="700" fill="#4C6255" text-anchor="middle">SHREE SWEETS</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="10" width="150" height="100" rx="6" fill="#F4EFE6" stroke="#C9BCAC"/><circle cx="85" cy="60" r="26" fill="#FAF8F3" stroke="#B89053"/><text x="85" y="64" font-family="serif" font-size="11" fill="#B89053" text-anchor="middle">HERITAGE</text></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="10" width="150" height="100" rx="6" fill="#FFF9EB" stroke="#DEC89E"/><g fill="#F3E5C8" stroke="#DEC89E"><rect x="20" y="20" width="26" height="20" rx="2"/><rect x="54" y="20" width="26" height="20" rx="2"/><rect x="88" y="20" width="26" height="20" rx="2"/><rect x="122" y="20" width="26" height="20" rx="2"/><rect x="20" y="48" width="26" height="20" rx="2"/><rect x="54" y="48" width="26" height="20" rx="2"/><rect x="88" y="48" width="26" height="20" rx="2"/><rect x="122" y="48" width="26" height="20" rx="2"/><rect x="20" y="76" width="26" height="20" rx="2"/><rect x="54" y="76" width="26" height="20" rx="2"/><rect x="88" y="76" width="26" height="20" rx="2"/><rect x="122" y="76" width="26" height="20" rx="2"/></g></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="35" width="150" height="50" rx="4" fill="#EFE8DC" stroke="#C9BCAC"/><line x1="10" y1="48" x2="160" y2="48" stroke="#B89053" stroke-width="1.5"/><text x="85" y="66" font-family="sans-serif" font-size="8" fill="#6B7870" text-anchor="middle">WALL THICKNESS 2.5mm</text></svg>`
+        }
+      },
+      {
+        id: "p2",
+        name: "Rajwada Magnetic Wedding Folio",
+        category: "wedding-invitation",
+        categoryLabel: "Wedding Invitation Boxes",
+        suggestedUse: "Save-The-Date Wedding Card Box with Sweets Drawer",
+        material: "1400 GSM Rigid Kappa with Soft Silk-Touch Coating",
+        dimensions: "10.5\" × 8.5\" × 2.0\"",
+        sampleMOQ: "250 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="10" width="140" height="100" rx="8" fill="#F3E3D8" stroke="#DEC0B0"/><circle cx="85" cy="60" r="22" fill="#FAF6F1" stroke="#B89053"/><text x="85" y="64" font-family="'Cormorant Garamond', serif" font-size="12" font-weight="700" fill="#4C6255" text-anchor="middle">R & S</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="10" width="140" height="100" rx="8" fill="#EFE0D5" stroke="#C9BCAC"/><line x1="65" y1="10" x2="65" y2="110" stroke="#FAF6F1" stroke-width="3"/></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="10" width="150" height="100" rx="6" fill="#FAF7F2" stroke="#DEC0B0"/><rect x="20" y="20" width="130" height="38" rx="4" fill="#F3E3D8"/><text x="85" y="42" font-size="8" font-family="serif" fill="#4C6255" text-anchor="middle">Insert Card Slots (3 Leaf)</text><rect x="20" y="66" width="130" height="34" rx="4" fill="#EAE0D5"/><text x="85" y="86" font-size="8" font-family="sans-serif" fill="#6B7870" text-anchor="middle">Mithai Pull-Out Tray</text></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="40" width="140" height="40" rx="4" fill="#E8D5C8" stroke="#DEC0B0"/><circle cx="140" cy="60" r="4" fill="#B89053"/></svg>`
+        }
+      },
+      {
+        id: "p3",
+        name: "Sage Velvet 4-Jar Hamper",
+        category: "gift-premium",
+        categoryLabel: "Gift & Premium Packaging",
+        suggestedUse: "Diwali & Corporate Festive 4-Jar Dry Fruit Hamper",
+        material: "1600 GSM Export Kappa Board with Velvet Lamination",
+        dimensions: "11.0\" × 11.0\" × 3.5\"",
+        sampleMOQ: "300 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="20" y="10" width="130" height="100" rx="8" fill="#E5EDE3" stroke="#C2D4BF"/><rect x="30" y="20" width="110" height="80" rx="6" fill="none" stroke="#4C6255" stroke-width="1.5"/><text x="85" y="64" font-family="serif" font-size="12" font-weight="700" fill="#4C6255" text-anchor="middle">AKASHDEEP</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="20" y="10" width="130" height="100" rx="8" fill="#D8E2D5" stroke="#B8C8B4"/><circle cx="85" cy="60" r="16" fill="#4C6255"/><text x="85" y="64" fill="#FFF" font-size="8" text-anchor="middle">GIFT</text></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="10" width="140" height="100" rx="8" fill="#FAF9F5" stroke="#C2D4BF"/><circle cx="50" cy="38" r="20" fill="#E5EDE3" stroke="#B8C8B4"/><circle cx="120" cy="38" r="20" fill="#E5EDE3" stroke="#B8C8B4"/><circle cx="50" cy="82" r="20" fill="#E5EDE3" stroke="#B8C8B4"/><circle cx="120" cy="82" r="20" fill="#E5EDE3" stroke="#B8C8B4"/></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="30" width="140" height="60" rx="6" fill="#DCE5DA" stroke="#B8C8B4"/><line x1="15" y1="45" x2="155" y2="45" stroke="#4C6255" stroke-width="2"/></svg>`
+        }
+      },
+      {
+        id: "p4",
+        name: "Classic Offset Mono-Carton 500g",
+        category: "custom-printed",
+        categoryLabel: "Custom Printed Packaging",
+        suggestedUse: "High Volume Halwai Sweets & Daily Confectionery",
+        material: "350 GSM Food-Safe Cyber-XL Board + MetPET Gold Lamination",
+        dimensions: "7.0\" × 5.0\" × 1.8\"",
+        sampleMOQ: "2,000 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="20" y="20" width="130" height="80" rx="4" fill="#FAF6EE" stroke="#D9CDBB"/><rect x="30" y="30" width="110" height="60" fill="#F4E9D5"/><text x="85" y="62" font-family="serif" font-size="11" font-weight="700" fill="#8C5C26" text-anchor="middle">PURE GHEE SWEETS</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="20" y="15" width="130" height="90" fill="#FAF6EE" stroke="#D9CDBB"/><path d="M 40 60 L 130 60" stroke="#D9CDBB" stroke-dasharray="3,3"/></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="20" y="20" width="130" height="80" fill="#FFFBF2" stroke="#E6D3B6"/><text x="85" y="64" font-size="9" fill="#8C7B68" text-anchor="middle">Mono Folding Interior</text></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="25" y="40" width="120" height="40" fill="#F3E9DA" stroke="#D9CDBB"/><text x="85" y="63" font-size="7" fill="#6B7870" text-anchor="middle">Side Tuck-In Flap</text></svg>`
+        }
+      },
+      {
+        id: "p5",
+        name: "Royal Scroll & Box Wedding Suite",
+        category: "wedding-invitation",
+        categoryLabel: "Wedding Invitation Boxes",
+        suggestedUse: "Traditional Royal Indian Wedding Card Presentation",
+        material: "Hardboard Casing with Embroidered Silk Brocade Lining",
+        dimensions: "12.0\" × 4.5\" × 2.5\"",
+        sampleMOQ: "200 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="30" width="150" height="60" rx="6" fill="#F8F6F1" stroke="#D9CDBB"/><circle cx="85" cy="60" r="14" fill="#B89053"/><text x="85" y="64" fill="#FFF" font-size="9" text-anchor="middle">✦</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="25" width="150" height="70" rx="6" fill="#EFE8DC"/><rect x="20" y="35" width="130" height="50" rx="3" fill="#FAF6EE" stroke="#B89053"/></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="10" y="30" width="150" height="60" rx="6" fill="#FFFDF8" stroke="#D9CDBB"/><rect x="25" y="45" width="120" height="30" rx="15" fill="#F3E3D8"/><text x="85" y="63" font-size="8" fill="#4C6255" text-anchor="middle">Scroll Resting Well</text></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="55" y="30" width="60" height="60" rx="6" fill="#EFE8DC" stroke="#C9BCAC"/><circle cx="85" cy="60" r="16" fill="#B89053"/></svg>`
+        }
+      },
+      {
+        id: "p6",
+        name: "Hexagonal Dryfruit Sweets Chest",
+        category: "mithai-sweet",
+        categoryLabel: "Mithai & Sweet Boxes",
+        suggestedUse: "Diwali Chhappan Bhog & Dryfruit Presentation",
+        material: "1200 GSM Kappa Precision Die-Punched Hexagon",
+        dimensions: "9.0\" × 9.0\" × 2.2\"",
+        sampleMOQ: "400 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><polygon points="85,15 140,45 140,90 85,115 30,90 30,45" fill="#E5EAF0" stroke="#B9CADB" stroke-width="1.5"/><circle cx="85" cy="65" r="18" fill="#FAF8F5" stroke="#B89053"/><text x="85" y="69" font-size="9" fill="#4C6255" text-anchor="middle">ROYAL</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><polygon points="85,15 140,45 140,90 85,115 30,90 30,45" fill="#D7E0EB" stroke="#A8BDD3"/></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><polygon points="85,15 140,45 140,90 85,115 30,90 30,45" fill="#FFFDF8" stroke="#DEC89E"/><circle cx="85" cy="65" r="14" fill="#FAF1DF"/></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="25" y="40" width="120" height="40" fill="#D7E0EB" stroke="#B9CADB"/></svg>`
+        }
+      },
+      {
+        id: "p7",
+        name: "Corporate VIP PR Launch Box",
+        category: "promotional-boxes",
+        categoryLabel: "Business & Promotional",
+        suggestedUse: "Brand Launch Influencer Box, Executive Welcome Kit",
+        material: "1500 GSM Matte Alabaster Board with Foam Cavities",
+        dimensions: "12.0\" × 9.0\" × 3.0\"",
+        sampleMOQ: "250 Pieces",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="15" width="140" height="90" rx="8" fill="#F8F6F1" stroke="#D9CDBB"/><rect x="25" y="25" width="120" height="70" fill="none" stroke="#4C6255" stroke-width="1.5"/><text x="85" y="63" font-family="sans-serif" font-size="10" font-weight="700" fill="#303A34" text-anchor="middle">LAUNCH 2026</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="15" width="140" height="90" rx="8" fill="#EAE2D5"/><circle cx="85" cy="60" r="14" fill="#4C6255"/></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="15" width="140" height="90" rx="8" fill="#303A34"/><rect x="25" y="25" width="50" height="70" rx="4" fill="#3B4740"/><circle cx="110" cy="60" r="20" fill="#3B4740"/></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="15" y="35" width="140" height="50" rx="4" fill="#EAE2D5" stroke="#D9CDBB"/></svg>`
+        }
+      },
+      {
+        id: "p8",
+        name: "Deckled Edge Invitation Suite Folders",
+        category: "wedding-cards",
+        categoryLabel: "Wedding Cards & Invites",
+        suggestedUse: "Luxury 3-Insert Wedding Stationery with Wax Seal Band",
+        material: "300 GSM Handmade Cotton Rag Paper with Raw Deckle",
+        dimensions: "8.5\" × 6.0\" × 0.5\"",
+        sampleMOQ: "300 Sets",
+        angles: {
+          front: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="30" y="10" width="110" height="100" rx="4" fill="#FAF8F5" stroke="#E6DFD3"/><circle cx="85" cy="60" r="12" fill="#4C6255"/><text x="85" y="64" fill="#FFF" font-size="7" text-anchor="middle">WAX</text></svg>`,
+          top: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="30" y="10" width="110" height="100" fill="#F4EFE6" stroke="#D9CDBB"/></svg>`,
+          cavity: `<svg width="170" height="120" viewBox="0 0 170 120"><rect x="25" y="10" width="120" height="100" fill="#FFFDF9" stroke="#E6DFD3"/><line x1="40" y1="35" x2="130" y2="35" stroke="#B89053"/><line x1="40" y1="50" x2="130" y2="50" stroke="#D9CDBB"/></svg>`,
+          side: `<svg width="170" height="120" viewBox="0 0 170 120"><line x1="25" y1="60" x2="145" y2="60" stroke="#4C6255" stroke-width="5"/></svg>`
+        }
+      }
+    ];
+
+    /* ==========================================================================
+       C. STATE MANAGEMENT
+       ========================================================================== */
+    let currentFilter = "all";
+    let searchQuery = "";
+    let comparisonList = [];
+    let activeModalProduct = null;
+    let activeModalAngleIndex = 0;
+    const ANGLE_KEYS = ["front", "top", "cavity", "side"];
+
+    /* ==========================================================================
+       D. DOM INITIALIZATION
+       ========================================================================== */
+    window.addEventListener("DOMContentLoaded", () => {
+      renderCatalogue();
+      initHeaderDrawer();
+      initStudioDefaults();
+      calculateQuote();
+      updateDisplayPhone();
+    });
+
+    function updateDisplayPhone() {
+      const el = document.getElementById("displayWhatsAppPhone");
+      if (el) el.innerText = `+${BUSINESS_WHATSAPP_NUMBER} (Direct)`;
+    }
+
+    /* ==========================================================================
+       E. MOBILE HAMBURGER MENU & SCROLL LOCK
+       ========================================================================== */
+    function initHeaderDrawer() {
+      const hamburger = document.getElementById("hamburgerBtn");
+      const drawer = document.getElementById("mobileDrawer");
+      const overlay = document.getElementById("drawerOverlay");
+      const closeBtn = document.getElementById("closeDrawerBtn");
+
+      function openDrawer() {
+        drawer.classList.add("open");
+        overlay.classList.add("open");
+        hamburger.setAttribute("aria-expanded", "true");
+        document.body.classList.add("no-scroll");
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove("open");
+        overlay.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("no-scroll");
+      }
+
+      hamburger.addEventListener("click", () => {
+        const isOpen = drawer.classList.contains("open");
+        if (isOpen) closeDrawer(); else openDrawer();
+      });
+
+      if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+      if (overlay) overlay.addEventListener("click", closeDrawer);
+
+      document.querySelectorAll(".nav-mobile-link").forEach(link => {
+        link.addEventListener("click", closeDrawer);
+      });
+    }
+
+    /* ==========================================================================
+       F. CATALOGUE RENDERING & FILTERING
+       ========================================================================== */
+    function filterByCat(catSlug) {
+      applyCatFilter(catSlug);
+      const catSection = document.getElementById("catalogue");
+      if (catSection) catSection.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function applyCatFilter(catSlug) {
+      currentFilter = catSlug;
+      document.querySelectorAll("#filterPillsContainer .neu-pill").forEach(pill => {
+        pill.classList.toggle("active", pill.getAttribute("data-cat") === catSlug);
+      });
+      renderCatalogue();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val.trim().toLowerCase();
+      renderCatalogue();
+    }
+
+    function renderCatalogue() {
+      const grid = document.getElementById("productsGrid");
+      if (!grid) return;
+
+      const filtered = PRODUCTS.filter(p => {
+        const matchesCat = (currentFilter === "all") || (p.category === currentFilter);
+        const matchesSearch = !searchQuery || 
+          p.name.toLowerCase().includes(searchQuery) || 
+          p.suggestedUse.toLowerCase().includes(searchQuery) ||
+          p.material.toLowerCase().includes(searchQuery);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state-notice">
+            <h4 class="font-serif" style="font-size: 1.35rem; font-weight: 700; color: var(--text-main);">No matching box designs found</h4>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem;">Try modifying your keyword search or filter by another category.</p>
+            <button class="neu-btn" style="margin-top: 1rem;" onclick="resetFilters()">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const isCompared = comparisonList.some(item => item.id === p.id);
+        return `
+          <div class="neu-card product-card">
+            <div>
+              <div class="product-media" onclick="openGalleryModal('${p.id}')">
+                <span class="badge-sample-tag">Sample Dieline</span>
+                <div class="box-graphic-stage">
+                  ${p.angles.front}
+                </div>
+                <div class="btn-multi-angle-peek">
+                  <span>✦ 360° Views</span>
+                </div>
+              </div>
+
+              <div class="product-info" style="margin-top: 0.85rem;">
+                <div class="product-category-sub">${p.categoryLabel}</div>
+                <h3>${p.name}</h3>
+                
+                <div class="spec-table-mini" style="margin-top: 0.5rem;">
+                  <div><strong>Size:</strong> ${p.dimensions}</div>
+                  <div><strong>MOQ:</strong> ${p.sampleMOQ}</div>
+                  <div style="grid-column: 1 / -1;"><strong>Substrate:</strong> ${p.material}</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="card-actions-row">
+                <button class="neu-btn" style="flex: 1; font-size: 0.8125rem; padding: 0.45rem;" onclick="openGalleryModal('${p.id}')">
+                  View Angles
+                </button>
+                <button class="neu-btn ${isCompared ? 'active' : ''}" style="padding: 0.45rem 0.75rem; font-size: 0.8125rem;" onclick="toggleCompare('${p.id}')" title="Compare this design">
+                  ${isCompared ? '✓ Added' : '+ Compare'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function resetFilters() {
+      currentFilter = "all";
+      searchQuery = "";
+      const searchBox = document.getElementById("catalogueSearch");
+      if (searchBox) searchBox.value = "";
+      applyCatFilter("all");
+    }
+
+    /* ==========================================================================
+       G. MULTI-ANGLE GALLERY LIGHTBOX LOGIC
+       ========================================================================== */
+    function openGalleryModal(productId) {
+      const prod = PRODUCTS.find(p => p.id === productId);
+      if (!prod) return;
+
+      activeModalProduct = prod;
+      activeModalAngleIndex = 0;
+
+      document.getElementById("modalProductTitle").innerText = prod.name;
+      document.getElementById("modalCategoryBadge").innerText = prod.categoryLabel;
+      
+      document.getElementById("modalSpecContent").innerHTML = `
+        <strong>Ideal For:</strong> ${prod.suggestedUse}<br>
+        <strong>Substrate Specification:</strong> ${prod.material}<br>
+        <strong>Dimensions:</strong> ${prod.dimensions} | <strong>Baseline Sample Run:</strong> ${prod.sampleMOQ}
+      `;
+
+      renderModalAngleView();
+      renderModalThumbnails();
+
+      const modal = document.getElementById("galleryModal");
+      modal.classList.add("open");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closeGalleryModal() {
+      const modal = document.getElementById("galleryModal");
+      modal.classList.remove("open");
+      document.body.classList.remove("no-scroll");
+      activeModalProduct = null;
+    }
+
+    function stepGalleryAngle(delta) {
+      if (!activeModalProduct) return;
+      activeModalAngleIndex = (activeModalAngleIndex + delta + ANGLE_KEYS.length) % ANGLE_KEYS.length;
+      renderModalAngleView();
+      renderModalThumbnails();
+    }
+
+    function selectModalAngle(angleKey) {
+      activeModalAngleIndex = ANGLE_KEYS.indexOf(angleKey);
+      renderModalAngleView();
+      renderModalThumbnails();
+    }
+
+    function renderModalAngleView() {
+      if (!activeModalProduct) return;
+      const angleKey = ANGLE_KEYS[activeModalAngleIndex];
+      const labelMap = {
+        front: "Front Perspective",
+        top: "Top Lid Closure",
+        cavity: "Inside Cavity & Food Partition",
+        side: "Side Structural Profile"
+      };
+
+      document.getElementById("modalAngleLabel").innerText = labelMap[angleKey] || "Angle View";
+      document.getElementById("modalAngleArtwork").innerHTML = activeModalProduct.angles[angleKey];
+    }
+
+    function renderModalThumbnails() {
+      if (!activeModalProduct) return;
+      const strip = document.getElementById("modalThumbnailsStrip");
+      const currentKey = ANGLE_KEYS[activeModalAngleIndex];
+      const angles = [
+        { key: "front", label: "Front" },
+        { key: "top", label: "Top Lid" },
+        { key: "cavity", label: "Interior" },
+        { key: "side", label: "Side" }
+      ];
+
+      strip.innerHTML = angles.map(a => `
+        <button class="thumb-btn ${currentKey === a.key ? 'active' : ''}" onclick="selectModalAngle('${a.key}')">
+          <div style="font-weight: 700; color: var(--accent-sage);">👁</div>
+          <span>${a.label}</span>
+        </button>
+      `).join("");
+    }
+
+    function enquireFromModal() {
+      if (!activeModalProduct) return;
+      const msg = `Hello Akashdeep Boxes! I am interested in ordering:
+*Product:* ${activeModalProduct.name}
+*Category:* ${activeModalProduct.categoryLabel}
+*Dimensions:* ${activeModalProduct.dimensions}
+Please share wholesale rates and die vector files.`;
+
+      triggerWhatsApp(msg);
+      closeGalleryModal();
+    }
+
+    /* ==========================================================================
+       H. LIVE CUSTOM BOX STUDIO (Configurator)
+       ========================================================================== */
+    let studioState = {
+      color: "#E5EDE3",
+      style: "magnetic",
+      finish: "finish-gold-foil",
+      logo: "Shree Sweets"
+    };
+
+    function initStudioDefaults() {
+      updateStudioState();
+    }
+
+    function setStudioColor(hex, btnEl) {
+      studioState.color = hex;
+      document.querySelectorAll(".color-swatch-btn").forEach(b => b.classList.remove("active"));
+      if (btnEl) btnEl.classList.add("active");
+
+      const boxObj = document.getElementById("studioBoxObject");
+      if (boxObj) boxObj.style.background = hex;
+      updateStudioSummary();
+    }
+
+    function updateStudioLogoText(val) {
+      studioState.logo = val.trim() || "Your Brand";
+      const previewEl = document.getElementById("studioBoxLogoText");
+      if (previewEl) previewEl.innerText = studioState.logo;
+      updateStudioSummary();
+    }
+
+    function updateStudioFinish(finishClass) {
+      studioState.finish = finishClass;
+      const previewEl = document.getElementById("studioBoxLogoText");
+      if (previewEl) {
+        previewEl.className = `studio-box-logo-preview ${finishClass}`;
+      }
+      updateStudioSummary();
+    }
+
+    function updateStudioState() {
+      const styleSelect = document.getElementById("studioStyle");
+      if (styleSelect) studioState.style = styleSelect.value;
+      updateStudioSummary();
+    }
+
+    function toggleBoxTilt() {
+      const box = document.getElementById("studioBoxObject");
+      if (box) box.classList.toggle("tilt-alt");
+    }
+
+    function resetStudio() {
+      const defaultColorBtn = document.querySelector(".color-swatch-btn");
+      setStudioColor("#E5EDE3", defaultColorBtn);
+      
+      const logoInput = document.getElementById("studioLogoInput");
+      if (logoInput) {
+        logoInput.value = "Shree Sweets";
+        updateStudioLogoText("Shree Sweets");
+      }
+      
+      const finishSelect = document.getElementById("studioFinish");
+      if (finishSelect) {
+        finishSelect.value = "finish-gold-foil";
+        updateStudioFinish("finish-gold-foil");
+      }
+
+      const styleSelect = document.getElementById("studioStyle");
+      if (styleSelect) {
+        styleSelect.value = "magnetic";
+        studioState.style = "magnetic";
+      }
+
+      updateStudioSummary();
+    }
+
+    function updateStudioSummary() {
+      const summaryEl = document.getElementById("studioSummaryText");
+      if (!summaryEl) return;
+
+      const styleNames = {
+        "magnetic": "Magnetic Flap Rigid Box",
+        "lid-base": "2-Piece Lid & Base Rigid Box",
+        "drawer": "Slide-Out Matchbox Drawer",
+        "monocarton": "Heavy Folding Mono-Carton"
+      };
+
+      const finishNames = {
+        "finish-gold-foil": "Hot Stamped Gold Foil",
+        "finish-deboss": "Deep Blind Deboss",
+        "finish-uv": "Gloss Spot UV"
+      };
+
+      summaryEl.innerText = `${styleNames[studioState.style]} featuring '${studioState.logo}' with ${finishNames[studioState.finish]}.`;
+    }
+
+    function requestStudioDesign() {
+      const msg = `Hello Akashdeep Boxes! I configured a custom packaging prototype:
+*Style:* ${studioState.style}
+*Colorway:* ${studioState.color}
+*Emboss Name:* ${studioState.logo}
+*Finish Selection:* ${studioState.finish}
+Please provide an indicative sample run quote.`;
+
+      triggerWhatsApp(msg);
+    }
+
+    /* ==========================================================================
+       I. BULK ORDER QUOTE ESTIMATOR
+       ========================================================================== */
+    function calculateQuote() {
+      const typeSelect = document.getElementById("quoteBoxType");
+      const qtySlider = document.getElementById("quoteQuantity");
+      const badge = document.getElementById("quoteQtyBadge");
+      
+      if (!typeSelect || !qtySlider) return;
+
+      const typeKey = typeSelect.value;
+      const qty = parseInt(qtySlider.value, 10);
+      badge.innerText = `${qty.toLocaleString('en-IN')} Pcs`;
+
+      let base = PRICING_CONFIG.baseRates[typeKey] || 45.00;
+
+      if (document.getElementById("chkFoil").checked) base += PRICING_CONFIG.additions.foil;
+      if (document.getElementById("chkTray").checked) base += PRICING_CONFIG.additions.tray;
+      if (document.getElementById("chkUV").checked) base += PRICING_CONFIG.additions.uv;
+      if (document.getElementById("chkMagnet").checked) base += PRICING_CONFIG.additions.magnet;
+
+      let multiplier = 1.0;
+      for (const tier of PRICING_CONFIG.volumeDiscounts) {
+        if (qty >= tier.minQty) {
+          multiplier = tier.multiplier;
+          break;
+        }
+      }
+
+      const unitRate = (base * multiplier).toFixed(2);
+      const batchTotal = Math.round(unitRate * qty).toLocaleString("en-IN");
+
+      document.getElementById("quoteRateDisplay").innerText = `₹${unitRate}`;
+      document.getElementById("quoteBatchTotal").innerText = `₹${batchTotal}`;
+    }
+
+    function sendQuotationWhatsApp() {
+      const typeText = document.getElementById("quoteBoxType").selectedOptions[0].text;
+      const qty = document.getElementById("quoteQuantity").value;
+      const rate = document.getElementById("quoteRateDisplay").innerText;
+      const total = document.getElementById("quoteBatchTotal").innerText;
+      const city = document.getElementById("quoteCity").value || "India";
+
+      const msg = `Hello Akashdeep Boxes! I generated an online quotation estimate:
+*Box Type:* ${typeText}
+*Batch Quantity:* ${qty} Pcs
+*Est. Unit Rate:* ${rate} (Total: ${total})
+*Destination:* ${city}
+Please confirm manufacturing lead-time and board availability.`;
+
+      triggerWhatsApp(msg);
+    }
+
+    /* ==========================================================================
+       J. DESIGN COMPARISON DOCK & RESPONSIVE MODAL
+       ========================================================================== */
+    function toggleCompare(productId) {
+      const prod = PRODUCTS.find(p => p.id === productId);
+      if (!prod) return;
+
+      const idx = comparisonList.findIndex(p => p.id === productId);
+      if (idx >= 0) {
+        comparisonList.splice(idx, 1);
+      } else {
+        if (comparisonList.length >= 3) {
+          showFloatingToast("Maximum of 3 designs can be compared simultaneously.");
+          return;
+        }
+        comparisonList.push(prod);
+      }
+
+      updateCompareUI();
+      renderCatalogue();
+    }
+
+    function updateCompareUI() {
+      const dock = document.getElementById("compareDock");
+      const countEl = document.getElementById("compareCount");
+      const slots = document.getElementById("compareSlots");
+
+      if (comparisonList.length === 0) {
+        dock.classList.remove("visible");
+        return;
+      }
+
+      dock.classList.add("visible");
+      countEl.innerText = comparisonList.length;
+
+      slots.innerHTML = comparisonList.map(item => `
+        <div class="compare-chip">
+          <span>${item.name.substring(0, 10)}...</span>
+          <span class="compare-chip-remove" onclick="toggleCompare('${item.id}')" aria-label="Remove item">×</span>
+        </div>
+      `).join("");
+    }
+
+    function clearComparison() {
+      comparisonList = [];
+      updateCompareUI();
+      renderCatalogue();
+    }
+
+    function openComparisonModal() {
+      if (comparisonList.length === 0) return;
+      const modal = document.getElementById("compareModal");
+      const container = document.getElementById("compareCardsContainer");
+
+      // Render as Responsive Cards (works seamlessly on 320px up to 1440px)
+      container.innerHTML = comparisonList.map(p => `
+        <div class="compare-single-card">
+          <div style="font-weight: 700; color: var(--accent-sage); font-size: 1rem; margin-bottom: 0.25rem;">
+            ${p.name}
+          </div>
+          <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); font-weight: 700; margin-bottom: 0.5rem;">
+            ${p.categoryLabel}
+          </div>
+          <div><strong>Size:</strong> ${p.dimensions}</div>
+          <div><strong>Substrate:</strong> ${p.material}</div>
+          <div><strong>Sample MOQ:</strong> ${p.sampleMOQ}</div>
+          <div><strong>Ideal For:</strong> ${p.suggestedUse}</div>
+          <button class="neu-btn" style="margin-top: 0.75rem; font-size: 0.75rem; padding: 0.35rem 0.65rem;" onclick="toggleCompare('${p.id}'); openComparisonModal();">
+            Remove from Compare
+          </button>
+        </div>
+      `).join("");
+
+      modal.classList.add("open");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closeComparisonModal() {
+      const modal = document.getElementById("compareModal");
+      modal.classList.remove("open");
+      document.body.classList.remove("no-scroll");
+    }
+
+    /* ==========================================================================
+       K. CONTACT FORM & WHATSAPP GENERATION
+       ========================================================================== */
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("contactName").value.trim();
+      const phone = document.getElementById("contactPhone").value.trim();
+      const business = document.getElementById("contactBusiness").value.trim() || "Not Specified";
+      const category = document.getElementById("contactCategory").value;
+      const message = document.getElementById("contactMessage").value.trim() || "General packaging inquiry";
+
+      let isValid = true;
+      if (!name) {
+        document.getElementById("nameError").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("nameError").style.display = "none";
+      }
+
+      if (!phone || phone.length < 8) {
+        document.getElementById("phoneError").style.display = "block";
+        isValid = false;
+      } else {
+        document.getElementById("phoneError").style.display = "none";
+      }
+
+      if (!isValid) return;
+
+      const formattedMsg = `*New Packaging Enquiry - Akashdeep Boxes*
+*Name:* ${name}
+*Business/Event:* ${business}
+*Phone:* ${phone}
+*Category:* ${category}
+*Requirements:* ${message}`;
+
+      triggerWhatsApp(formattedMsg);
+    }
+
+    function triggerGeneralWhatsApp() {
+      const msg = "Hello Akashdeep Boxes! I am visiting your packaging showcase and would like to speak with a packaging specialist.";
+      triggerWhatsApp(msg);
+    }
+
+    function triggerWhatsApp(text) {
+      const encoded = encodeURIComponent(text);
+      const url = `https://wa.me/${BUSINESS_WHATSAPP_NUMBER}?text=${encoded}`;
+      window.open(url, "_blank");
+    }
+
+    function showFloatingToast(text) {
+      const toast = document.createElement("div");
+      toast.style.position = "fixed";
+      toast.style.bottom = "20px";
+      toast.style.left = "50%";
+      toast.style.transform = "translateX(-50%)";
+      toast.style.background = "#303A34";
+      toast.style.color = "#FFFFFF";
+      toast.style.padding = "0.65rem 1.25rem";
+      toast.style.borderRadius = "9999px";
+      toast.style.fontSize = "0.8125rem";
+      toast.style.zIndex = "200";
+      toast.style.boxShadow = "0 8px 20px rgba(0,0,0,0.25)";
+      toast.innerText = text;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2800);
+    }
+
+    // Keyboard Accessibility (Esc to close open drawers or modals)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeGalleryModal();
+        closeComparisonModal();
+        const drawer = document.getElementById("mobileDrawer");
+        if (drawer && drawer.classList.contains("open")) {
+          document.getElementById("closeDrawerBtn").click();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

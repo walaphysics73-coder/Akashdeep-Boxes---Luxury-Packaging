@@ -1,0 +1,3225 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Akashdeep Boxes | Bespoke Packaging, Wedding & Mithai Boxes</title>
+    <meta name="description" content="Custom luxury packaging, artisanal wedding invitation boxes, mithai sweet boxes, rigid gift packaging, and bulk folding cartons crafted to perfection.">
+
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+       1. CSS DESIGN TOKENS & SYSTEM VARIABLES (Mobile-First Soft Neumorphism)
+       ========================================================================== */
+        
+         :root {
+            /* Soft Natural Editorial Palette */
+            --bg-primary: #F8F6F1;
+            /* Warm Ivory base */
+            --bg-surface: #F2EFE9;
+            /* Elevated cards & surfaces */
+            --bg-inset: #EBE7DF;
+            /* Pressed controls & input channels */
+            --bg-card: #F5F2EB;
+            /* Accents (Natural, Sage, Peach, Sand) */
+            --accent-sage: #4C6255;
+            /* Main Brand Accent */
+            --accent-sage-dark: #37473E;
+            --accent-sage-soft: #E5EDE3;
+            --accent-peach: #F3E3D8;
+            --accent-sand: #D9CDBB;
+            --accent-sand-light: #ECE5DB;
+            --accent-mist: #E5EAF0;
+            --gold-foil: #B88E52;
+            /* High-contrast accessible readable text */
+            --text-main: #303A34;
+            /* Charcoal Text */
+            --text-muted: #5B665F;
+            /* Secondary neutral */
+            --text-light: #7E8C83;
+            --text-inverted: #FFFFFF;
+            /* Calibrated Neumorphic Dual Shadows */
+            --shadow-raised: 6px 6px 14px rgba(195, 187, 172, 0.45), -6px -6px 14px #FFFFFF;
+            --shadow-raised-sm: 3px 3px 8px rgba(195, 187, 172, 0.4), -3px -3px 8px #FFFFFF;
+            --shadow-pressed: inset 3px 3px 7px rgba(195, 187, 172, 0.45), inset -3px -3px 7px #FFFFFF;
+            --shadow-pressed-sm: inset 2px 2px 5px rgba(195, 187, 172, 0.4), inset -2px -2px 5px #FFFFFF;
+            --shadow-floating: 0 16px 36px -8px rgba(76, 98, 85, 0.22), 0 6px 14px rgba(0, 0, 0, 0.04);
+            /* Border Radii */
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-pill: 9999px;
+            /* Layout & Viewport Metrics */
+            --container-max: 1240px;
+            --header-h: 68px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            /* Fluid Responsive Typography Scale via clamp() */
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --fs-hero: clamp(1.85rem, 5vw + 0.6rem, 3.5rem);
+            --fs-h2: clamp(1.45rem, 3vw + 0.5rem, 2.3rem);
+            --fs-h3: clamp(1.15rem, 1.8vw + 0.4rem, 1.45rem);
+            --fs-body: clamp(0.9375rem, 0.2vw + 0.88rem, 1.05rem);
+            --fs-small: 0.8125rem;
+        }
+        /* Reset & Viewport Overflow Elimination */
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+        }
+        
+        body {
+            min-width: 320px;
+            max-width: 100vw;
+            overflow-x: hidden;
+            font-family: var(--font-body);
+            font-size: var(--fs-body);
+            color: var(--text-main);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+            overflow-wrap: anywhere;
+        }
+        
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: inherit;
+            border: none;
+            outline: none;
+            max-width: 100%;
+        }
+        /* iOS 16px Font Enforcement on Interactive Inputs to prevent auto-zoom */
+        
+        input,
+        select,
+        textarea {
+            font-size: 1rem !important;
+            /* Strictly 16px to prevent iOS Safari auto-zoom */
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Layout Container with Adaptive Fluid Gutters */
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: clamp(1rem, 3.5vw, 2rem);
+            padding-right: clamp(1rem, 3.5vw, 2rem);
+        }
+        /* ==========================================================================
+       2. REUSABLE NEUMORPHIC UTILITIES & ATOMS
+       ========================================================================== */
+        
+        .neu-flat {
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+        
+        .neu-flat-sm {
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+        
+        .neu-inset {
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed);
+            border: 1px solid rgba(217, 205, 187, 0.5);
+        }
+        
+        .neu-inset-sm {
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed-sm);
+        }
+        
+        .neu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.4rem;
+            min-height: 46px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            background: var(--bg-surface);
+            color: var(--text-main);
+            box-shadow: var(--shadow-raised-sm);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+            user-select: none;
+            text-align: center;
+        }
+        
+        .neu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 12px rgba(195, 187, 172, 0.5), -5px -5px 12px #FFFFFF;
+            color: var(--accent-sage);
+        }
+        
+        .neu-btn:active,
+        .neu-btn.is-active {
+            transform: translateY(1px);
+            box-shadow: var(--shadow-pressed);
+            color: var(--accent-sage-dark);
+        }
+        
+        .neu-btn-primary {
+            background: var(--accent-sage);
+            color: var(--text-inverted) !important;
+            box-shadow: 4px 4px 10px rgba(76, 98, 85, 0.35), -3px -3px 8px #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        
+        .neu-btn-primary:hover {
+            background: var(--accent-sage-dark);
+            color: var(--text-inverted) !important;
+        }
+        
+        .neu-btn-primary:active {
+            box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.35), inset -2px -2px 5px rgba(255, 255, 255, 0.15);
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        
+        .badge-sage {
+            background: var(--accent-sage-soft);
+            color: var(--accent-sage);
+        }
+        
+        .badge-peach {
+            background: var(--accent-peach);
+            color: #935B3B;
+        }
+        /* Range Sliders */
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px;
+            border-radius: var(--radius-pill);
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed-sm);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            border: 2px solid var(--accent-sand);
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+        
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            border-color: var(--accent-sage);
+        }
+        /* Toast Notification for Prohibited Alert Replacements */
+        
+        .toast-container {
+            position: fixed;
+            top: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 300;
+            width: min(90vw, 400px);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .toast-msg {
+            pointer-events: auto;
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-floating);
+            border: 1px solid rgba(76, 98, 85, 0.3);
+            color: var(--text-main);
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            animation: toastSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes toastSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* ==========================================================================
+       3. TOP BANNER & STICKY HEADER
+       ========================================================================== */
+        
+        .top-banner {
+            background: var(--accent-sand-light);
+            border-bottom: 1px solid rgba(217, 205, 187, 0.6);
+            padding: 0.45rem 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .top-banner .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4EA466;
+            box-shadow: 0 0 0 3px rgba(78, 164, 102, 0.2);
+            flex-shrink: 0;
+        }
+        
+        header.main-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--header-h);
+            background: rgba(248, 246, 241, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(217, 205, 187, 0.4);
+            display: flex;
+            align-items: center;
+            transition: box-shadow 0.25s ease;
+        }
+        
+        header.main-header.scrolled {
+            box-shadow: 0 4px 18px rgba(186, 178, 163, 0.35);
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            min-width: 0;
+        }
+        
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            min-width: 0;
+        }
+        
+        .brand-logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            color: var(--accent-sage);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            flex-shrink: 0;
+        }
+        
+        .brand-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+        
+        .brand-subtitle {
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            white-space: nowrap;
+        }
+        /* Desktop Navigation links */
+        
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 1.75rem;
+        }
+        
+        .desktop-nav a {
+            font-size: 0.925rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        
+        .desktop-nav a:hover {
+            color: var(--accent-sage);
+        }
+        
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--accent-sage);
+            transition: width 0.2s ease;
+            border-radius: 2px;
+        }
+        
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+        /* Header Actions */
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .header-quote-btn {
+            display: none;
+        }
+        /* Hamburger Button (Touch Target >= 44px) */
+        
+        .hamburger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 120;
+        }
+        
+        .hamburger-icon {
+            width: 22px;
+            height: 16px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .hamburger-icon span {
+            display: block;
+            height: 2.2px;
+            width: 100%;
+            background: var(--text-main);
+            border-radius: 3px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        
+        .hamburger-btn.is-active .hamburger-icon span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .hamburger-btn.is-active .hamburger-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger-btn.is-active .hamburger-icon span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        /* Mobile Drawer */
+        
+        .mobile-drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 43, 38, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 110;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-drawer-overlay.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(85vw, 340px);
+            height: 100vh;
+            height: 100dvh;
+            background: var(--bg-primary);
+            z-index: 115;
+            padding: calc(var(--header-h) + 1.25rem) 1.25rem 2rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transform: translateX(100%);
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -8px 0 28px rgba(0, 0, 0, 0.12);
+            overflow-y: auto;
+        }
+        
+        .mobile-drawer.is-open {
+            transform: translateX(0);
+        }
+        
+        .mobile-drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        
+        .mobile-drawer-links a {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            padding: 0.85rem 1.1rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 48px;
+        }
+        
+        .mobile-drawer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--accent-sand);
+        }
+        /* ==========================================================================
+       4. HERO SECTION (Mobile-First Stacked -> Desktop Editorial)
+       ========================================================================== */
+        
+        .hero-section {
+            padding-top: clamp(1.75rem, 4vw, 4rem);
+            padding-bottom: clamp(2.25rem, 5vw, 4.5rem);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1.75rem, 4vw, 3rem);
+            align-items: center;
+            min-width: 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            text-align: left;
+            min-width: 0;
+        }
+        
+        .hero-eyebrow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: var(--fs-hero);
+            line-height: 1.14;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+        
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent-sage);
+            font-weight: 400;
+        }
+        
+        .hero-desc {
+            font-size: clamp(0.925rem, 1vw, 1.075rem);
+            color: var(--text-muted);
+            max-width: 580px;
+            line-height: 1.6;
+        }
+        
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-top: 0.25rem;
+        }
+        /* Trust metrics strip (Mobile safe grid) */
+        
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            padding-top: 0.75rem;
+            width: 100%;
+        }
+        
+        .metric-card {
+            padding: 0.75rem 0.35rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            min-width: 0;
+        }
+        
+        .metric-value {
+            font-weight: 700;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-sage);
+            line-height: 1.2;
+        }
+        
+        .metric-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-top: 0.2rem;
+        }
+        /* 3D Box Hero Canvas Viewport (Mobile-Friendly Transform Scaling) */
+        
+        .hero-visual-card {
+            position: relative;
+            width: 100%;
+            min-height: 320px;
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            touch-action: pan-y;
+            min-width: 0;
+        }
+        
+        .hero-3d-hint {
+            position: absolute;
+            top: 0.85rem;
+            left: 0.85rem;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        /* 3D Perspective Box System */
+        
+        .hero-scene {
+            width: 180px;
+            height: 180px;
+            perspective: 750px;
+            margin: 1.25rem auto;
+            user-select: none;
+        }
+        
+        .hero-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(25deg);
+            transition: transform 0.08s ease-out;
+        }
+        
+        .cube-floating {
+            animation: autoRotateFloat 9s ease-in-out infinite;
+        }
+        
+        @keyframes autoRotateFloat {
+            0%,
+            100% {
+                transform: translateY(0px) rotateX(16deg) rotateY(25deg);
+            }
+            50% {
+                transform: translateY(-12px) rotateX(22deg) rotateY(48deg);
+            }
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: #F1ECE3;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 0 20px rgba(186, 178, 163, 0.4);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem;
+            text-align: center;
+            backface-visibility: visible;
+        }
+        
+        .face-front {
+            transform: rotateY(0deg) translateZ(90px);
+            background: #FAF7F2;
+        }
+        
+        .face-back {
+            transform: rotateY(180deg) translateZ(90px);
+        }
+        
+        .face-right {
+            transform: rotateY(90deg) translateZ(90px);
+            background: #EFE9DE;
+        }
+        
+        .face-left {
+            transform: rotateY(-90deg) translateZ(90px);
+            background: #EAE4D8;
+        }
+        
+        .face-top {
+            transform: rotateX(90deg) translateZ(90px);
+            background: #FFFDF9;
+            border: 2px dashed rgba(184, 142, 82, 0.4);
+        }
+        
+        .face-bottom {
+            transform: rotateX(-90deg) translateZ(90px);
+            box-shadow: 0 35px 28px rgba(0, 0, 0, 0.12);
+        }
+        
+        .gold-seal {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #DFBF8B, #B88E52);
+            box-shadow: 0 4px 8px rgba(184, 142, 82, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            margin-bottom: 0.4rem;
+        }
+        /* ==========================================================================
+       5. CATEGORY FILTER TABS & PRODUCT CATALOGUE
+       ========================================================================== */
+        
+        .section-spacing {
+            padding-top: clamp(2rem, 5vw, 4.5rem);
+            padding-bottom: clamp(2rem, 5vw, 4.5rem);
+            min-width: 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto clamp(1.75rem, 3.5vw, 2.75rem) auto;
+            min-width: 0;
+        }
+        
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: var(--fs-h2);
+            color: var(--text-main);
+            margin-top: 0.45rem;
+            margin-bottom: 0.65rem;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        /* Search & Filter Bar */
+        
+        .filter-controls-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            min-width: 0;
+        }
+        
+        .search-sort-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+        }
+        
+        .search-input-wrap {
+            position: relative;
+            width: 100%;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            border-radius: var(--radius-pill);
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed-sm);
+            color: var(--text-main);
+            border: 1px solid rgba(217, 205, 187, 0.5);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 0.95rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            pointer-events: none;
+        }
+        
+        .sort-select {
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-pill);
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+        /* Category Pill Strip (Horizontally scrollable with no page breakout) */
+        
+        .category-pills {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.4rem;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+        }
+        
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .cat-pill {
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.55rem 1.15rem;
+            border-radius: var(--radius-pill);
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            flex-shrink: 0;
+        }
+        
+        .cat-pill.active {
+            background: var(--accent-sage);
+            color: #FFF;
+            box-shadow: 2px 2px 7px rgba(76, 98, 85, 0.35);
+        }
+        /* Products Grid: Mobile 1 Col -> Tablet 2-3 Col -> Desktop 4 Col */
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(1.25rem, 2.5vw, 1.75rem);
+            min-width: 0;
+        }
+        
+        .product-card {
+            border-radius: var(--radius-lg);
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+            min-width: 0;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .card-top-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            gap: 0.5rem;
+        }
+        
+        .compare-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            user-select: none;
+            flex-shrink: 0;
+        }
+        
+        .compare-checkbox-label input {
+            accent-color: var(--accent-sage);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        /* Product Image Stage (Realistic SVG Artworks) */
+        
+        .product-visual-stage {
+            width: 100%;
+            height: 190px;
+            border-radius: var(--radius-md);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 0.85rem;
+        }
+        
+        .product-visual-stage svg {
+            width: 100%;
+            height: 100%;
+            max-height: 170px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.07));
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-visual-stage svg {
+            transform: scale(1.04);
+        }
+        
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            flex-grow: 1;
+            min-width: 0;
+        }
+        
+        .card-title {
+            font-size: 1.075rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+        
+        .card-specs-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+        
+        .spec-chip {
+            background: var(--bg-inset);
+            padding: 0.2rem 0.55rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+        }
+        
+        .card-pricing-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.85rem;
+            margin-top: 0.85rem;
+            border-top: 1px solid rgba(217, 205, 187, 0.45);
+            gap: 0.5rem;
+        }
+        
+        .price-tag-sub {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            display: block;
+        }
+        
+        .price-tag-val {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-sage);
+        }
+        /* Empty Search State */
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-radius: var(--radius-lg);
+        }
+        /* ==========================================================================
+       6. LIVE CUSTOM BOX STUDIO (3D CONFIGURATOR)
+       ========================================================================== */
+        
+        .studio-wrapper {
+            border-radius: var(--radius-xl);
+            padding: clamp(1rem, 3.5vw, 2.25rem);
+            margin-top: 1rem;
+            min-width: 0;
+        }
+        
+        .studio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            align-items: center;
+            min-width: 0;
+        }
+        /* 3D Preview Stage */
+        
+        .studio-preview-box {
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+        }
+        
+        .studio-model-scene {
+            width: 180px;
+            height: 160px;
+            perspective: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .studio-3d-box {
+            width: 130px;
+            height: 80px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(24deg) rotateY(-32deg);
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .studio-face {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.725rem;
+            box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .s-front {
+            width: 130px;
+            height: 80px;
+            transform: translateZ(45px);
+        }
+        
+        .s-back {
+            width: 130px;
+            height: 80px;
+            transform: rotateY(180deg) translateZ(45px);
+        }
+        
+        .s-right {
+            width: 90px;
+            height: 80px;
+            right: -45px;
+            transform: rotateY(90deg);
+        }
+        
+        .s-left {
+            width: 90px;
+            height: 80px;
+            left: -45px;
+            transform: rotateY(-90deg);
+        }
+        
+        .s-top {
+            width: 130px;
+            height: 90px;
+            top: -45px;
+            transform: rotateX(90deg);
+        }
+        
+        .s-bottom {
+            width: 130px;
+            height: 90px;
+            bottom: -45px;
+            transform: rotateX(-90deg);
+            box-shadow: 0 30px 20px rgba(0, 0, 0, 0.14);
+        }
+        /* Controls Panel */
+        
+        .studio-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            min-width: 0;
+        }
+        
+        .control-group-title {
+            font-size: 0.775rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+        }
+        /* Style Selector Buttons */
+        
+        .style-chip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .style-chip {
+            padding: 0.65rem 0.5rem;
+            border-radius: var(--radius-md);
+            font-size: 0.825rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            transition: all 0.2s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .style-chip.active {
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed-sm);
+            color: var(--accent-sage);
+            border: 1px solid var(--accent-sage);
+        }
+        /* Dimension Sliders Row */
+        
+        .dimension-slider-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .dim-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .dim-val {
+            color: var(--accent-sage);
+            font-weight: 700;
+        }
+        /* Color Swatch Circles */
+        
+        .color-swatches {
+            display: flex;
+            gap: 0.65rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-raised-sm);
+            border: 3px solid var(--bg-primary);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+        
+        .swatch.active {
+            transform: scale(1.18);
+            border-color: var(--accent-sage);
+        }
+        /* Artwork Upload Box */
+        
+        .upload-dropzone {
+            border: 2px dashed rgba(217, 205, 187, 0.8);
+            border-radius: var(--radius-md);
+            padding: 1.15rem;
+            text-align: center;
+            cursor: pointer;
+            background: var(--bg-surface);
+            transition: border-color 0.2s ease;
+            display: block;
+        }
+        
+        .upload-dropzone:hover {
+            border-color: var(--accent-sage);
+        }
+        
+        .upload-feedback {
+            font-size: 0.75rem;
+            margin-top: 0.35rem;
+            color: var(--text-muted);
+        }
+        /* ==========================================================================
+       7. BULK ORDER QUOTE ESTIMATOR
+       ========================================================================== */
+        
+        .estimator-card {
+            border-radius: var(--radius-xl);
+            padding: clamp(1rem, 3.5vw, 2.25rem);
+            min-width: 0;
+        }
+        
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            min-width: 0;
+        }
+        
+        .calc-summary-panel {
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            justify-content: space-between;
+            min-width: 0;
+        }
+        
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            gap: 0.5rem;
+        }
+        
+        .calc-row.total {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border-top: 1px solid rgba(217, 205, 187, 0.6);
+            padding-top: 0.65rem;
+        }
+        
+        .tier-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.55rem;
+            border-radius: var(--radius-pill);
+            background: var(--accent-sage-soft);
+            color: var(--accent-sage);
+        }
+        /* ==========================================================================
+       8. MULTI-ANGLE MODAL & COMPARISON TRAY
+       ========================================================================== */
+        /* Multi-Angle Gallery Modal */
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 43, 38, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        
+        .modal-overlay.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-dialog {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            max-height: 90dvh;
+            overflow-y: auto;
+            border-radius: var(--radius-xl);
+            padding: clamp(1rem, 3vw, 1.75rem);
+            background: var(--bg-primary);
+            position: relative;
+            transform: translateY(16px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .modal-overlay.is-active .modal-dialog {
+            transform: translateY(0);
+        }
+        
+        .modal-close-btn {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.85rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            z-index: 5;
+        }
+        
+        .gallery-stage {
+            width: 100%;
+            height: 220px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.85rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-stage svg {
+            max-height: 180px;
+            object-fit: contain;
+        }
+        
+        .gallery-nav-thumbs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.4rem;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .gallery-nav-thumbs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .gallery-thumb-btn {
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-md);
+            font-size: 0.775rem;
+            font-weight: 600;
+            background: var(--bg-surface);
+            box-shadow: var(--shadow-raised-sm);
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        .gallery-thumb-btn.active {
+            background: var(--accent-sage);
+            color: #FFF;
+        }
+        /* Comparison Floating Tray (Respects safe-area) */
+        
+        .compare-tray {
+            position: fixed;
+            bottom: calc(var(--safe-bottom) + 0.75rem);
+            left: 50%;
+            transform: translateX(-50%) translateY(130%);
+            width: min(94vw, 560px);
+            border-radius: var(--radius-pill);
+            padding: 0.65rem 1.15rem;
+            z-index: 95;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow-floating);
+            gap: 0.5rem;
+        }
+        
+        .compare-tray.is-visible {
+            transform: translateX(-50%) translateY(0%);
+        }
+        /* Floating WhatsApp Quick Action Button (Offset above tray) */
+        
+        .whatsapp-fab {
+            position: fixed;
+            bottom: calc(var(--safe-bottom) + 4.5rem);
+            right: clamp(1rem, 3.5vw, 2rem);
+            z-index: 90;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #FFFFFF;
+            box-shadow: 0 8px 18px rgba(37, 211, 102, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .whatsapp-fab:hover {
+            transform: scale(1.08);
+        }
+        /* ==========================================================================
+       9. CRAFTSMANSHIP & HOW IT WORKS
+       ========================================================================== */
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            min-width: 0;
+        }
+        
+        .feature-card {
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            min-width: 0;
+        }
+        
+        .feature-icon-wrap {
+            width: 46px;
+            height: 46px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent-sage);
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed-sm);
+        }
+        /* Steps */
+        
+        .steps-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.75rem;
+            min-width: 0;
+        }
+        
+        .step-card {
+            padding: 1.25rem;
+            border-radius: var(--radius-lg);
+            position: relative;
+            min-width: 0;
+        }
+        
+        .step-num {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--accent-sand);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+        /* ==========================================================================
+       10. CONTACT FORM & FOOTER
+       ========================================================================== */
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            min-width: 0;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-bottom: 0.85rem;
+            min-width: 0;
+        }
+        
+        .form-label {
+            font-size: 0.825rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .form-input {
+            width: 100%;
+            min-height: 46px;
+            padding: 0.65rem 0.95rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-inset);
+            box-shadow: var(--shadow-pressed-sm);
+            color: var(--text-main);
+            border: 1px solid rgba(217, 205, 187, 0.6);
+        }
+        
+        .form-input:focus {
+            border-color: var(--accent-sage);
+        }
+        
+        .error-msg {
+            font-size: 0.725rem;
+            color: #B93838;
+            display: none;
+        }
+        
+        .form-group.has-error .error-msg {
+            display: block;
+        }
+        
+        footer.site-footer {
+            border-top: 1px solid rgba(217, 205, 187, 0.6);
+            padding: 2.5rem 0 calc(var(--safe-bottom) + 2rem) 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            min-width: 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            margin-bottom: 1.75rem;
+            min-width: 0;
+        }
+        /* ==========================================================================
+       11. RESPONSIVE BREAKPOINTS (Progressive Mobile-First Enhancement)
+       ========================================================================== */
+        /* Phablets & Large Phones (min-width: 480px) */
+        
+        @media (min-width: 480px) {
+            .hero-actions {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .search-sort-bar {
+                flex-direction: row;
+                align-items: center;
+            }
+            .search-input-wrap {
+                flex: 1 1 240px;
+            }
+            .sort-select {
+                width: auto;
+                flex: 0 0 auto;
+            }
+        }
+        /* Tablets (min-width: 768px) */
+        
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .steps-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .header-quote-btn {
+                display: inline-flex;
+            }
+            .whatsapp-fab {
+                bottom: calc(var(--safe-bottom) + 1.25rem);
+            }
+        }
+        /* Laptops & Desktops (min-width: 1024px) */
+        
+        @media (min-width: 1024px) {
+            .desktop-nav {
+                display: flex;
+            }
+            .hamburger-btn {
+                display: none;
+            }
+            .hero-grid {
+                grid-template-columns: 1.15fr 0.85fr;
+            }
+            .hero-scene {
+                width: 220px;
+                height: 220px;
+            }
+            .cube-face {
+                width: 220px;
+                height: 220px;
+            }
+            .face-front {
+                transform: rotateY(0deg) translateZ(110px);
+            }
+            .face-back {
+                transform: rotateY(180deg) translateZ(110px);
+            }
+            .face-right {
+                transform: rotateY(90deg) translateZ(110px);
+            }
+            .face-left {
+                transform: rotateY(-90deg) translateZ(110px);
+            }
+            .face-top {
+                transform: rotateX(90deg) translateZ(110px);
+            }
+            .face-bottom {
+                transform: rotateX(-90deg) translateZ(110px);
+            }
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .studio-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .estimator-grid {
+                grid-template-columns: 1.3fr 0.9fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr 1.2fr;
+            }
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Toast Notification Container (No alert() used) -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Top Notification -->
+    <aside class="top-banner" aria-label="Announcement">
+        <span class="pulse-dot"></span>
+        <span>Accepting Bulk B2B & Custom Wedding Invitation Orders for 2026 Season</span>
+    </aside>
+
+    <!-- Sticky Main Header -->
+    <header class="main-header" id="mainHeader">
+        <div class="container">
+            <div class="nav-wrapper">
+
+                <!-- Brand Logo -->
+                <a href="#hero" class="brand-logo" aria-label="Akashdeep Boxes Home">
+                    <div class="brand-logo-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+                    </div>
+                    <div>
+                        <span class="brand-title">Akashdeep</span>
+                        <span class="brand-subtitle">Boxes & Packaging</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav" aria-label="Desktop Primary Navigation">
+                    <a href="#catalogue">Collection</a>
+                    <a href="#studio">3D Custom Studio</a>
+                    <a href="#estimator">Quote Estimator</a>
+                    <a href="#craftsmanship">Why Us</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <a href="#estimator" class="neu-btn neu-btn-primary header-quote-btn">
+            Instant Quote
+          </a>
+
+                    <!-- Mobile Hamburger Toggle (Accessible, min 44px) -->
+                    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobileDrawer">
+            <div class="hamburger-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer & Backdrop Overlay -->
+    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+    <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+        <div class="mobile-drawer-links">
+            <a href="#catalogue" class="drawer-link">
+                <span>Product Collection</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a href="#studio" class="drawer-link">
+                <span>3D Box Studio</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a href="#estimator" class="drawer-link">
+                <span>Price Estimator</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a href="#craftsmanship" class="drawer-link">
+                <span>Craftsmanship</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+            <a href="#contact" class="drawer-link">
+                <span>Contact & Inquiries</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+        </div>
+
+        <div class="mobile-drawer-bottom">
+            <button onclick="triggerQuickWhatsApp('Direct Mobile Inquiry')" class="neu-btn neu-btn-primary" style="width: 100%;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        WhatsApp Support
+      </button>
+            <p style="text-align: center; font-size: 0.75rem; color: var(--text-light); margin-top: 1rem;">
+                Manufacturing Facility: Industrial Area, India
+            </p>
+        </div>
+    </aside>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== */ -->
+    <section class="hero-section" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+
+                <!-- Left Editorial Copy -->
+                <div class="hero-content">
+                    <div class="hero-eyebrow">
+                        <span class="badge badge-sage">Bespoke Manufacturing 2026</span>
+                        <span class="badge badge-peach">Pan-India Dispatch</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Packaging That Makes <em>Every Occasion</em> Memorable.
+                    </h1>
+
+                    <p class="hero-desc">
+                        Custom printed rigid boxes, opulent wedding invitation suites, certified food-grade mithai containers, and sustainable luxury packaging designed around your brand's unique identity.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#studio" class="neu-btn neu-btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Customize Your Box
+                        </a>
+                        <a href="#catalogue" class="neu-btn">
+              Explore Collection
+            </a>
+                    </div>
+
+                    <!-- Trust metrics (3-column fluid grid) -->
+                    <div class="hero-metrics">
+                        <div class="metric-card">
+                            <div class="metric-value">500k+</div>
+                            <div class="metric-label">Boxes Made</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">Custom Dies</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">4.9 ★</div>
+                            <div class="metric-label">Client Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 3D Interactive Packaging Scene -->
+                <div class="hero-visual-card neu-flat" id="heroCardWrapper">
+                    <div class="hero-3d-hint neu-inset-sm" style="padding: 0.25rem 0.6rem; border-radius: var(--radius-pill);">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg> Interactive 3D Box
+                    </div>
+
+                    <div class="hero-scene" id="heroScene">
+                        <div class="hero-cube cube-floating" id="heroCube">
+
+                            <!-- Front -->
+                            <div class="cube-face face-front">
+                                <div class="gold-seal">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                </div>
+                                <div style="font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: var(--text-main);">AKASHDEEP</div>
+                                <div style="font-size: 0.65rem; color: var(--gold-foil); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;">Royal Packaging</div>
+                            </div>
+
+                            <!-- Back -->
+                            <div class="cube-face face-back">
+                                <div style="font-weight: 700; color: var(--accent-sage);">1000 GSM Kappa</div>
+                                <div style="font-size: 0.725rem; color: var(--text-muted); margin-top: 0.25rem;">Sturdy Rigid Board</div>
+                            </div>
+
+                            <!-- Right -->
+                            <div class="cube-face face-right">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-foil)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                <div style="font-size: 0.725rem; font-weight: 700; margin-top: 0.4rem;">Magnetic Lock</div>
+                            </div>
+
+                            <!-- Left -->
+                            <div class="cube-face face-left">
+                                <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-sage);">Food Grade</div>
+                                <div style="font-size: 0.65rem; color: var(--text-muted);">Certified Safe Film</div>
+                            </div>
+
+                            <!-- Top Lid -->
+                            <div class="cube-face face-top">
+                                <div style="font-family: var(--font-serif); font-size: 0.8rem; color: var(--gold-foil); font-weight: 700;">METALLIC EMBOSS</div>
+                                <div style="font-size: 0.625rem; color: var(--text-muted);">Custom Monogram</div>
+                            </div>
+
+                            <!-- Bottom -->
+                            <div class="cube-face face-bottom">
+                                <span style="font-size: 0.65rem; color: var(--text-light); font-weight: 600;">Handcrafted in India</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; font-size: 0.725rem; color: var(--text-light); margin-top: 0.4rem;">
+                        Hover or touch-drag to inspect box from all angles
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       CATALOGUE & MULTI-ANGLE SHOWCASE
+       ========================================================================== */ -->
+    <section class="section-spacing" id="catalogue">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="badge badge-sage">2026 Ready Collection</span>
+                <h2>Explore Handcrafted Packaging</h2>
+                <p>Every box is manufactured with meticulous die-cutting, crisp foil embossing, and certified odorless finishes.</p>
+            </div>
+
+            <!-- Filter, Search and Category Strip -->
+            <div class="filter-controls-wrap">
+
+                <div class="search-sort-bar">
+                    <div class="search-input-wrap">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="catalogueSearchInput" class="search-input" placeholder="Search by box type or name..." aria-label="Search Catalog">
+                    </div>
+
+                    <select id="catalogueSortSelect" class="sort-select neu-flat-sm" aria-label="Sort Catalog Items">
+            <option value="featured">Sort: Featured</option>
+            <option value="name-asc">Name (A – Z)</option>
+            <option value="name-desc">Name (Z – A)</option>
+            <option value="price-asc">Price (Low to High)</option>
+            <option value="price-desc">Price (High to Low)</option>
+          </select>
+                </div>
+
+                <div class="category-pills" id="categoryPillStrip" role="tablist">
+                    <button class="cat-pill active" data-cat="all" role="tab" aria-selected="true">All Collections</button>
+                    <button class="cat-pill" data-cat="wedding" role="tab" aria-selected="false">Wedding Boxes</button>
+                    <button class="cat-pill" data-cat="mithai" role="tab" aria-selected="false">Mithai & Sweets</button>
+                    <button class="cat-pill" data-cat="rigid" role="tab" aria-selected="false">Rigid Luxury</button>
+                    <button class="cat-pill" data-cat="kraft" role="tab" aria-selected="false">Eco Kraft</button>
+                </div>
+
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGridContainer">
+                <!-- Rendered via JavaScript -->
+            </div>
+
+            <!-- Empty Results State -->
+            <div class="empty-state neu-flat" id="emptyCatalogueState" style="display: none;">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="1.5" style="margin: 0 auto 0.85rem;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem;">No matching boxes found</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.15rem;">Try adjusting your search terms or select another category.</p>
+                <button class="neu-btn" onclick="resetCatalogueFilters()">Reset All Filters</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       LIVE CUSTOM BOX STUDIO (3D CONFIGURATOR)
+       ========================================================================== */ -->
+    <section class="section-spacing" id="studio">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="badge badge-peach">Live 3D Customizer</span>
+                <h2>Interactive Box Design Studio</h2>
+                <p>Experiment with dimensions, box structures, and bespoke finishes in real-time before placing sample dies.</p>
+            </div>
+
+            <div class="studio-wrapper neu-flat">
+                <div class="studio-grid">
+
+                    <!-- Left 3D Visualizer Container -->
+                    <div class="studio-preview-box neu-inset">
+
+                        <div style="position: absolute; top: 0.85rem; left: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                            <span class="badge badge-sage" id="studioStyleBadge">Rigid Two-Piece</span>
+                            <span class="badge" style="background: var(--bg-surface); color: var(--text-main);" id="studioDimBadge">18 × 14 × 6 cm</span>
+                        </div>
+
+                        <!-- CSS 3D Model -->
+                        <div class="studio-model-scene">
+                            <div class="studio-3d-box" id="studioBoxModel">
+                                <div class="studio-face s-front" id="sfFront">Front</div>
+                                <div class="studio-face s-back" id="sfBack">Back</div>
+                                <div class="studio-face s-right" id="sfRight">Right</div>
+                                <div class="studio-face s-left" id="sfLeft">Left</div>
+                                <div class="studio-face s-top" id="sfTop">
+                                    <span id="studioLidLabel" style="color: var(--gold-foil); font-weight: 700; font-size: 0.65rem;">CUSTOM LOGO</span>
+                                </div>
+                                <div class="studio-face s-bottom" id="sfBottom"></div>
+                            </div>
+                        </div>
+
+                        <!-- Visual Specs Bar -->
+                        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding-top: 0.85rem; border-top: 1px solid rgba(217, 205, 187, 0.45); font-size: 0.75rem;">
+                            <span style="color: var(--text-muted);">Est. Capacity: <strong id="studioVolumeEst">1,512 cm³</strong></span>
+                            <button onclick="resetStudioConfig()" class="neu-btn neu-flat-sm" style="min-height: 34px; padding: 0.25rem 0.75rem; font-size: 0.75rem;">
+                Reset
+              </button>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Studio Controls -->
+                    <div class="studio-controls">
+
+                        <!-- Box Structure Type -->
+                        <div>
+                            <div class="control-group-title">1. Box Structure & Style</div>
+                            <div class="style-chip-grid">
+                                <button class="style-chip active" onclick="setStudioStyle('two-piece', 'Rigid Two-Piece', this)">Rigid Two-Piece</button>
+                                <button class="style-chip" onclick="setStudioStyle('magnetic', 'Magnetic Flap', this)">Magnetic Flap</button>
+                                <button class="style-chip" onclick="setStudioStyle('drawer', 'Sliding Drawer', this)">Sliding Drawer</button>
+                                <button class="style-chip" onclick="setStudioStyle('folding', 'Tuck Folding', this)">Tuck-in Folding</button>
+                            </div>
+                        </div>
+
+                        <!-- Dimensions -->
+                        <div>
+                            <div class="control-group-title">2. Outer Dimensions (Centimeters)</div>
+
+                            <div class="dimension-slider-item">
+                                <div class="dim-label-row">
+                                    <span>Length (L):</span>
+                                    <span class="dim-val" id="valLength">18 cm</span>
+                                </div>
+                                <input type="range" id="sliderLength" min="10" max="35" value="18" oninput="updateStudioDimensions()">
+                            </div>
+
+                            <div class="dimension-slider-item">
+                                <div class="dim-label-row">
+                                    <span>Width (W):</span>
+                                    <span class="dim-val" id="valWidth">14 cm</span>
+                                </div>
+                                <input type="range" id="sliderWidth" min="8" max="28" value="14" oninput="updateStudioDimensions()">
+                            </div>
+
+                            <div class="dimension-slider-item">
+                                <div class="dim-label-row">
+                                    <span>Height / Depth (H):</span>
+                                    <span class="dim-val" id="valHeight">6 cm</span>
+                                </div>
+                                <input type="range" id="sliderHeight" min="3" max="15" value="6" oninput="updateStudioDimensions()">
+                            </div>
+                        </div>
+
+                        <!-- Color Shade -->
+                        <div>
+                            <div class="control-group-title">3. Board Paper Shade</div>
+                            <div class="color-swatches">
+                                <div class="swatch active" style="background: #F2EFE9;" title="Warm Ivory" onclick="setStudioColor('#F2EFE9', 'Warm Ivory', this)"></div>
+                                <div class="swatch" style="background: #DCE8DC;" title="Pistachio Sage" onclick="setStudioColor('#DCE8DC', 'Pistachio Sage', this)"></div>
+                                <div class="swatch" style="background: #F5E1D5;" title="Blush Peach" onclick="setStudioColor('#F5E1D5', 'Blush Peach', this)"></div>
+                                <div class="swatch" style="background: #D9CDBB;" title="Natural Kraft" onclick="setStudioColor('#D9CDBB', 'Natural Kraft', this)"></div>
+                                <div class="swatch" style="background: #E5EAF0;" title="Mist Blue" onclick="setStudioColor('#E5EAF0', 'Mist Blue', this)"></div>
+                            </div>
+                        </div>
+
+                        <!-- Artwork Upload Simulation -->
+                        <div>
+                            <div class="control-group-title">4. Mock Artwork / Monogram (Optional)</div>
+                            <label class="upload-dropzone" for="logoUploadInput">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-sage)" stroke-width="2" style="margin: 0 auto 0.35rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="22" x2="12" y2="15"/></svg>
+                <div style="font-size: 0.8rem; font-weight: 600;">Click to upload vector logo (.png, .jpg, .svg)</div>
+                <div class="upload-feedback" id="uploadStatusText">Max file size 5MB</div>
+              </label>
+                            <input type="file" id="logoUploadInput" accept="image/*" style="display: none;" onchange="handleLogoUpload(this)">
+                        </div>
+
+                        <!-- Action Button -->
+                        <button onclick="sendStudioConfigToWhatsApp()" class="neu-btn neu-btn-primary" style="width: 100%; margin-top: 0.35rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Request Quotation on WhatsApp
+            </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       BULK ORDER QUOTE ESTIMATOR
+       ========================================================================== */ -->
+    <section class="section-spacing" id="estimator">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="badge badge-sage">Transparent Factory Rates</span>
+                <h2>Instant Bulk Quote Estimator</h2>
+                <p>Configure wholesale volumes, paper grades, and foil embellishments with our dynamic price matrix.</p>
+            </div>
+
+            <div class="estimator-card neu-flat">
+                <div class="estimator-grid">
+
+                    <!-- Left Configurations -->
+                    <div style="display: flex; flex-direction: column; gap: 1.15rem; min-width: 0;">
+
+                        <!-- Category -->
+                        <div>
+                            <label class="form-label" style="margin-bottom: 0.35rem; display: block;">1. Select Product Type</label>
+                            <select id="calcTypeSelect" class="form-input" onchange="runQuoteCalculation()">
+                <option value="42">Royal Wedding Invitation Box (Base ₹42)</option>
+                <option value="34">Traditional 1kg Mithai Box (Base ₹34)</option>
+                <option value="68">Premium Rigid Gift Box with Magnets (Base ₹68)</option>
+                <option value="26">Eco Kraft Folding Packaging Box (Base ₹26)</option>
+              </select>
+                        </div>
+
+                        <!-- Material Board -->
+                        <div>
+                            <label class="form-label" style="margin-bottom: 0.35rem; display: block;">2. Board Thickness & Grade</label>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.5rem;">
+                                <label class="neu-btn neu-flat-sm" style="font-size: 0.775rem; padding: 0.55rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="radio" name="boardGrade" value="0" checked onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>Standard 300 GSM</span>
+                </label>
+                                <label class="neu-btn neu-flat-sm" style="font-size: 0.775rem; padding: 0.55rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="radio" name="boardGrade" value="6" onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>400 GSM Metallic (+₹6)</span>
+                </label>
+                                <label class="neu-btn neu-flat-sm" style="font-size: 0.775rem; padding: 0.55rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="radio" name="boardGrade" value="16" onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>1000 GSM Kappa (+₹16)</span>
+                </label>
+                            </div>
+                        </div>
+
+                        <!-- Optional Embellishments -->
+                        <div>
+                            <label class="form-label" style="margin-bottom: 0.35rem; display: block;">3. Embellishments & Finishing</label>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
+                                <label class="neu-btn neu-inset-sm" style="font-size: 0.75rem; padding: 0.45rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="checkbox" id="chkGoldFoil" value="4" onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>Gold Foil (+₹4)</span>
+                </label>
+                                <label class="neu-btn neu-inset-sm" style="font-size: 0.75rem; padding: 0.45rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="checkbox" id="chkSpotUV" value="3" onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>Spot UV (+₹3)</span>
+                </label>
+                                <label class="neu-btn neu-inset-sm" style="font-size: 0.75rem; padding: 0.45rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="checkbox" id="chkEmboss" value="2.5" onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>Embossing (+₹2.5)</span>
+                </label>
+                                <label class="neu-btn neu-inset-sm" style="font-size: 0.75rem; padding: 0.45rem 0.75rem; border-radius: var(--radius-md); justify-content: flex-start; cursor: pointer;">
+                  <input type="checkbox" id="chkTray" value="5" onchange="runQuoteCalculation()" style="accent-color: var(--accent-sage);">
+                  <span>Food Tray (+₹5)</span>
+                </label>
+                            </div>
+                        </div>
+
+                        <!-- Quantity Slider -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                                <label class="form-label" style="margin: 0;">4. Order Quantity (Bulk Batch)</label>
+                                <span class="badge badge-sage" id="calcQtyBadge" style="font-size: 0.8rem;">1,000 Units</span>
+                            </div>
+                            <input type="range" id="calcQtySlider" min="100" max="5000" step="50" value="1000" oninput="runQuoteCalculation()">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.685rem; color: var(--text-light); margin-top: 0.35rem;">
+                                <span>100</span>
+                                <span>500</span>
+                                <span>1,000 (10% Off)</span>
+                                <span>2,500</span>
+                                <span>5,000+ (25%)</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Calculation Summary -->
+                    <div class="calc-summary-panel neu-inset">
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+                                <span style="font-weight: 700; font-size: 1.05rem;">Quotation Breakdown</span>
+                                <span class="tier-badge" id="calcDiscountLabel">10% Bulk Discount</span>
+                            </div>
+
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div class="calc-row">
+                                    <span>Selected Model:</span>
+                                    <strong id="summaryModelText">Royal Wedding Box</strong>
+                                </div>
+                                <div class="calc-row">
+                                    <span>Board Thickness:</span>
+                                    <strong id="summaryBoardText">Standard 300 GSM</strong>
+                                </div>
+                                <div class="calc-row">
+                                    <span>Finishing Add-ons:</span>
+                                    <strong id="summaryFinishesText">None selected</strong>
+                                </div>
+                                <div class="calc-row">
+                                    <span>Order Quantity:</span>
+                                    <strong id="summaryUnitsText">1,000 Pieces</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="neu-flat" style="padding: 1.15rem; border-radius: var(--radius-md);">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 0.825rem; color: var(--text-muted);">Unit Rate:</span>
+                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent-sage);" id="summaryPerPiece">₹37.80</span>
+                            </div>
+
+                            <div class="calc-row total" style="margin-top: 0.45rem;">
+                                <span>Estimated Total:</span>
+                                <span id="summaryGrossTotal" style="color: var(--text-main);">₹37,800</span>
+                            </div>
+
+                            <div style="font-size: 0.675rem; color: var(--text-light); margin-top: 0.5rem; line-height: 1.3;">
+                                *Indicative estimation for demo. Final invoice calibrated to custom die cuts, metallic foils, and GST transport.
+                            </div>
+                        </div>
+
+                        <button onclick="sendCalculatedQuoteToWhatsApp()" class="neu-btn neu-btn-primary" style="width: 100%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              Share Quote on WhatsApp
+            </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       WHY CHOOSE US / CRAFTSMANSHIP
+       ========================================================================== */ -->
+    <section class="section-spacing" id="craftsmanship">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="badge badge-sage">Factory Standards</span>
+                <h2>Why Top Sweet Brands & Planners Trust Us</h2>
+                <p>In-house German offset presses, automated rigid laminators, and stringent QA checks before packaging dispatch.</p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card neu-flat">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700;">Precision Metallic Foiling</h3>
+                    <p style="font-size: 0.825rem; color: var(--text-muted);">
+                        High-temperature hot foil stamping in classic gold, copper, and rose gold that never flakes off handmade fibers.
+                    </p>
+                </div>
+
+                <div class="feature-card neu-flat">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700;">Food-Grade Odorless Glues</h3>
+                    <p style="font-size: 0.825rem; color: var(--text-muted);">
+                        Certified barrier laminations and odorless plant adhesives protect delicate sweets and dry fruits from paper odor.
+                    </p>
+                </div>
+
+                <div class="feature-card neu-flat">
+                    <div class="feature-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700;">Committed Wedding Delivery</h3>
+                    <p style="font-size: 0.825rem; color: var(--text-muted);">
+                        Disciplined batch scheduling ensures wedding cards and gift boxes reach your doorstep well ahead of auspicious dates.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- How it works 3 step sequence -->
+            <div class="steps-row">
+
+                <div class="step-card neu-flat">
+                    <div class="step-num">01</div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Explore & Sample</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Choose your preferred box structure or request a physical swatch kit.</p>
+                </div>
+
+                <div class="step-card neu-flat">
+                    <div class="step-num">02</div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Digital Proof & Approval</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Our studio prepares 3D dieline proofs before cutting commercial metal dies.</p>
+                </div>
+
+                <div class="step-card neu-flat">
+                    <div class="step-num">03</div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.25rem;">Bulk Print & Safe Dispatch</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Automated QA inspection followed by double-corrugated logistics packing.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       CONTACT & SAMPLE INQUIRY FORM
+       ========================================================================== */ -->
+    <section class="section-spacing" id="contact">
+        <div class="container">
+
+            <div class="neu-flat" style="border-radius: var(--radius-xl); padding: clamp(1.25rem, 3.5vw, 2.75rem); min-width: 0;">
+                <div class="contact-grid">
+
+                    <div style="min-width: 0;">
+                        <span class="badge badge-peach">Direct Connection</span>
+                        <h2 style="font-family: var(--font-serif); font-size: var(--fs-h2); margin: 0.45rem 0 0.85rem;">Let's Plan Your Custom Packaging Batch</h2>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem;">
+                            Need a physical sample sent to your shop or have specific Pantone shades to match? Fill in your requirements or connect directly on WhatsApp.
+                        </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.85rem;">
+                            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                <div class="brand-logo-icon" style="width: 36px; height: 36px; font-size: 0.85rem;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </div>
+                                <span>+91 98765 43210 (Sales & Orders)</span>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                <div class="brand-logo-icon" style="width: 36px; height: 36px; font-size: 0.85rem;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                </div>
+                                <span>orders@akashdeepboxes.com</span>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                                <div class="brand-logo-icon" style="width: 36px; height: 36px; font-size: 0.85rem;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <span>Plant: Industrial Packaging Zone, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Area -->
+                    <div class="neu-inset" style="padding: clamp(1.15rem, 2.75vw, 1.85rem); border-radius: var(--radius-lg); min-width: 0;">
+                        <form id="inquiryForm" onsubmit="handleInquirySubmit(event)" novalidate>
+
+                            <div class="form-group" id="fgName">
+                                <label class="form-label" for="inqName">Your Name / Business Name *</label>
+                                <input type="text" id="inqName" class="form-input" placeholder="e.g. Royal Sweets or Priya Sharma" required>
+                                <span class="error-msg">Please enter your name or company name.</span>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem;">
+                                <div class="form-group" id="fgPhone">
+                                    <label class="form-label" for="inqPhone">WhatsApp Number *</label>
+                                    <input type="tel" id="inqPhone" class="form-input" placeholder="+91 98765 43210" required>
+                                    <span class="error-msg">Please enter a valid phone number.</span>
+                                </div>
+
+                                <div class="form-group" id="fgCategory">
+                                    <label class="form-label" for="inqCategory">Requirement Type</label>
+                                    <select id="inqCategory" class="form-input">
+                    <option>Wedding Invitation Packaging</option>
+                    <option>Mithai & Sweet Boxes (Bulk)</option>
+                    <option>Rigid Magnetic Luxury Hamper</option>
+                    <option>Custom Corrugated Cartons</option>
+                    <option>Physical Sample Box Request</option>
+                  </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="fgMessage">
+                                <label class="form-label" for="inqMessage">Approximate Quantity & Specifications</label>
+                                <textarea id="inqMessage" class="form-input" rows="3" style="min-height: 80px;" placeholder="e.g. 1,000 units of 1kg mithai box with gold stamping..."></textarea>
+                            </div>
+
+                            <button type="submit" class="neu-btn neu-btn-primary" style="width: 100%; margin-top: 0.4rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send Inquiry on WhatsApp
+              </button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== */ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div>
+                    <div class="brand-logo" style="margin-bottom: 0.65rem;">
+                        <div class="brand-logo-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        </div>
+                        <div>
+                            <span class="brand-title" style="font-size: 1.15rem;">Akashdeep</span>
+                            <span class="brand-subtitle">Boxes & Packaging</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-muted);">
+                        Delivering bespoke packaging luxury, rigid wedding card casings, and certified sweets boxes with precision engineering.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.65rem; color: var(--text-main);">Quick Catalog</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.8rem;">
+                        <li><a href="#catalogue">Wedding Invitation Suites</a></li>
+                        <li><a href="#catalogue">Mithai & Sweet Boxes</a></li>
+                        <li><a href="#catalogue">Rigid Magnetic Hampers</a></li>
+                        <li><a href="#catalogue">Kraft Retail Packaging</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.65rem; color: var(--text-main);">Interactive Tools</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.8rem;">
+                        <li><a href="#studio">3D Custom Box Studio</a></li>
+                        <li><a href="#estimator">Live Price Calculator</a></li>
+                        <li><a href="javascript:void(0)" onclick="openMultiAngleModal(1)">Sample Angle Viewer</a></li>
+                        <li><a href="#contact">Request Sample Kit</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.65rem; color: var(--text-main);">Instant Inquiry</h4>
+                    <p style="font-size: 0.775rem; margin-bottom: 0.65rem;">Direct line with master production team on WhatsApp:</p>
+                    <button onclick="triggerQuickWhatsApp('General Footer Inquiry')" class="neu-btn neu-flat-sm" style="font-size: 0.8rem; width: 100%;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            Chat with Production
+          </button>
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(217, 205, 187, 0.45); font-size: 0.75rem;">
+                <div>&copy; 2026 Akashdeep Boxes & Packaging Ltd. All rights reserved.</div>
+                <div style="color: var(--text-light);">Manufactured with eco-compliant Kappa & certified food safety barrier films.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       MODALS & FLOATING CONTROLS
+       ========================================================================== */ -->
+
+    <!-- Multi-Angle Image Inspection Modal -->
+    <div class="modal-overlay" id="multiAngleModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+        <div class="modal-dialog neu-flat">
+            <button class="modal-close-btn" onclick="closeMultiAngleModal()" aria-label="Close Modal">&times;</button>
+
+            <div style="margin-bottom: 0.85rem;">
+                <span class="badge badge-sage" id="modalCategoryBadge">Wedding Collection</span>
+                <h3 id="modalProductTitle" style="font-family: var(--font-serif); font-size: 1.25rem; margin-top: 0.25rem;">Royal Heritage Wedding Card Box</h3>
+                <p id="modalProductDesc" style="font-size: 0.8rem; color: var(--text-muted);">Inspect 360-degree angles and foil detailing.</p>
+            </div>
+
+            <!-- Main Stage -->
+            <div class="gallery-stage neu-inset" id="modalMainStage">
+                <!-- SVG dynamically loaded -->
+            </div>
+
+            <!-- Perspective Thumbnails -->
+            <div class="gallery-nav-thumbs" id="modalAngleButtons">
+                <button class="gallery-thumb-btn active" onclick="switchModalAngle('front', this)">Front View</button>
+                <button class="gallery-thumb-btn" onclick="switchModalAngle('side', this)">45° Side View</button>
+                <button class="gallery-thumb-btn" onclick="switchModalAngle('inside', this)">Inside / Cavity</button>
+                <button class="gallery-thumb-btn" onclick="switchModalAngle('texture', this)">Foil Texture Macro</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.15rem; padding-top: 0.85rem; border-top: 1px solid rgba(217, 205, 187, 0.5); gap: 0.5rem;">
+                <div>
+                    <span style="font-size: 0.725rem; color: var(--text-light);">Starting from</span>
+                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-sage);" id="modalProductPrice">₹45 / pc</div>
+                </div>
+                <button onclick="quoteThisModalProduct()" class="neu-btn neu-btn-primary">
+          Select For Live Quote
+        </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design Comparison Floating Drawer -->
+    <aside class="compare-tray neu-flat" id="compareFloatingTray" aria-label="Product Comparison Bar">
+        <div style="display: flex; align-items: center; gap: 0.5rem; min-width: 0;">
+            <span class="badge badge-sage" id="compareCountBadge" style="flex-shrink: 0;">2 Boxes</span>
+            <span style="font-size: 0.775rem; font-weight: 600; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Selected for Compare</span>
+        </div>
+        <div style="display: flex; gap: 0.4rem; flex-shrink: 0;">
+            <button class="neu-btn neu-flat-sm" onclick="clearComparison()" style="min-height: 36px; padding: 0.35rem 0.65rem; font-size: 0.75rem;">Clear</button>
+            <button class="neu-btn neu-btn-primary" onclick="openComparisonTableModal()" style="min-height: 36px; padding: 0.35rem 0.85rem; font-size: 0.75rem;">Compare</button>
+        </div>
+    </aside>
+
+    <!-- Comparison Detail Table Modal (Zero overflow, mobile card/scroll support) -->
+    <div class="modal-overlay" id="compareTableModal" role="dialog" aria-modal="true">
+        <div class="modal-dialog neu-flat" style="max-width: 740px;">
+            <button class="modal-close-btn" onclick="closeComparisonTableModal()">&times;</button>
+            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.85rem;">Compare Box Specifications</h3>
+
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;">
+                <table style="width: 100%; min-width: 440px; border-collapse: collapse; font-size: 0.8rem; text-align: left;" id="compareTableContent">
+                    <!-- Populated via JS -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Quick Button -->
+    <a href="javascript:void(0)" onclick="triggerQuickWhatsApp('Floating Quick Action')" class="whatsapp-fab" aria-label="Chat directly on WhatsApp">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+    </a>
+
+    <!-- ==========================================================================
+       JAVASCRIPT APPLICATION LOGIC
+       ========================================================================== */ -->
+    <script>
+        /* ==========================================================================
+                                       CONFIG & PRODUCT REPOSITORY (Realistic Vectors & Metadata)
+                                       ========================================================================== */
+        const APP_CONFIG = {
+            clientWhatsAppNumber: '919876543210',
+            brandName: 'Akashdeep Boxes'
+        };
+
+        // 8 distinct packaging items with detailed vector perspectives
+        const PRODUCTS = [{
+            id: 1,
+            title: 'Royal Heritage Invitation Box',
+            category: 'wedding',
+            categoryLabel: 'Wedding Suites',
+            basePrice: 48,
+            dimensions: '22 × 16 × 4 cm',
+            gsm: '1000 GSM Kappa + 350 GSM Art',
+            finish: 'Embossed Gold Foil + Silk Tassel',
+            desc: 'Artisanal rigid drawer box with velvet lined inner tray and magnetic closure flap.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="30" y="20" width="140" height="120" rx="6" fill="#F4EDE2" stroke="#B88E52" stroke-width="2"/><rect x="42" y="32" width="116" height="96" rx="4" fill="#FAF6F0" stroke="#DFBF8B" stroke-dasharray="3,3"/><circle cx="100" cy="72" r="16" fill="#B88E52"/><path d="M96 68l4 8 4-8" stroke="#FFF" stroke-width="2" fill="none"/><text x="100" y="105" text-anchor="middle" font-size="8" fill="#4C6255" font-family="serif" font-weight="bold">ROYAL INVITATION</text></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M40 30 L130 15 L170 35 L80 50 Z" fill="#E8DEC8" stroke="#B88E52"/><path d="M40 30 L80 50 L80 120 L40 100 Z" fill="#D9CBB0" stroke="#B88E52"/><path d="M80 50 L170 35 L170 105 L80 120 Z" fill="#F1ECE0" stroke="#B88E52"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="30" y="25" width="140" height="110" rx="4" fill="#E0D7C6" stroke="#99866B"/><rect x="40" y="35" width="120" height="90" rx="2" fill="#37473E"/><rect x="55" y="50" width="90" height="60" rx="2" fill="#FAF6F0" stroke="#B88E52"/><text x="100" y="85" text-anchor="middle" font-size="7" fill="#B88E52" font-family="serif">VELVET BED INSERT</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#FBF8F2"/><circle cx="100" cy="80" r="45" fill="none" stroke="#B88E52" stroke-width="3"/><path d="M70 80 Q100 50 130 80 Q100 110 70 80" fill="#DFBF8B" opacity="0.7"/><text x="100" y="84" text-anchor="middle" font-size="9" font-weight="bold" fill="#37473E">24K FOIL GRAIN</text></svg>`
+            }
+        }, {
+            id: 2,
+            title: 'Traditional 1kg Kaju Katli Mithai Box',
+            category: 'mithai',
+            categoryLabel: 'Mithai Boxes',
+            basePrice: 34,
+            dimensions: '24 × 18 × 5 cm',
+            gsm: 'Food Safe 380 GSM Board',
+            finish: 'Moisture Barrier + Gold Partition',
+            desc: 'Certified odorless food-grade sweet box with 4 customizable compartment dividers.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="25" y="30" width="150" height="100" rx="8" fill="#F9EFEB" stroke="#4C6255" stroke-width="2"/><circle cx="100" cy="65" r="18" fill="#E5EDE3"/><text x="100" y="69" text-anchor="middle" font-size="10" fill="#4C6255" font-weight="bold">1 KG</text><text x="100" y="105" text-anchor="middle" font-size="9" fill="#935B3B" font-family="serif">SPECIAL DELIGHTS</text></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M30 40 L120 20 L170 40 L80 60 Z" fill="#F9EFEB" stroke="#4C6255"/><path d="M30 40 L80 60 L80 110 L30 90 Z" fill="#EAD5CC" stroke="#4C6255"/><path d="M80 60 L170 40 L170 90 L80 110 Z" fill="#DFBF8B" stroke="#4C6255"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="25" y="25" width="150" height="110" rx="4" fill="#F9EFEB" stroke="#4C6255"/><line x1="100" y1="25" x2="100" y2="135" stroke="#B88E52" stroke-width="3"/><line x1="25" y1="80" x2="175" y2="80" stroke="#B88E52" stroke-width="3"/><text x="60" y="55" font-size="7" fill="#935B3B">CAVITY 1</text><text x="140" y="55" font-size="7" fill="#935B3B">CAVITY 2</text><text x="60" y="110" font-size="7" fill="#935B3B">CAVITY 3</text><text x="140" y="110" font-size="7" fill="#935B3B">CAVITY 4</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#FFF8F5"/><rect x="40" y="30" width="120" height="100" rx="6" fill="#F3E3D8" stroke="#B88E52"/><text x="100" y="85" text-anchor="middle" font-size="8" fill="#4C6255" font-weight="bold">FOOD BARRIER FILM</text></svg>`
+            }
+        }, {
+            id: 3,
+            title: 'Executive Neodymium Magnetic Rigid Hamper',
+            category: 'rigid',
+            categoryLabel: 'Luxury Rigid',
+            basePrice: 72,
+            dimensions: '28 × 20 × 9 cm',
+            gsm: '1200 GSM Heavy Kappa Board',
+            finish: 'Matte Touch + Concealed Magnet',
+            desc: 'Sturdy book-style gift casing designed for corporate hampers, dry-fruits, and perfume bottles.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="35" y="25" width="130" height="110" rx="6" fill="#EDEBE6" stroke="#4C6255" stroke-width="2"/><rect x="45" y="35" width="110" height="30" rx="3" fill="#DCE8DC"/><text x="100" y="54" text-anchor="middle" font-size="8" font-weight="bold" fill="#37473E">MAGNETIC FLAP</text><circle cx="100" cy="95" r="14" fill="#B88E52"/><path d="M94 95h12" stroke="#FFF" stroke-width="2"/></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M40 35 L120 15 L160 40 L80 60 Z" fill="#D9CDBB"/><path d="M40 35 L80 60 L80 125 L40 100 Z" fill="#C5B7A1"/><path d="M80 60 L160 40 L160 105 L80 125 Z" fill="#E8DEC8"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="30" y="20" width="140" height="120" rx="4" fill="#F5F2EB" stroke="#4C6255"/><rect x="45" y="35" width="110" height="90" rx="4" fill="#4C6255"/><circle cx="75" cy="80" r="18" fill="#37473E"/><rect x="110" y="60" width="35" height="40" rx="2" fill="#37473E"/><text x="100" y="110" text-anchor="middle" font-size="7" fill="#E5EDE3">HIGH-DENSITY EVA FOAM</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#4C6255"/><circle cx="100" cy="80" r="40" fill="none" stroke="#DFBF8B" stroke-width="2"/><text x="100" y="84" text-anchor="middle" font-size="8" fill="#FFF">VELVET TOUCH LAMINATION</text></svg>`
+            }
+        }, {
+            id: 4,
+            title: 'Artisanal Kraft Window Bakery Box',
+            category: 'kraft',
+            categoryLabel: 'Eco Kraft',
+            basePrice: 22,
+            dimensions: '18 × 18 × 7 cm',
+            gsm: '320 GSM Unbleached Virgin Kraft',
+            finish: 'Biodegradable PLA Window',
+            desc: 'Eco-conscious folding pastry carton with moisture barrier and transparent plant cellulose window.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="35" y="25" width="130" height="110" rx="6" fill="#D9CDBB" stroke="#7A6852" stroke-width="2"/><rect x="60" y="50" width="80" height="60" rx="4" fill="#E5EAF0" opacity="0.75" stroke="#7A6852"/><text x="100" y="85" text-anchor="middle" font-size="8" fill="#7A6852">CLEAR WINDOW</text></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M40 35 L120 20 L160 40 L80 55 Z" fill="#D9CDBB"/><path d="M40 35 L80 55 L80 115 L40 95 Z" fill="#BFAF96"/><path d="M80 55 L160 40 L160 100 L80 115 Z" fill="#CCBEA9"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="35" y="25" width="130" height="110" fill="#ECE5DB"/><line x1="35" y1="25" x2="165" y2="135" stroke="#D9CDBB" stroke-dasharray="2,2"/><text x="100" y="85" text-anchor="middle" font-size="8" fill="#7A6852">GREASE RESISTANT</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#C5B7A1"/><text x="100" y="84" text-anchor="middle" font-size="8" fill="#4B382A">NATURAL WOOD FIBER GRAIN</text></svg>`
+            }
+        }, {
+            id: 5,
+            title: 'Muted Pastel Hexagonal Mithai Casing',
+            category: 'mithai',
+            categoryLabel: 'Mithai Boxes',
+            basePrice: 42,
+            dimensions: '20 × 20 × 5 cm',
+            gsm: '400 GSM Rigid Board',
+            finish: 'Rose Gold Stamping + Satin Ribbon',
+            desc: 'Geometric 6-sided luxury gift box designed for premium festive dates and assorted dry fruit bites.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><polygon points="100,20 155,50 155,110 100,140 45,110 45,50" fill="#F5E1D5" stroke="#B88E52" stroke-width="2"/><circle cx="100" cy="80" r="18" fill="#FAF6F0"/><text x="100" y="83" text-anchor="middle" font-size="7" fill="#B88E52" font-weight="bold">ROYAL DRYFRUIT</text></svg>`,
+                side: `<svg viewBox="0 0 200 160"><polygon points="100,30 150,55 150,115 100,135 50,115 50,55" fill="#EAD5CC" stroke="#B88E52"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><polygon points="100,20 155,50 155,110 100,140 45,110 45,50" fill="#FFF"/><line x1="100" y1="80" x2="100" y2="20" stroke="#B88E52"/><line x1="100" y1="80" x2="155" y2="50" stroke="#B88E52"/><line x1="100" y1="80" x2="155" y2="110" stroke="#B88E52"/><line x1="100" y1="80" x2="100" y2="140" stroke="#B88E52"/><line x1="100" y1="80" x2="45" y2="110" stroke="#B88E52"/><line x1="100" y1="80" x2="45" y2="50" stroke="#B88E52"/></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#F5E1D5"/><text x="100" y="84" text-anchor="middle" font-size="8" fill="#8C533E">METALLIC ROSE GOLD GRAIN</text></svg>`
+            }
+        }, {
+            id: 6,
+            title: 'Two-Piece Wedding Card Hardbound Sleeve',
+            category: 'wedding',
+            categoryLabel: 'Wedding Suites',
+            basePrice: 56,
+            dimensions: '25 × 18 × 3.5 cm',
+            gsm: 'Handmade Cotton Rag 350 GSM',
+            finish: 'Deep Intaglio Blind Embossing',
+            desc: 'Understated elegance featuring deckled-edge stationery with an embossed monogram hard slipcase.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="35" y="20" width="130" height="120" rx="3" fill="#F8F6F1" stroke="#D9CDBB" stroke-width="2"/><rect x="50" y="35" width="100" height="90" fill="none" stroke="#4C6255" stroke-width="1.5"/><text x="100" y="75" text-anchor="middle" font-size="8" font-family="serif" fill="#303A34">MR. & MRS. SHARMA</text><text x="100" y="90" text-anchor="middle" font-size="6" fill="#5B665F">CORDIALLY INVITE YOU</text></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M45 25 L125 15 L155 35 L75 45 Z" fill="#F2EFE9"/><path d="M45 25 L75 45 L75 125 L45 105 Z" fill="#D9CDBB"/><path d="M75 45 L155 35 L155 115 L75 125 Z" fill="#ECE5DB"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="40" y="25" width="120" height="110" fill="#F8F6F1"/><rect x="50" y="35" width="100" height="90" fill="#FFF" stroke="#B88E52"/><text x="100" y="80" text-anchor="middle" font-size="7" fill="#4C6255">3 INSERT CARDS (FOILED)</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#F8F6F1"/><text x="100" y="84" text-anchor="middle" font-size="8" fill="#4C6255">COTTON FIBER TEXTURE</text></svg>`
+            }
+        }, {
+            id: 7,
+            title: 'Sliding Matchbox Rigid Drawer Box',
+            category: 'rigid',
+            categoryLabel: 'Luxury Rigid',
+            basePrice: 62,
+            dimensions: '16 × 12 × 5 cm',
+            gsm: '1100 GSM Laminated Greyboard',
+            finish: 'Spot Gloss UV Pattern',
+            desc: 'Smooth gliding drawer sleeve mechanism fitted with a grosgrain ribbon puller.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="35" y="30" width="130" height="100" rx="4" fill="#E5EDE3" stroke="#4C6255" stroke-width="2"/><rect x="90" y="125" width="20" height="8" rx="2" fill="#B88E52"/><text x="100" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#37473E">PULL DRAWER</text></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M30 40 L110 20 L160 40 L80 60 Z" fill="#DCE8DC"/><path d="M30 40 L80 60 L80 115 L30 95 Z" fill="#BACBBA"/><path d="M80 60 L160 40 L160 95 L80 115 Z" fill="#CFDFC5"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="25" y="30" width="120" height="95" fill="#FFF" stroke="#4C6255"/><rect x="110" y="30" width="40" height="95" fill="#E5EDE3" stroke="#4C6255"/><text x="75" y="80" font-size="8" fill="#4C6255">INNER TRAY</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#E5EDE3"/><text x="100" y="84" text-anchor="middle" font-size="8" fill="#37473E">SPOT UV GLOSS RESIN</text></svg>`
+            }
+        }, {
+            id: 8,
+            title: 'Corrugated E-Flute E-Commerce Mailer',
+            category: 'kraft',
+            categoryLabel: 'Eco Kraft',
+            basePrice: 19,
+            dimensions: '26 × 20 × 8 cm',
+            gsm: 'High Crush 3-Ply Micro Flute',
+            finish: 'Water-based Flexo Print',
+            desc: 'Crush-resistant postal mailer box featuring easy lock flaps and self-sealing adhesive strip.',
+            angles: {
+                front: `<svg viewBox="0 0 200 160"><rect x="30" y="25" width="140" height="110" rx="4" fill="#D9CDBB" stroke="#685642" stroke-width="2"/><text x="100" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#3E2E1F">FRAGILE - HANDLE WITH CARE</text><path d="M70 95 L130 95" stroke="#685642" stroke-width="2"/></svg>`,
+                side: `<svg viewBox="0 0 200 160"><path d="M35 30 L125 15 L165 35 L75 50 Z" fill="#D9CDBB"/><path d="M35 30 L75 50 L75 120 L35 100 Z" fill="#BFAF96"/><path d="M75 50 L165 35 L165 105 L75 120 Z" fill="#C5B7A1"/></svg>`,
+                inside: `<svg viewBox="0 0 200 160"><rect x="30" y="25" width="140" height="110" fill="#ECE5DB"/><text x="100" y="80" text-anchor="middle" font-size="8" fill="#685642">DUST FLAPS LOCKED</text></svg>`,
+                texture: `<svg viewBox="0 0 200 160"><rect width="200" height="160" fill="#C5B7A1"/><text x="100" y="84" text-anchor="middle" font-size="8" fill="#2E2014">CORRUGATED E-FLUTE CORE</text></svg>`
+            }
+        }];
+
+        let comparedProductIds = new Set();
+        let currentActiveCategory = 'all';
+
+        /* ==========================================================================
+           ACCESSIBLE TOAST DISPATCHER (NO BROWSER ALERT)
+           ========================================================================== */
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast-msg';
+            toast.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-sage)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>${message}</span>
+      `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-10px)';
+                toast.style.transition = 'all 0.25s ease';
+                setTimeout(() => toast.remove(), 250);
+            }, 3200);
+        }
+
+        /* ==========================================================================
+           NAVIGATION & SCROLL INTERACTIONS
+           ========================================================================== */
+        const mainHeader = document.getElementById('mainHeader');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 25) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        }, {
+            passive: true
+        });
+
+        function toggleMobileDrawer(open) {
+            const isOpen = open !== undefined ? open : !mobileDrawer.classList.contains('is-open');
+            mobileDrawer.classList.toggle('is-open', isOpen);
+            drawerOverlay.classList.toggle('is-open', isOpen);
+            hamburgerBtn.classList.toggle('is-active', isOpen);
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        hamburgerBtn.addEventListener('click', () => toggleMobileDrawer());
+        drawerOverlay.addEventListener('click', () => toggleMobileDrawer(false));
+
+        document.querySelectorAll('.drawer-link').forEach(link => {
+            link.addEventListener('click', () => toggleMobileDrawer(false));
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                toggleMobileDrawer(false);
+                closeMultiAngleModal();
+                closeComparisonTableModal();
+            }
+        });
+
+        /* ==========================================================================
+           HERO 3D INTERACTIVE BOX PERSPECTIVE (Touch & Mouse Support)
+           ========================================================================== */
+        const heroCardWrapper = document.getElementById('heroCardWrapper');
+        const heroCube = document.getElementById('heroCube');
+
+        function applyHeroRotation(xRatio, yRatio) {
+            heroCube.classList.remove('cube-floating');
+            const rotY = (xRatio - 0.5) * 80;
+            const rotX = (0.5 - yRatio) * 60;
+            heroCube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        }
+
+        heroCardWrapper.addEventListener('mousemove', (e) => {
+            const rect = heroCardWrapper.getBoundingClientRect();
+            const xRatio = (e.clientX - rect.left) / rect.width;
+            const yRatio = (e.clientY - rect.top) / rect.height;
+            applyHeroRotation(xRatio, yRatio);
+        });
+
+        heroCardWrapper.addEventListener('mouseleave', () => {
+            heroCube.style.transform = '';
+            heroCube.classList.add('cube-floating');
+        });
+
+        let touchStartX = 0,
+            touchStartY = 0;
+        heroCardWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            heroCube.classList.remove('cube-floating');
+        }, {
+            passive: true
+        });
+
+        heroCardWrapper.addEventListener('touchmove', (e) => {
+            const deltaX = (e.touches[0].clientX - touchStartX) / 90;
+            const deltaY = (e.touches[0].clientY - touchStartY) / 90;
+            heroCube.style.transform = `rotateX(${-deltaY * 25}deg) rotateY(${deltaX * 35}deg)`;
+        }, {
+            passive: true
+        });
+
+        heroCardWrapper.addEventListener('touchend', () => {
+            heroCube.classList.add('cube-floating');
+        });
+
+        /* ==========================================================================
+           CATALOGUE RENDERING, FILTERING & SEARCH
+           ========================================================================== */
+        const productsGridContainer = document.getElementById('productsGridContainer');
+        const emptyCatalogueState = document.getElementById('emptyCatalogueState');
+        const catalogueSearchInput = document.getElementById('catalogueSearchInput');
+        const catalogueSortSelect = document.getElementById('catalogueSortSelect');
+        const categoryPillStrip = document.getElementById('categoryPillStrip');
+
+        function renderCatalogue() {
+            const query = catalogueSearchInput.value.toLowerCase().trim();
+            const sortMode = catalogueSortSelect.value;
+
+            let filtered = PRODUCTS.filter(p => {
+                const matchesCategory = (currentActiveCategory === 'all' || p.category === currentActiveCategory);
+                const matchesSearch = p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+
+            // Sorting
+            if (sortMode === 'name-asc') filtered.sort((a, b) => a.title.localeCompare(b.title));
+            if (sortMode === 'name-desc') filtered.sort((a, b) => b.title.localeCompare(a.title));
+            if (sortMode === 'price-asc') filtered.sort((a, b) => a.basePrice - b.basePrice);
+            if (sortMode === 'price-desc') filtered.sort((a, b) => b.basePrice - a.basePrice);
+
+            productsGridContainer.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyCatalogueState.style.display = 'block';
+                return;
+            }
+            emptyCatalogueState.style.display = 'none';
+
+            filtered.forEach(p => {
+                const isCompared = comparedProductIds.has(p.id);
+                const card = document.createElement('article');
+                card.className = 'product-card neu-flat';
+                card.innerHTML = `
+          <div>
+            <div class="card-top-meta">
+              <span class="badge badge-sage">${p.categoryLabel}</span>
+              <label class="compare-checkbox-label">
+                <input type="checkbox" onchange="toggleCompareProduct(${p.id}, this)" ${isCompared ? 'checked' : ''}>
+                <span>Compare</span>
+              </label>
+            </div>
+
+            <div class="product-visual-stage neu-inset">
+              ${p.angles.front}
+            </div>
+
+            <div class="card-info">
+              <h3 class="card-title">${p.title}</h3>
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">${p.desc}</p>
+              
+              <div class="card-specs-row">
+                <span class="spec-chip">${p.dimensions}</span>
+                <span class="spec-chip">${p.gsm.split('+')[0]}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-pricing-footer">
+            <div>
+              <span class="price-tag-sub">Starting tier</span>
+              <span class="price-tag-val">₹${p.basePrice} <span style="font-size: 0.725rem; font-weight: normal; color: var(--text-muted);">/ unit</span></span>
+            </div>
+            
+            <button class="neu-btn neu-flat-sm" onclick="openMultiAngleModal(${p.id})" style="min-height: 38px; padding: 0.35rem 0.8rem; font-size: 0.775rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              View Angles
+            </button>
+          </div>
+        `;
+                productsGridContainer.appendChild(card);
+            });
+        }
+
+        categoryPillStrip.addEventListener('click', (e) => {
+            const btn = e.target.closest('.cat-pill');
+            if (!btn) return;
+            document.querySelectorAll('.cat-pill').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            currentActiveCategory = btn.dataset.cat;
+            renderCatalogue();
+        });
+
+        catalogueSearchInput.addEventListener('input', renderCatalogue);
+        catalogueSortSelect.addEventListener('change', renderCatalogue);
+
+        function resetCatalogueFilters() {
+            catalogueSearchInput.value = '';
+            catalogueSortSelect.value = 'featured';
+            currentActiveCategory = 'all';
+            document.querySelectorAll('.cat-pill').forEach((b, idx) => {
+                b.classList.toggle('active', idx === 0);
+            });
+            renderCatalogue();
+        }
+
+        /* ==========================================================================
+           MULTI-ANGLE GALLERY MODAL
+           ========================================================================== */
+        const multiAngleModal = document.getElementById('multiAngleModal');
+        const modalMainStage = document.getElementById('modalMainStage');
+        const modalProductTitle = document.getElementById('modalProductTitle');
+        const modalProductDesc = document.getElementById('modalProductDesc');
+        const modalCategoryBadge = document.getElementById('modalCategoryBadge');
+        const modalProductPrice = document.getElementById('modalProductPrice');
+        let currentInspectedProduct = null;
+
+        function openMultiAngleModal(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            currentInspectedProduct = product;
+
+            modalProductTitle.textContent = product.title;
+            modalProductDesc.textContent = `${product.finish} • ${product.dimensions}`;
+            modalCategoryBadge.textContent = product.categoryLabel;
+            modalProductPrice.textContent = `₹${product.basePrice} / unit`;
+
+            document.querySelectorAll('.gallery-thumb-btn').forEach((b, idx) => {
+                b.classList.toggle('active', idx === 0);
+            });
+
+            modalMainStage.innerHTML = product.angles.front;
+            multiAngleModal.classList.add('is-active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function switchModalAngle(angleKey, btn) {
+            if (!currentInspectedProduct) return;
+            document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            modalMainStage.innerHTML = currentInspectedProduct.angles[angleKey] || currentInspectedProduct.angles.front;
+        }
+
+        function closeMultiAngleModal() {
+            multiAngleModal.classList.remove('is-active');
+            document.body.style.overflow = '';
+        }
+
+        multiAngleModal.addEventListener('click', (e) => {
+            if (e.target === multiAngleModal) closeMultiAngleModal();
+        });
+
+        function quoteThisModalProduct() {
+            closeMultiAngleModal();
+            document.getElementById('estimator').scrollIntoView({
+                behavior: 'smooth'
+            });
+            const select = document.getElementById('calcTypeSelect');
+            for (let option of select.options) {
+                if (parseInt(option.value) === currentInspectedProduct.basePrice) {
+                    select.value = option.value;
+                    break;
+                }
+            }
+            runQuoteCalculation();
+        }
+
+        /* ==========================================================================
+           DESIGN COMPARISON ENGINE (Strictly Zero Alert)
+           ========================================================================== */
+        const compareFloatingTray = document.getElementById('compareFloatingTray');
+        const compareCountBadge = document.getElementById('compareCountBadge');
+        const compareTableModal = document.getElementById('compareTableModal');
+        const compareTableContent = document.getElementById('compareTableContent');
+
+        function toggleCompareProduct(productId, checkbox) {
+            if (checkbox.checked) {
+                if (comparedProductIds.size >= 3) {
+                    checkbox.checked = false;
+                    showToast('Maximum 3 boxes can be compared simultaneously.');
+                    return;
+                }
+                comparedProductIds.add(productId);
+            } else {
+                comparedProductIds.delete(productId);
+            }
+            updateComparisonTrayUI();
+        }
+
+        function updateComparisonTrayUI() {
+            const count = comparedProductIds.size;
+            compareCountBadge.textContent = `${count} ${count === 1 ? 'Box' : 'Boxes'}`;
+            compareFloatingTray.classList.toggle('is-visible', count > 0);
+        }
+
+        function clearComparison() {
+            comparedProductIds.clear();
+            updateComparisonTrayUI();
+            renderCatalogue();
+        }
+
+        function openComparisonTableModal() {
+            if (comparedProductIds.size === 0) return;
+            const items = Array.from(comparedProductIds).map(id => PRODUCTS.find(p => p.id === id));
+
+            let tableHtml = `
+        <thead>
+          <tr style="border-bottom: 2px solid var(--accent-sand);">
+            <th style="padding: 0.65rem;">Specification</th>
+            ${items.map(i => `<th style="padding: 0.65rem; color: var(--accent-sage); font-weight: 700;">${i.title}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid rgba(217, 205, 187, 0.4);">
+            <td style="padding: 0.55rem; font-weight: 600;">Category</td>
+            ${items.map(i => `<td style="padding: 0.55rem;">${i.categoryLabel}</td>`).join('')}
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(217, 205, 187, 0.4);">
+            <td style="padding: 0.55rem; font-weight: 600;">Dimensions</td>
+            ${items.map(i => `<td style="padding: 0.55rem;">${i.dimensions}</td>`).join('')}
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(217, 205, 187, 0.4);">
+            <td style="padding: 0.55rem; font-weight: 600;">Board Material</td>
+            ${items.map(i => `<td style="padding: 0.55rem;">${i.gsm}</td>`).join('')}
+          </tr>
+          <tr style="border-bottom: 1px solid rgba(217, 205, 187, 0.4);">
+            <td style="padding: 0.55rem; font-weight: 600;">Special Finish</td>
+            ${items.map(i => `<td style="padding: 0.55rem;">${i.finish}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 0.55rem; font-weight: 600;">Base Unit Cost</td>
+            ${items.map(i => `<td style="padding: 0.55rem; font-weight: 700; color: var(--accent-sage);">₹${i.basePrice}</td>`).join('')}
+          </tr>
+        </tbody>
+      `;
+
+      compareTableContent.innerHTML = tableHtml;
+      compareTableModal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeComparisonTableModal() {
+      compareTableModal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    /* ==========================================================================
+       LIVE CUSTOM BOX STUDIO (3D CONFIGURATOR LOGIC)
+       ========================================================================== */
+    const studioBoxModel = document.getElementById('studioBoxModel');
+    const studioStyleBadge = document.getElementById('studioStyleBadge');
+    const studioDimBadge = document.getElementById('studioDimBadge');
+    const studioVolumeEst = document.getElementById('studioVolumeEst');
+    const sliderLength = document.getElementById('sliderLength');
+    const sliderWidth = document.getElementById('sliderWidth');
+    const sliderHeight = document.getElementById('sliderHeight');
+
+    let currentStudioConfig = {
+      styleName: 'Rigid Two-Piece',
+      length: 18,
+      width: 14,
+      height: 6,
+      colorHex: '#F2EFE9',
+      colorName: 'Warm Ivory',
+      logoUploaded: false,
+      logoFileName: ''
+    };
+
+    function setStudioStyle(styleKey, styleName, btn) {
+      document.querySelectorAll('.style-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentStudioConfig.styleName = styleName;
+      studioStyleBadge.textContent = styleName;
+
+      if (styleKey === 'drawer') {
+        studioBoxModel.style.transform = 'rotateX(15deg) rotateY(-45deg)';
+      } else if (styleKey === 'magnetic') {
+        studioBoxModel.style.transform = 'rotateX(30deg) rotateY(-20deg)';
+      } else {
+        studioBoxModel.style.transform = 'rotateX(24deg) rotateY(-32deg)';
+      }
+    }
+
+    function updateStudioDimensions() {
+      const l = parseInt(sliderLength.value);
+      const w = parseInt(sliderWidth.value);
+      const h = parseInt(sliderHeight.value);
+
+      currentStudioConfig.length = l;
+      currentStudioConfig.width = w;
+      currentStudioConfig.height = h;
+
+      document.getElementById('valLength').textContent = `${l} cm`;
+      document.getElementById('valWidth').textContent = `${w} cm`;
+      document.getElementById('valHeight').textContent = `${h} cm`;
+
+      studioDimBadge.textContent = `${l} × ${w} × ${h} cm`;
+      const volume = (l * w * h).toLocaleString();
+      studioVolumeEst.textContent = `${volume} cm³`;
+
+      const scaleX = l / 18;
+      const scaleY = h / 6;
+      const scaleZ = w / 14;
+      studioBoxModel.style.transform = `scale3d(${scaleX}, ${scaleY}, ${scaleZ}) rotateX(24deg) rotateY(-32deg)`;
+    }
+
+    function setStudioColor(hex, name, swatchElem) {
+      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+      swatchElem.classList.add('active');
+
+      currentStudioConfig.colorHex = hex;
+      currentStudioConfig.colorName = name;
+
+      document.querySelectorAll('.studio-face').forEach(face => {
+        face.style.backgroundColor = hex;
+      });
+    }
+
+    function handleLogoUpload(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        if (file.size > 5 * 1024 * 1024) {
+          showToast('File exceeds 5MB limit. Please upload a smaller image.');
+          return;
+        }
+        currentStudioConfig.logoUploaded = true;
+        currentStudioConfig.logoFileName = file.name;
+        document.getElementById('uploadStatusText').innerHTML = `✓ Uploaded: <strong>${file.name.substring(0, 18)}...</strong>`;
+        document.getElementById('studioLidLabel').textContent = file.name.substring(0, 12);
+        showToast('Logo attached to 3D box model!');
+      }
+    }
+
+    function resetStudioConfig() {
+      sliderLength.value = 18;
+      sliderWidth.value = 14;
+      sliderHeight.value = 6;
+      updateStudioDimensions();
+      setStudioColor('#F2EFE9', 'Warm Ivory', document.querySelector('.swatch'));
+      document.getElementById('uploadStatusText').textContent = 'Max file size 5MB';
+      document.getElementById('studioLidLabel').textContent = 'CUSTOM LOGO';
+      showToast('Custom Studio reset to defaults.');
+    }
+
+    function sendStudioConfigToWhatsApp() {
+      const msg = `*New 3D Box Customizer Inquiry - Akashdeep Boxes*%0A%0A` +
+        `📦 *Box Style:* ${currentStudioConfig.styleName}%0A` +
+        `📐 *Dimensions:* ${currentStudioConfig.length}cm (L) × ${currentStudioConfig.width}cm (W) × ${currentStudioConfig.height}cm (H)%0A` +
+        `🎨 *Paper Shade:* ${currentStudioConfig.colorName}%0A` +
+        `📎 *Artwork Logo:* ${currentStudioConfig.logoUploaded ? currentStudioConfig.logoFileName : 'Standard Monogram'}%0A%0A` +
+        `Please share manufacturing quote and sampling timeline.`;
+
+      const url = `https://wa.me/${APP_CONFIG.clientWhatsAppNumber}?text=${msg}`;
+      window.open(url, '_blank');
+    }
+
+    /* ==========================================================================
+       BULK ORDER QUOTE ESTIMATOR CALCULATION
+       ========================================================================== */
+    function runQuoteCalculation() {
+      const typeSelect = document.getElementById('calcTypeSelect');
+      const baseCost = parseFloat(typeSelect.value);
+      const selectedModelName = typeSelect.options[typeSelect.selectedIndex].text.split('(')[0].trim();
+
+      const boardAddon = parseFloat(document.querySelector('input[name="boardGrade"]:checked').value);
+      const boardLabel = document.querySelector('input[name="boardGrade"]:checked').parentElement.textContent.trim();
+
+      let finishesAddon = 0;
+      let selectedFinishes = [];
+      if (document.getElementById('chkGoldFoil').checked) { finishesAddon += 4; selectedFinishes.push('Gold Foil'); }
+      if (document.getElementById('chkSpotUV').checked) { finishesAddon += 3; selectedFinishes.push('Spot UV'); }
+      if (document.getElementById('chkEmboss').checked) { finishesAddon += 2.5; selectedFinishes.push('Embossing'); }
+      if (document.getElementById('chkTray').checked) { finishesAddon += 5; selectedFinishes.push('Food Tray'); }
+
+      const qty = parseInt(document.getElementById('calcQtySlider').value);
+      document.getElementById('calcQtyBadge').textContent = `${qty.toLocaleString()} Units`;
+
+      let discount = 0;
+      let discountText = 'Standard Batch Rate';
+      if (qty >= 5000) { discount = 0.25; discountText = '25% Wholesale Discount'; }
+      else if (qty >= 2500) { discount = 0.18; discountText = '18% Bulk Discount'; }
+      else if (qty >= 1000) { discount = 0.10; discountText = '10% Tier Discount'; }
+
+      const unitGross = baseCost + boardAddon + finishesAddon;
+      const unitNet = unitGross * (1 - discount);
+      const totalCost = Math.round(unitNet * qty);
+
+      document.getElementById('summaryModelText').textContent = selectedModelName;
+      document.getElementById('summaryBoardText').textContent = boardLabel;
+      document.getElementById('summaryFinishesText').textContent = selectedFinishes.length ? selectedFinishes.join(', ') : 'None';
+      document.getElementById('summaryUnitsText').textContent = `${qty.toLocaleString()} Units`;
+      document.getElementById('calcDiscountLabel').textContent = discountText;
+      document.getElementById('summaryPerPiece').textContent = `₹${unitNet.toFixed(2)}`;
+      document.getElementById('summaryGrossTotal').textContent = `₹${totalCost.toLocaleString('en-IN')}`;
+    }
+
+    function sendCalculatedQuoteToWhatsApp() {
+      const model = document.getElementById('summaryModelText').textContent;
+      const board = document.getElementById('summaryBoardText').textContent;
+      const finish = document.getElementById('summaryFinishesText').textContent;
+      const qty = document.getElementById('summaryUnitsText').textContent;
+      const unitRate = document.getElementById('summaryPerPiece').textContent;
+      const grandTotal = document.getElementById('summaryGrossTotal').textContent;
+
+      const msg = `*Estimated Bulk Quote Request - Akashdeep Boxes*%0A%0A` +
+        `📦 *Product:* ${model}%0A` +
+        `📄 *Board Quality:* ${board}%0A` +
+        `✨ *Finishes:* ${finish}%0A` +
+        `🔢 *Quantity:* ${qty}%0A` +
+        `🏷️ *Calculated Rate:* ${unitRate} / piece%0A` +
+        `💰 *Estimated Total:* ${grandTotal}%0A%0A` +
+        `Please confirm sample dispatch schedule.`;
+
+      window.open(`https://wa.me/${APP_CONFIG.clientWhatsAppNumber}?text=${msg}`, '_blank');
+    }
+
+    /* ==========================================================================
+       CONTACT FORM SUBMISSION WITH WHATSAPP PAYLOAD
+       ========================================================================== */
+    function handleInquirySubmit(e) {
+      e.preventDefault();
+      let isValid = true;
+
+      const nameInput = document.getElementById('inqName');
+      const phoneInput = document.getElementById('inqPhone');
+      const categoryInput = document.getElementById('inqCategory');
+      const messageInput = document.getElementById('inqMessage');
+
+      const fgName = document.getElementById('fgName');
+      const fgPhone = document.getElementById('fgPhone');
+
+      if (!nameInput.value.trim()) {
+        fgName.classList.add('has-error');
+        isValid = false;
+      } else {
+        fgName.classList.remove('has-error');
+      }
+
+      if (!phoneInput.value.trim() || phoneInput.value.trim().length < 8) {
+        fgPhone.classList.add('has-error');
+        isValid = false;
+      } else {
+        fgPhone.classList.remove('has-error');
+      }
+
+      if (!isValid) return;
+
+      showToast('Opening WhatsApp with your specifications...');
+
+      const msg = `*New Website Packaging Lead - Akashdeep Boxes*%0A%0A` +
+        `👤 *Name / Business:* ${encodeURIComponent(nameInput.value.trim())}%0A` +
+        `📞 *Contact Number:* ${encodeURIComponent(phoneInput.value.trim())}%0A` +
+        `🏷️ *Interest:* ${encodeURIComponent(categoryInput.value)}%0A` +
+        `📝 *Requirement Notes:* ${encodeURIComponent(messageInput.value.trim() || 'Standard Consultation Request')}`;
+
+      setTimeout(() => {
+        window.open(`https://wa.me/${APP_CONFIG.clientWhatsAppNumber}?text=${msg}`, '_blank');
+        document.getElementById('inquiryForm').reset();
+      }, 600);
+    }
+
+    function triggerQuickWhatsApp(source) {
+      const msg = `Hello *Akashdeep Boxes*, I am interested in custom boxes and wedding cards (${source}). Please share your product catalog.`;
+      window.open(`https://wa.me/${APP_CONFIG.clientWhatsAppNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    /* ==========================================================================
+       APPLICATION INITIALIZATION
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCatalogue();
+      runQuoteCalculation();
+      updateStudioDimensions();
+    });
+    </script>
+</body>
+
+</html>
